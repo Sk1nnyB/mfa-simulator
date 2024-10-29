@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/header/Header';
 import Home from './components/pages/Home';
 import Library from './components/pages/Library';
@@ -9,14 +9,14 @@ import './App.css';
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Header/>
+      <Router>
+        <Header />
         <Routes>
-          <Route  path='/mfa-simulator' index element={<Home />} />
-          <Route  path='/mfa-simulator/library' index element={<Library />} />
+          <Route path='/' index element={<Home />} />
+          <Route path='/library' element={<Library />} />
         </Routes>
-        <Footer/>
-      </BrowserRouter>
+        <Footer />
+      </Router>
     </>
   );
 }

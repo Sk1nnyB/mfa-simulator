@@ -4,38 +4,38 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <header className="header">
-      <div className='header-container'>
-      <Link to='/mfa-simulator' className='header-title'>
+    <header className="header-container">
+      <div className='header-div'>
+      <Link to='/' className='header-title'>
             The MFA Simulator
       </Link>
-        <nav>
+        <nav class="header">
           <ul className='header-buttons'>
             <li>
               <Link
-                to='/mfa-simulator'
+                to='/'
                 className='header-links'>
                 Story Mode
               </Link>
             </li>
             <li>
               <Link
-                to='/mfa-simulator'
+                to='/'
                 className='header-links'>
                 Sandbox
               </Link>
             </li>
             <li>
               <Link
-                to='/mfa-simulator/library'
+                to='/library'
                 className='header-links'>
                 Library
               </Link>
             </li>
             <li>
               <Link
-                to='/mfa-simulator'
-                className='home-link'>
+                to='/'
+                className='header-links home-link'>
                 Home
               </Link>
             </li>

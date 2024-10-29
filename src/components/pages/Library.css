@@ -5,6 +5,7 @@
   height: 70vh;
   gap: 20px;
   padding: 20px;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Style for MFA options list */
@@ -28,12 +29,12 @@
 }
 
 .MFA:hover {
-  background-color: #6c7b83;
+  background-color: #00aaff;
   color: white;
 }
 
 .MFA.selected {
-  background-color: #00aaff;
+  background-color: #6c7b83;
   color: white;
 }
 
