@@ -27,7 +27,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to='/mfa-simulator'
+                to='/mfa-simulator/library'
                 className='header-links'>
                 Library
               </Link>
