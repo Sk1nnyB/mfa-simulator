@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Header/>
         <Routes>
-          <Route  path='/' index element={<Home />} />
+          <Route  path='/mfa-simulator' index element={<Home />} />
         </Routes>
         <Footer/>
       </BrowserRouter>

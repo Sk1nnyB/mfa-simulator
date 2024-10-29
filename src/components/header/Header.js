@@ -6,35 +6,35 @@ const Header = () => {
   return (
     <header className="header">
       <div className='header-container'>
-      <Link to='/' className='header-title'>
+      <Link to='/mfa-simulator' className='header-title'>
             The MFA Simulator
       </Link>
         <nav>
           <ul className='header-buttons'>
             <li>
               <Link
-                to='/'
+                to='/mfa-simulator'
                 className='header-links'>
                 Story Mode
               </Link>
             </li>
             <li>
               <Link
-                to='/'
+                to='/mfa-simulator'
                 className='header-links'>
                 Sandbox
               </Link>
             </li>
             <li>
               <Link
-                to='/'
+                to='/mfa-simulator'
                 className='header-links'>
                 Library
               </Link>
             </li>
             <li>
               <Link
-                to='/'
+                to='/mfa-simulator'
                 className='home-link'>
                 Home
               </Link>

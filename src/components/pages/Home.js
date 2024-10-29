@@ -12,14 +12,14 @@ function Home() {
       <div className='home-btns'>
         <StoryButton
           className='btns'
-          buttonStyle='btn--outline'
+          buttonStyle='btn--primary'
           buttonSize='btn--large'
         >
           Try Story Mode
         </StoryButton>
         <SandboxButton
           className='btns'
-          buttonStyle='btn--primary'
+          buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
           Sandbox
