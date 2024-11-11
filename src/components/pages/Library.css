@@ -8,7 +8,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Style for MFA options list */
 .library-list {
   display: flex;
   flex-direction: column;
