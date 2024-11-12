@@ -5,6 +5,7 @@ import { optionsMFA } from '../../data/options_mfa';
 function Sandbox() {
   const [options, setOptions] = useState(Array(optionsMFA.length).fill(false));
   const [setupLink, setSetupLink] = useState("Here's the link to your setup: ...");
+  const playcode = 0;
 
   const toggleOption = (index) => {
     setOptions((prevOptions) =>

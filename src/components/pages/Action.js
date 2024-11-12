@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Action.css';
 import { optionsMFA } from '../../data/options_mfa';
 import MFAInfo from '../library/MFAInfo';
@@ -13,39 +13,42 @@ import Smart_Card from '../actions/Smart_Card';
 import Text from '../actions/Text';
 import Voice from '../actions/Voice';
 
-
-
-function processContext(context) {
-  if (context.length !== 4) {
-    throw new Error('Invalid input: Context must be 4 digits and array must have 8 elements.');
-  }
-
-  let options = context.slice(0, 3); // Take the first 3 as the values in the mfa options array
-  let boptions = parseInt(options, 16).toString(2).padStart(12, '0');
-  let pos = parseInt(context[3], 16); // Take the last as the current position in the array
-
-  let workingArray = optionsMFA.filter((value) => {
-    let binStr = value.toString(2).padStart(12, '0');
-    return binStr !== boptions;
-  });
-
-  if (pos == workingArray.length){
-    return 'end'
-  }
-  return workingArray[pos];
-
-}
-
 function Action() {
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
   const [result, setResult] = useState(null);
 
+  function processContext() {
+    if (context.length !== 4) {
+      navigate('/sandbox', { replace: true });
+    }
+
+    let options = context.slice(0, -1); // Take up to the first 3 as mfa present in options array
+    let boptions = parseInt(options, 16).toString(2).padStart(12, '0').split('').map(bit => parseInt(bit));
+    let pos = parseInt(context[context.length - 1], 16); // Take the last as the current position in the array
+    let num_mfa = [...boptions].filter(bit => bit === 1).length;
+    if (pos == num_mfa){
+      return 'end'
+    } else if (pos > num_mfa) {
+      navigate('/sandbox', { replace: true });
+    }
+
+    let count = 0;
+    for (let i = 0; i < optionsMFA.length; i++) {
+      if (boptions[i] === 1) {
+        if (count === pos) {
+          return optionsMFA[i];
+        }
+        count++;
+      }
+    }
+  }
 
   useEffect(() => {
     if (context) {
-      const processedResult = processContext(context);
+      const processedResult = processContext();
       setResult(processedResult); // Update the result state
     }
   }, [context]);
@@ -78,7 +81,7 @@ function Action() {
       {result && result.name === 'Smart Card' ? (
         <Smart_Card />
       ) : null}
-      {result && result.name === 'Text' ? (
+      {result && result.name === 'Text (SMS)' ? (
         <Text />
       ) : null}
       {result && result.name === 'Voice' ? (
