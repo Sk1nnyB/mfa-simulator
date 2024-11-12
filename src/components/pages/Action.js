@@ -29,6 +29,7 @@ function Action() {
     let boptions = parseInt(options, 16).toString(2).padStart(12, '0').split('').map(bit => parseInt(bit));
     let pos = parseInt(context[context.length - 1], 16); // Take the last as the current position in the array
     let num_mfa = [...boptions].filter(bit => bit === 1).length;
+
     if (pos == num_mfa){
       return 'end'
     } else if (pos > num_mfa) {
