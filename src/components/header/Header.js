@@ -20,9 +20,9 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to='/Sandbox'
+                to='/Freeplay'
                 className='header-links'>
-                Sandbox
+                Free Play
               </Link>
             </li>
             <li>

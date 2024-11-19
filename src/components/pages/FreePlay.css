@@ -1,4 +1,4 @@
-.sandbox {
+.freeplay {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,6 +86,20 @@ input:checked + .slider:before {
   padding: 10px;
 }
 
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20vw;
+  height: 20vh;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: auto;
+}
+
 .buttons-container {
   display: flex;
   gap: 10px;
@@ -108,10 +122,24 @@ input:checked + .slider:before {
   border: none;
 }
 
-.reset-button {
+.start-button:disabled {
   background-color: #ccc;
-  color: black;
-  border: none;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.reset-button {
+  background-color: transparent;
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-out;
+}
+
+.reset-button:hover {
+  transition: all 0.3s ease-out;
+  background: #c7e3fa;
+  border: 1px solid #fff;
+  transition: 250ms;
 }
 
 .setup-link {
@@ -122,5 +150,4 @@ input:checked + .slider:before {
   padding: 15px;
   border: 1px solid #ccc;
   resize: none;
-  margin-top: 25px;
 }

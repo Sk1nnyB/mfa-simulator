@@ -26,7 +26,7 @@ export const StoryButton = ({children, type, onClick, buttonStyle, buttonSize}) 
   );
 };
 
-export const SandboxButton = ({children, type, onClick, buttonStyle, buttonSize}) => {
+export const FreePlayButton = ({children, type, onClick, buttonStyle, buttonSize}) => {
   const checkButtonStyle = STYLES.includes(buttonStyle)
     ? buttonStyle
     : STYLES[0];
@@ -34,7 +34,7 @@ export const SandboxButton = ({children, type, onClick, buttonStyle, buttonSize}
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
 
   return (
-    <Link to='/sandbox' className='btn-mobile'>
+    <Link to='/freeplay' className='btn-mobile'>
       <button
         className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}

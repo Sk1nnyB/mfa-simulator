@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './Action.css';
 import { optionsMFA } from '../../data/options_mfa';
 import MFAInfo from '../library/MFAInfo';
-import SandboxEnd from '../actions/SandboxEnd';
+import FreePlayEnd from '../actions/FreePlayEnd';
 import Authentication_App from '../actions/Authentication_App';
 import Email from '../actions/Email';
 import Fingerprint from '../actions/Fingerprint';
@@ -22,7 +22,7 @@ function Action() {
 
   function processContext() {
     if (context.length !== 4) {
-      navigate('/sandbox', { replace: true });
+      navigate('/freeplay', { replace: true });
     }
 
     let options = context.slice(0, -1); // Take up to the first 3 as mfa present in options array
@@ -33,7 +33,7 @@ function Action() {
     if (pos == num_mfa){
       return 'end'
     } else if (pos > num_mfa) {
-      navigate('/sandbox', { replace: true });
+      navigate('/freeplay', { replace: true });
     }
 
     let count = 0;
@@ -57,7 +57,7 @@ function Action() {
   if (result === 'end') {
     return (
       <div className="action">
-        <SandboxEnd />
+        <FreePlayEnd />
       </div>
     );
   }

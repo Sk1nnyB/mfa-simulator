@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoryButton, SandboxButton } from '../Button';
+import { StoryButton, FreePlayButton } from '../Button';
 import './Home.css';
 
 function Home() {
@@ -17,13 +17,13 @@ function Home() {
         >
           Try Story Mode
         </StoryButton>
-        <SandboxButton
+        <FreePlayButton
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
         >
-          Sandbox
-        </SandboxButton>
+          Free Play
+        </FreePlayButton>
       </div>
     </div>
   );
