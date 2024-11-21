@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./Authentication_App.css";
 
 function Authentication_App() {
   const navigate = useNavigate();
@@ -8,7 +9,6 @@ function Authentication_App() {
   const context = queryParams.get('context');
   let pos = parseInt(context[context.length - 1], 16);
 
-  // Function to handle the button click
   const handleClick = () => {
     const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
     if (pos === 0) {
@@ -19,9 +19,17 @@ function Authentication_App() {
   };
 
   return (
-    <div className="App">
-      <h1>Authentication_App</h1>
-      <button onClick={handleClick}>Click Me</button>
+    <div className="authentication-app-container">
+      <div className="phone">
+        <div className="phone-screen">
+          <div className="sms-bubble">
+            Log in detected! Are you trying to log in?
+          </div>
+          <button onClick={handleClick} className="aa-button">
+              Approve
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

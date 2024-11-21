@@ -1,4 +1,4 @@
-export const  optionsMFA = [
+export const optionsMFA = [
   { name: 'Password', description: 'Password description. I think I new more than one word to pass this...' },
   { name: 'Security Questions', description: 'Security Questions description. Used to practice for the security guard test.' },
   { name: 'Authentication App', description: 'Authentication App description. Cannot use AI, must be authentic.' },
