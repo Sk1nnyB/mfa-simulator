@@ -1,0 +1,29 @@
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 70vh;
+  gap: 20px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.action-container {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  max-height: 50vh;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  max-height: 45vh;
+  padding: 10px;
+}

@@ -64,34 +64,38 @@ function Action() {
 
   return (
     <div className="action">
-      {result && result.name === 'Authentication App' ? (
-        <Authentication_App />
-      ) : null}
-      {result && result.name === 'Email' ? (
-        <Email />
-      ) : null}
-      {result && result.name === 'Fingerprint' ? (
-        <Fingerprint />
-      ) : null}
-      {result && result.name === 'Password' ? (
-        <Password />
-      ) : null}
-      {result && result.name === 'Security Questions' ? (
-        <Security_Questions />
-      ) : null}
-      {result && result.name === 'Smart Card' ? (
-        <Smart_Card />
-      ) : null}
-      {result && result.name === 'Text (SMS)' ? (
-        <Text />
-      ) : null}
-      {result && result.name === 'Voice' ? (
-        <Voice />
-      ) : null}
-      <MFAInfo
-        title={result ? result.name : 'Error'}
-        description={result ? result.description : 'Error. Please return home and try again.'}
-      />
+      <div className="action-container">
+        {result && result.name === 'Authentication App' ? (
+          <Authentication_App />
+        ) : null}
+        {result && result.name === 'Email' ? (
+          <Email />
+        ) : null}
+        {result && result.name === 'Fingerprint' ? (
+          <Fingerprint />
+        ) : null}
+        {result && result.name === 'Password' ? (
+          <Password />
+        ) : null}
+        {result && result.name === 'Security Questions' ? (
+          <Security_Questions />
+        ) : null}
+        {result && result.name === 'Smart Card' ? (
+          <Smart_Card />
+        ) : null}
+        {result && result.name === 'Text (SMS)' ? (
+          <Text />
+        ) : null}
+        {result && result.name === 'Voice' ? (
+          <Voice />
+        ) : null}
+      </div>
+      <div className="info-container">
+        <MFAInfo
+          title={result ? result.name : 'Error'}
+          description={result ? result.description : 'Error. Please return home and try again.'}
+        />
+      </div>
     </div>
   );
 }

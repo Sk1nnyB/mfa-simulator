@@ -1,0 +1,77 @@
+/* General container */
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Input box styling */
+.text-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-input-container label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.text-input-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 250px;
+}
+
+/* Phone mockup styling */
+.phone {
+  width: 200px;
+  height: 350px;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
+
+.phone-screen {
+  width: 160px;
+  height: 280px;
+  background-color: white;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sms-bubble {
+  padding: 10px;
+  background-color: #d9f7be;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.sms-bubble .code {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.text-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}
+
+.text-button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
