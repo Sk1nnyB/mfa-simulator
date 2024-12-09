@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/mfa-simulator/static/css/main.54aa738b.css",
-    "main.js": "/mfa-simulator/static/js/main.ee91cc65.js",
+    "main.css": "/mfa-simulator/static/css/main.d38bc79d.css",
+    "main.js": "/mfa-simulator/static/js/main.c3e9c382.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
     "static/media/homepage_background.jpg": "/mfa-simulator/static/media/homepage_background.68375dfa0c587a739631.jpg",
     "index.html": "/mfa-simulator/index.html",
-    "main.54aa738b.css.map": "/mfa-simulator/static/css/main.54aa738b.css.map",
-    "main.ee91cc65.js.map": "/mfa-simulator/static/js/main.ee91cc65.js.map",
+    "main.d38bc79d.css.map": "/mfa-simulator/static/css/main.d38bc79d.css.map",
+    "main.c3e9c382.js.map": "/mfa-simulator/static/js/main.c3e9c382.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.54aa738b.css",
-    "static/js/main.ee91cc65.js"
+    "static/css/main.d38bc79d.css",
+    "static/js/main.c3e9c382.js"
   ]
 }
