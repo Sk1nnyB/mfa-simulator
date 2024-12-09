@@ -1,0 +1,16 @@
+.swipe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.sensor {
+  position: relative;
+}
+
+.card {
+  position: relative;
+  cursor: grab;
+}

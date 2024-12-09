@@ -14,13 +14,6 @@ function Security_Questions() {
   const context = queryParams.get('context');
   let pos = parseInt(context[context.length - 1], 16);
 
-  const handleSavedClick = () => {
-    if (!selectedQuestion) {
-      alert('Please select a security question.');
-      return;
-    }
-  };
-
   const handleInputClick = () => {
     if (!savedAnswer || !inputAnswer) {
       alert('No answer given for the security question.');
@@ -35,7 +28,7 @@ function Security_Questions() {
         navigate(`/play?context=${next}`, { replace: true });
       }
     } else {
-      alert(`Entered Answer: ${savedAnswer} is not correct! Try again.`);
+      alert(`Entered Answer: ${inputAnswer} is not correct! Try again.`);
     }
   };
 
@@ -63,9 +56,6 @@ function Security_Questions() {
           value={savedAnswer}
           onChange={(e) => setSavedAnswer(e.target.value)}
         />
-        <button onClick={handleSavedClick} className="enter-button">
-          Enter
-        </button>
       </div>
 
       <div className="questions-input-container">
