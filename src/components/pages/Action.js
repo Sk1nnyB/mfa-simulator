@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './Action.css';
 import { optionsMFA } from '../../data/options_mfa';
 import MFAInfo from '../library/MFAInfo';
+import FreePlayStart from '../actions/FreePlayStart';
 import FreePlayEnd from '../actions/FreePlayEnd';
 import Authentication_App from '../actions/Authentication_App';
 import Email from '../actions/Email';
@@ -18,9 +19,14 @@ function Action() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
+  const startPage = queryParams.get('startPage');
   const [result, setResult] = useState(null);
 
   function processContext() {
+    if (startPage !== null && parseInt(startPage) === 1) {
+      return 'start'
+    }
+
     if (context.length !== 4) {
       navigate('/freeplay', { replace: true });
     }
@@ -52,7 +58,18 @@ function Action() {
       const processedResult = processContext();
       setResult(processedResult); // Update the result state
     }
-  }, [context]);
+  }, [context, startPage]);
+
+  console.log(startPage);
+  console.log(result);
+
+  if (result === 'start') {
+    return (
+      <div className="action">
+        <FreePlayStart />
+      </div>
+    );
+  }
 
   if (result === 'end') {
     return (

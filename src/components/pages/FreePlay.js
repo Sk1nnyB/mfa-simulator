@@ -25,7 +25,7 @@ function FreePlay() {
         } else {
           let hexPlaycode = (newPlaycode * 16).toString(16);
           hexPlaycode = hexPlaycode.padStart(4, '0');
-          setSetupLink(defaultLinkStub+"play?context="+hexPlaycode);
+          setSetupLink(defaultLinkStub+"play?context="+hexPlaycode+"&startPage=1");
         }
 
         return newPlaycode;
@@ -38,7 +38,7 @@ function FreePlay() {
   const handleStartClick = () => {
     let hexPlaycode = (playcode * 16).toString(16);
     hexPlaycode = hexPlaycode.padStart(4, '0');
-    navigate(`/play?context=${hexPlaycode}`);
+    navigate(`/play?context=${hexPlaycode}&startPage=1`);
   };
 
   const resetOptions = () => {

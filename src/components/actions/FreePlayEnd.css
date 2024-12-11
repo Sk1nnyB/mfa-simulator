@@ -1,0 +1,88 @@
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  align-items: center;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.endscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 70vh;
+  gap: 20px;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.left-end-container {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  max-height: 50vh;
+  padding: 10px;
+}
+
+.right-end-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 45vh;
+  max-height: 45vh;
+  padding: 10px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  width: 35vw;
+  max-width: 35vw;
+  height: auto;
+  max-height: 30vh;
+  object-fit: contain;
+}
+
+.end-buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+}
+
+.go-button, .story-button {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.go-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}
+
+.story-button {
+  background-color: transparent;
+  padding: 8px 20px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-out;
+}
+
+.story-button:hover {
+  transition: all 0.3s ease-out;
+  background: #c7e3fa;
+  border: 1px solid #fff;
+  transition: 250ms;
+}
+
+
