@@ -18,7 +18,7 @@ function Password() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
-  let pos = parseInt(context[context.length - 1], 16);
+  const story = queryParams.get('story');
 
   const validatePassword = (input) => {
     const length = input.length >= 8 && input.length <= 14;
@@ -43,11 +43,16 @@ function Password() {
     }
 
     if (savedPassword === inputPassword) {
-      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
-      if (pos === 0) {
-        navigate(`/play?context=${next}`);
+      if (story !== null) {
+        navigate(`/play?story=3`);
       } else {
-        navigate(`/play?context=${next}`, { replace: true });
+        let pos = parseInt(context[context.length - 1], 16);
+        const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
+        if (pos === 0) {
+          navigate(`/play?context=${next}`);
+        } else {
+          navigate(`/play?context=${next}`, { replace: true });
+        }
       }
     } else {
       alert(`Entered Password: ${inputPassword} is not correct! Try again.`);

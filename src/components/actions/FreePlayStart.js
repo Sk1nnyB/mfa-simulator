@@ -6,10 +6,17 @@ function FreePlayStart() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
+  const story = queryParams.get('story');
   const navigate = useNavigate();
 
+  console.log(story)
+
   const handleBeginClick = () => {
-    navigate(`/play?context=${context}&startPage=0`);
+    if ((parseInt(story) === 1)) {
+      navigate(`/play?story=2`);
+    } else {
+      navigate(`/play?context=${context}&startPage=0`);
+    }
   };
 
   return (

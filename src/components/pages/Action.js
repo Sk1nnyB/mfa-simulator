@@ -18,11 +18,27 @@ function Action() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
+  const story = queryParams.get('story');
   const startPage = queryParams.get('startPage');
+  const context = queryParams.get('context');
   const [result, setResult] = useState(null);
 
   function processContext() {
+    if (story !== null) {
+      if ((parseInt(story) === 2)) {
+        return optionsMFA[0]
+      } else if ((parseInt(story) === 3)){
+        return optionsMFA[3]
+      } else if ((parseInt(story) === 4)){
+        return optionsMFA[6]
+      } else if ((parseInt(story) === 5)){
+        return optionsMFA[5]
+      } else if ((parseInt(story) === 6)){
+        return 'end'
+      }
+      return 'start'
+    }
+
     if (startPage !== null && parseInt(startPage) === 1) {
       return 'start'
     }
@@ -54,14 +70,11 @@ function Action() {
   }
 
   useEffect(() => {
-    if (context) {
+    if (context || story) {
       const processedResult = processContext();
       setResult(processedResult); // Update the result state
     }
-  }, [context, startPage]);
-
-  console.log(startPage);
-  console.log(result);
+  }, [story, startPage, context]);
 
   if (result === 'start') {
     return (

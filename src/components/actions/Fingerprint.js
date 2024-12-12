@@ -6,15 +6,20 @@ function Fingerprint() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
-  let pos = parseInt(context[context.length - 1], 16);
+  const story = queryParams.get('story');
 
   // Function to handle the button click
   const handleClick = () => {
-    const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
-    if (pos === 0) {
-      navigate(`/play?context=${next}`);
+    if (story !== null) {
+      navigate(`/play?story=6`);
     } else {
-      navigate(`/play?context=${next}`, { replace: true });
+      let pos = parseInt(context[context.length - 1], 16);
+      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
+      if (pos === 0) {
+        navigate(`/play?context=${next}`);
+      } else {
+        navigate(`/play?context=${next}`, { replace: true });
+      }
     }
   };
 

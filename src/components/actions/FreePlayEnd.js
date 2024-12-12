@@ -11,7 +11,7 @@ function FreePlayEnd() {
   };
 
   const handleStoryClick = () => {
-    navigate(`/`);
+    navigate(`/play?story=1`);
   };
 
 

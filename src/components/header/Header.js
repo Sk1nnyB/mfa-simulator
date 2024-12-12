@@ -13,7 +13,7 @@ const Header = () => {
           <ul className='header-buttons'>
             <li>
               <Link
-                to='/'
+                to='/play?story=1'
                 className='header-links'>
                 Story Mode
               </Link>
