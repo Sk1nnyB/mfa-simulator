@@ -38,7 +38,7 @@ function FreePlay() {
   const handleStartClick = () => {
     let hexPlaycode = (playcode * 16).toString(16);
     hexPlaycode = hexPlaycode.padStart(4, '0');
-    navigate(`/play?context=${hexPlaycode}&startPage=1`);
+    navigate(`/play?context=${hexPlaycode}&startPage=0`);
   };
 
   const resetOptions = () => {
