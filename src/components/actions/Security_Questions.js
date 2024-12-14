@@ -12,7 +12,6 @@ function Security_Questions() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
-  let pos = parseInt(context[context.length - 1], 16);
 
   const handleInputClick = () => {
     if (!savedAnswer || !inputAnswer) {
@@ -21,7 +20,8 @@ function Security_Questions() {
     }
 
     if (savedAnswer === inputAnswer) {
-      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
+      let pos = parseInt(context[context.length - 1], 16);
+      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
       if (pos === 0) {
         navigate(`/play?context=${next}`);
       } else {

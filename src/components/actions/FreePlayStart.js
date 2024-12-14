@@ -9,8 +9,6 @@ function FreePlayStart() {
   const story = queryParams.get('story');
   const navigate = useNavigate();
 
-  console.log(story)
-
   const handleBeginClick = () => {
     if ((parseInt(story) === 1)) {
       navigate(`/play?story=2`);

@@ -14,7 +14,7 @@ function Fingerprint() {
       navigate(`/play?story=6`);
     } else {
       let pos = parseInt(context[context.length - 1], 16);
-      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase();
+      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
       if (pos === 0) {
         navigate(`/play?context=${next}`);
       } else {
