@@ -32,7 +32,7 @@ function Action() {
       } else if ((parseInt(story) === 4)){
         return optionsMFA[6]
       } else if ((parseInt(story) === 5)){
-        return optionsMFA[5]
+        return optionsMFA[7]
       } else if ((parseInt(story) === 6)){
         return 'end'
       }

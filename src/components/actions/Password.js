@@ -58,6 +58,7 @@ function Password() {
       alert(`Entered Password: ${inputPassword} is not correct! Try again.`);
     }
   };
+
   return (
     <div className="container">
       <div className="password-section">

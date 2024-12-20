@@ -1,0 +1,54 @@
+button {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    padding: 16px 24px;
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+    resize: none;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.voice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.button-area {
+    gap: 20px;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.recording-button {
+    color: white;
+    border: none;
+}
+
+.submit-button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+
+

@@ -1,29 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./Voice.css";
+import useSpeechToText from "../../hooks/speechToText";
 
 function Voice() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const context = queryParams.get('context');
+  const story = queryParams.get('story');
+
+  const [speechInput, setSpeechInput] = useState("Type here if you have no microphone access!");
+  const {listening, input, startInput, stopInput} = useSpeechToText({});
+
+  const targetVoicePhrase = "this is a voice phrase";
+
+  const toggleListening = () => {
+    listening ? stopListening() : startInput();
+  }
+
+  const stopListening = () => {
+    setSpeechInput(input);
+    stopInput();
+  }
 
   // Function to handle the button click
-  const handleClick = () => {
-    let pos = parseInt(context[context.length - 1], 16);
-    console.log(context)
-    const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-    console.log(next)
-    if (pos === 0) {
-      navigate(`/play?context=${next}`);
+  const handleVoiceSubmission = () => {
+    if (!speechInput) {
+      alert('No voice input given.');
+      return;
+    }
+
+    if (speechInput === targetVoicePhrase) {
+      if (story !== null) {
+        navigate(`/play?story=6`);
+      } else {
+        let pos = parseInt(context[context.length - 1], 16);
+        console.log(context)
+        const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
+        console.log(next)
+        pos === 0 ? navigate(`/play?context=${next}`) : navigate(`/play?context=${next}`, { replace: true });
+      }
     } else {
-      navigate(`/play?context=${next}`, { replace: true });
+      alert(`Entered Voice Phrae: ${speechInput} is not correct! Try again.`);
     }
   };
 
   return (
-    <div className="App">
+    <div className='voice-container'>
       <h1>Voice</h1>
-      <button onClick={handleClick}>Click Me</button>
+      <textarea
+        disable={listening}
+        value={listening ? input : speechInput}
+        onChange={(e)=>{setSpeechInput(e.target.value)}}
+      />
+      <div className='button-area'>
+        <button
+          onClick={toggleListening}
+          className='recording-button'
+          style={{backgroundColor: listening ? "#ac0e02" : "#0eac23",}}>
+            {listening ? 'Stop Listening' : 'Start Recording'}
+          </button>
+        <button
+          onClick={handleVoiceSubmission}
+          className='submit-button'
+          disabled={listening}>
+          Submit
+          </button>
+      </div>
     </div>
   );
 }

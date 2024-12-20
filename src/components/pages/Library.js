@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import LibraryList from '../library/LibraryList';
 import MFAInfo from '../library/MFAInfo';
 import './Library.css';
