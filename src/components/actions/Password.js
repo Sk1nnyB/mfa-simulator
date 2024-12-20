@@ -12,6 +12,7 @@ function Password() {
     number: false,
     symbol: false,
   });
+  const [validPassword, setValidPassword] = useState(false);
   const username = "SampleUsername";
 
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function Password() {
     const symbol = /[!@#$%^&*(),.?":{}|<>]/.test(input);
 
     setPasswordStatus({ length, lower, upper, number, symbol });
+    length && lower && upper && number && symbol ?  setValidPassword(true) : setValidPassword(false);
   };
 
   const handlePasswordChange = (e) => {
@@ -42,17 +44,18 @@ function Password() {
       return;
     }
 
+    if (!validPassword) {
+      alert('Password is not strong enough.');
+      return;
+    }
+
     if (savedPassword === inputPassword) {
       if (story !== null) {
         navigate(`/play?story=3`);
       } else {
         let pos = parseInt(context[context.length - 1], 16);
         const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-        if (pos === 0) {
-          navigate(`/play?context=${next}`);
-        } else {
-          navigate(`/play?context=${next}`, { replace: true });
-        }
+        pos === 0 ? navigate(`/play?context=${next}`) : navigate(`/play?context=${next}`, { replace: true });
       }
     } else {
       alert(`Entered Password: ${inputPassword} is not correct! Try again.`);
@@ -61,7 +64,10 @@ function Password() {
 
   return (
     <div className="container">
-      <div className="password-section">
+      <div className="password-section" style={{
+        backgroundColor: validPassword ? "#dbdfe2" : "#fff",
+      }}>
+        <h2> Step 1: Create the password </h2>
         <label>Password</label>
         <input
           type="text"
@@ -98,7 +104,10 @@ function Password() {
           </span>
         </div>
       </div>
-      <div className="login-section">
+      <div className="login-section" style={{
+        backgroundColor: validPassword ? "#fff" : "#dbdfe2",
+      }}>
+        <h2> Step 2: Log in </h2>
         <label>Username</label>
         <input
           type="text"
