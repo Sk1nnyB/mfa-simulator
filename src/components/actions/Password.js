@@ -105,7 +105,7 @@ function Password() {
         </div>
       </div>
       <div className="login-section" style={{
-        backgroundColor: validPassword ? "#b1e9fa" : "#fff",
+        backgroundColor: validPassword ? "#b1e9fa" : "#dbdfe2",
       }}>
         <h2> Step 2: Log in </h2>
         <label>Username</label>
