@@ -1,16 +1,41 @@
+/* Container for the draggable and sensor elements */
 .swipe-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  margin-top: 50px;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
+/* Sensor box styling */
 .sensor {
+  width: 125px;
+  height: 125px;
+  border: 2px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.1s linear;
   position: relative;
 }
 
-.card {
-  position: relative;
-  cursor: grab;
+.green-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: green;
+  transition: height 0.1s linear;
 }
+
+/* Draggable card styling */
+.draggable-card {
+  margin-top: 50px;
+  width: 100px;
+  height: 50px;
+  background-color: grey;
+  cursor: move;
+}
+

@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './Smart_Card.css';
+import React, { useState, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Draggable from "react-draggable";
+import "./Smart_Card.css";
 
 function Smart_Card() {
-  const [isOverlapping, setIsOverlapping] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
-  const story = queryParams.get('story');
+  const context = queryParams.get("context");
+  const story = queryParams.get("story");
+
+  const [progress, setProgress] = useState(0); // Sensor fill progress
+  const sensorRef = useRef(null); // Reference to the sensor
+  const intervalRef = useRef(null); // To manage the progress interval
 
   const handleSwipe = () => {
     if (story !== null) {
       navigate(`/play?story=5`);
     } else {
       let pos = parseInt(context[context.length - 1], 16);
-      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
+      const next = (parseInt(context, 16) + 1)
+        .toString(16)
+        .toUpperCase()
+        .padStart(4, "0");
       if (pos === 0) {
         navigate(`/play?context=${next}`);
       } else {
@@ -24,84 +31,68 @@ function Smart_Card() {
     }
   };
 
-  const handleDragStart = (e) => {
-    // Prevent the translucent ghost image
-    const dragImage = document.createElement('div');
-    dragImage.style.width = '0px';
-    dragImage.style.height = '0px';
-    e.dataTransfer.setDragImage(dragImage, 0, 0);
+  const startProgress = () => {
+    if (intervalRef.current) return; // Prevent multiple intervals
+    intervalRef.current = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+          handleSwipe(); // Trigger function when sensor fills
+          return 100;
+        }
+        return prev + 5; // Increment progress every 100ms (fills in ~5 seconds)
+      });
+    }, 100);
   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault(); // Required to allow dropping
-    const sensor = document.getElementById('sensor');
+  const resetProgress = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+    setProgress(0);
+  };
+
+  const handleDrag = (e, data) => {
+    const sensor = sensorRef.current;
+    if (!sensor) return;
+
     const sensorRect = sensor.getBoundingClientRect();
     const cardRect = e.target.getBoundingClientRect();
 
-    // Check if the dragged card overlaps the sensor
+    // Check if card is overlapping the sensor
     const isOverlapping =
-      cardRect.left < sensorRect.right &&
       cardRect.right > sensorRect.left &&
-      cardRect.top < sensorRect.bottom &&
-      cardRect.bottom > sensorRect.top;
+      cardRect.left < sensorRect.right &&
+      cardRect.bottom > sensorRect.top &&
+      cardRect.top < sensorRect.bottom;
 
-    setIsOverlapping(isOverlapping);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
     if (isOverlapping) {
-      handleSwipe(); // Trigger swipe if overlapping
+      startProgress();
     } else {
-      alert('The card is not over the sensor. Try again.');
+      resetProgress();
     }
-    setIsOverlapping(false); // Reset state
   };
 
   return (
     <div className="swipe-container">
-      {/* Static Sensor */}
       <div
-        id="sensor"
         className="sensor"
-        style={{
-          width: '150px',
-          height: '150px',
-          backgroundColor: isOverlapping ? '#d4edda' : '#f8f9fa',
-          border: '2px solid #ccc',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        ref={sensorRef}
       >
-        <img src="/path-to-sensor.png" alt="Sensor" style={{ width: '80px' }} />
-        <p>Sensor PNG</p>
+        <div
+          className="green-fill"
+          style={{ height: `${progress}%` }}
+        ></div>
+        <div className="text-overlay">
+          {progress
+            ? 'Scanning card... Please wait...'
+            : 'Drag the card here!'}
+        </div>
       </div>
 
-      {/* Draggable Card */}
-      <div
-        draggable
-        id="card"
-        className="card"
-        onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-        style={{
-          width: '100px',
-          height: '100px',
-          backgroundColor: '#e0e0e0',
-          border: '2px solid #aaa',
-          borderRadius: '8px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'grab',
-        }}
-      >
-        <img src="../../../images/access_card.png" alt="Card" style={{ width: '60px' }} />
-        <p>Smart Card PNG</p>
-      </div>
+      <Draggable onDrag={handleDrag}>
+        <div className="draggable-card">Security Card</div>
+      </Draggable>
     </div>
   );
 }
