@@ -9,12 +9,6 @@
   max-height: 100%;
 }
 
-.start-content {
-  width: 100%;
-  max-width: 800px;
-  margin: 20px 0;
-}
-
 .start-text-box {
   background: #ffffff;
   border: 1px solid #ccc;
@@ -22,6 +16,8 @@
   padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 70vw;
+  min-width: 70vw;
 }
 
 .start-text-box h4 {

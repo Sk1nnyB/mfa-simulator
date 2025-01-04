@@ -29,11 +29,12 @@ function FreePlayStart() {
             What is this?
           </h4>
           <p>
-            This is a simulator for logging into a web service, such as Facebook or online banking.
-            {story
-              ? ' The following authenticaiton methods are some of the most common methods of making sure a user \
-              is who they claim they are.'
-              : ' The following authentication methods have been pre-set by whoever made this link.'}
+          <ul>
+            <li>This is a simulator for logging into a web service, such as Facebook or online banking.</li>
+            <li>{story
+              ? ' The following authenticaiton methods are some of the most commonly used methods.'
+              : ' The following authentication methods have been pre-set by a third party.'}</li>
+          </ul>
           </p>
         </div>
         <div className="start-text-box">
@@ -41,8 +42,11 @@ function FreePlayStart() {
             What do I do?
           </h4>
           <p>
-            You will attempt to comlete a series of authentication methods in order to successfully log in.
-            Each method will have instructions should you get stuck.
+          <ul>
+            <li>You will attempt to complete a series of authentication methods.</li>
+            <li>Each method will have instructions should you get stuck.</li>
+            <li>Read the descriptions of each method presented to find out more about why it is used.</li>
+          </ul>
           </p>
         </div>
         <div className="start-text-box">
@@ -50,11 +54,13 @@ function FreePlayStart() {
             Why am I doing this?
           </h4>
           <p>
-            This is an educational tool; although you may not actually be logging into
-            a particular service, you should still attempt to understand what you are doing and why.
+          <ul>
+            <li>This is an educational tool, meant for informing users about how multi-factor authenticator methods work.</li>
+            <li>You should attempt to understand why each is used, not just what to do.</li>
+          </ul>
             {story
               ? ''
-              : ' These methods have been specifically selected by a third party and may reflect a real life system.'}
+              : ' These methods have been specifically selected by a third party and therefore may reflect a real life system.'}
           </p>
         </div>
         <button className="start-button" onClick={handleBeginClick}>
