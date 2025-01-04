@@ -22,6 +22,8 @@ function Library() {
       <MFAInfo
         title={selectedMFA ? selectedMFA.name : 'MFA Title'}
         description={selectedMFA ? selectedMFA.description : 'MFA Description. Probably has a link to the wiki page for it.'}
+        instructions={''}
+        instructions_flag={0}
       />
     </div>
   );

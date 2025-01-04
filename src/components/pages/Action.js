@@ -124,6 +124,8 @@ function Action() {
         <MFAInfo
           title={result ? result.name : 'Error'}
           description={result ? result.description : 'Error. Please return home and try again.'}
+          instructions={result ? result.instructions : ''}
+          instructions_flag={result ? 1 : 0}
         />
       </div>
     </div>
