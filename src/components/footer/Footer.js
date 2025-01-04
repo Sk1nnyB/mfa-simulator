@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className='footer-container'>
-        <p>Learn more about this work <a href="https://www.youtube.com/watch?v=qU9mHegkTc4&ab_channel=ArcticMonkeys-Topic" target="_blank">here</a>.</p>
+        <p>Learn more about this work <a href="https://github.com/Sk1nnyB/mfa-simulator" target="_blank">here</a>.</p>
       </div>
     </footer>
   );
