@@ -1,23 +1,38 @@
-h1 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 20px;
-}
-
 .start-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: 'Inter', sans-serif;
-  text-align: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  max-height: 100%;
+}
+
+.start-content {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}
+
+.start-text-box {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.start-text-box h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.start-text-box p {
+  margin: 0;
+  line-height: 1.6;
 }
 
 .start-button {

@@ -51,7 +51,7 @@ function Fingerprint() {
   return (
     <div className="App">
       <div
-        className="container"
+        className="scan-container"
         onMouseEnter={startScan}
         onMouseLeave={stopScan}
       >
