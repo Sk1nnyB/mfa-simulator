@@ -3,7 +3,7 @@ import '../pages/Library.css';
 
 function LibraryList({ options, onSelect, selectedOption }) {
   return (
-    <div className="library-list">
+    <div className="library-list box-border">
       {options.map((option) => (
         <div
           key={option}

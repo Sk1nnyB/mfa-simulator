@@ -24,10 +24,10 @@ function FreePlayEnd() {
         <h2>Congratulations!!</h2>
         <p>You've successfully passed all authentication methods. Go again or go to story!</p>
         <div className='end-buttons'>
-            <button className='go-button' onClick={handleGoClick}>
+            <button className='go-button primary-button' onClick={handleGoClick}>
                 Freeplay &#8594;
             </button>
-            <button className='story-button' onClick={handleStoryClick}>
+            <button className='story-button secondary-button' onClick={handleStoryClick}>
                 Story
             </button>
         </div>

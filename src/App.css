@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+/* Size of VIEWPORT of browser (not pixels) */
+:root {
+  --monitor-height: 2560px;
+  --monitor-width: 1351px;
+  --laptop-height: 632px;
+  --laptop-width: 1280px;
+  --phone-height: 924px;
+  --phone-width: 486px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
+  /* Set to width and height of my phone */
+  min-width: var(--phone-width);
+  min-height: var(--phone-width);
+}
+
+.header {
+  max-height: 7.5vh;
+  min-height: calc(0.075*486px);
+  width: 100%;
+  display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: 0 auto;
+  background: #f1f5fc;
+  font-size: 1.2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.main {
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 87.5vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.footer {
+  max-height: 5vh;
+  min-height: calc(0.05*486px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background: #f1f5fc;
+  font-size: 1.2rem;
 }

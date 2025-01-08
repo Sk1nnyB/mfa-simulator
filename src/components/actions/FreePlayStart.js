@@ -19,12 +19,13 @@ function FreePlayStart() {
 
   return (
     <div className="start-container">
+      <div className="start-container-text box-border">
         <h1>
         {story
             ? 'Welcome to the story mode!'
             : 'Welcome!'}
         </h1>
-        <div className="start-text-box">
+        <div className="start-text-box box-border">
           <h4>
             What is this?
           </h4>
@@ -37,7 +38,7 @@ function FreePlayStart() {
           </ul>
           </p>
         </div>
-        <div className="start-text-box">
+        <div className="start-text-box box-border">
           <h4>
             What do I do?
           </h4>
@@ -49,7 +50,7 @@ function FreePlayStart() {
           </ul>
           </p>
         </div>
-        <div className="start-text-box">
+        <div className="start-text-box box-border">
           <h4>
             Why am I doing this?
           </h4>
@@ -63,7 +64,8 @@ function FreePlayStart() {
               : ' These methods have been specifically selected by a third party and therefore may reflect a real life system.'}
           </p>
         </div>
-        <button className="start-button" onClick={handleBeginClick}>
+      </div>
+      <button className="start-button primary-button" onClick={handleBeginClick}>
             Start &#8594;
         </button>
     </div>

@@ -119,7 +119,7 @@ function Password() {
         placeholder="Enter Here!"
         onChange={(e) => setInputPassword(e.target.value)}
         autoComplete="new-password"/>
-        <button type="submit" className="login-button" onClick={handleInputClick}>
+        <button type="submit" className="login-button primary-button" onClick={handleInputClick}>
           Log In
         </button>
       </div>

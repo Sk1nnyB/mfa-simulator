@@ -3,9 +3,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  height: 70vh;
+  height: 100%;
+  width: 100%;
   gap: 20px;
-  padding: 20px;
   font-family: 'Inter', sans-serif;
 }
 

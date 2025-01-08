@@ -49,33 +49,39 @@ function FreePlay() {
   return (
     <div className="freeplay">
       <div className="left-container">
-        {optionsMFA.map((option, index) => (
-          <div key={index} className="option">
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={options[index]}
-                onChange={() => toggleOption(index)}
-              />
-              <span className="slider"></span>
-            </label>
-            <span>{option.name}</span>
-          </div>
-        ))}
-      </div>
-      <div className="right-container">
-        <div className="instructions-container">
+        <div className="box-border options-container">
+          {optionsMFA.map((option, index) => (
+            <div key={index} className="option">
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  checked={options[index]}
+                  onChange={() => toggleOption(index)}
+                />
+                <span className="slider"></span>
+              </label>
+              <span>{option.name}</span>
+            </div>
+          ))}
+        </div>
+        <div className="box-border instructions-container">
           <h2>What to do?</h2>
           <p>Choose your options<br />
           If you don't like them, reset<br />
           Then click start<br />
           We'll do it no sweat!</p>
         </div>
+      </div>
+      <div className="right-container">
+        <div className="assurance-container">
+          <h2>Authentication Assurance Level</h2>
+          <h3>1</h3>
+        </div>
         <div className="buttons-container">
-          <button onClick={handleStartClick} disabled={playcode === 0} className="start-button">
+          <button onClick={handleStartClick} disabled={playcode === 0} className="freeplay-start-button primary-button">
             Start!
           </button>
-          <button onClick={resetOptions} className="reset-button">
+          <button onClick={resetOptions} className="freeplay-reset-button secondary-button">
             Reset
           </button>
         </div>

@@ -3,7 +3,7 @@ import '../pages/Library.css';
 
 function MFAInfo({ title, description, instructions, instructions_flag }) {
   return (
-    <div className="mfa-info-card">
+    <div className="mfa-info-card box-border">
       <div className="mfa-image">
         <p>Photo of {title}</p>
       </div>

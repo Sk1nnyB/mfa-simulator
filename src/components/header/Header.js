@@ -4,12 +4,11 @@ import './Header.css';
 
 const Header = () => {
   return (
-    <header className="header-container">
-      <div className='header-div'>
+    <header className="header">
       <Link to='/' className='header-title'>
             The MFA Simulator
       </Link>
-        <nav class="header">
+        <nav className='nav-section'>
           <ul className='header-buttons'>
             <li>
               <Link
@@ -41,7 +40,6 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-      </div>
     </header>
   );
 };

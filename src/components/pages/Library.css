@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  height: 100%;
+  width: 100%;
   gap: 20px;
-  padding: 20px;
   font-family: 'Inter', sans-serif;
 }
 
@@ -14,9 +14,15 @@
   width: 40vw;
   max-height: 50vh;
   overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mfa-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40vw;
+  height: 50vh;
+  padding: 20px;
 }
 
 .MFA {
@@ -35,18 +41,6 @@
 .MFA.selected {
   background-color: #6c7b83;
   color: white;
-}
-
-.mfa-info-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 40vw;
-  height: 50vh;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mfa-image {

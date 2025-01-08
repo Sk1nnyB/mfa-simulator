@@ -89,7 +89,7 @@ function Security_Questions() {
           value={inputAnswer}
           onChange={(e) => setInputAnswer(e.target.value)}
         />
-        <button onClick={handleInputClick} className="enter-button">
+        <button onClick={handleInputClick} className="enter-button primary-button">
           Enter
         </button>
       </div>
