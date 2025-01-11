@@ -18,7 +18,7 @@ function FreePlayEnd() {
   return (
     <div className='endscreen'>
       <div className='left-end-container'>
-          <img className='image' src={image} alt='Celebration Photo' />
+        <img className='image' src={image} alt='Celebration Photo' />
       </div>
       <div className='right-end-container'>
         <h2>Congratulations!!</h2>

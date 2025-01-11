@@ -122,10 +122,9 @@ function Action() {
       </div>
       <div className="info-container">
         <MFAInfo
-          title={result ? result.name : 'Error'}
-          description={result ? result.description : 'Error. Please return home and try again.'}
-          instructions={result ? result.instructions : ''}
+          MFA={result ? result : 'Error'}
           instructions_flag={result ? 1 : 0}
+          more_information_flag={0}
         />
       </div>
     </div>

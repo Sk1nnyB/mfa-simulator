@@ -8,7 +8,10 @@ function Library() {
   const [selectedMFA, setSelectedMFA] = useState(null);
 
   const handleSelectOption = (name) => {
-    const selected = optionsMFA.find((option) => option.name === name);
+    var selected = optionsMFA.find((option) => option.name === name);
+    if (selectedMFA == selected) {
+      selected = 'default';
+    }
     setSelectedMFA(selected);
   };
 
@@ -20,10 +23,9 @@ function Library() {
         selectedOption={selectedMFA?.name}
       />
       <MFAInfo
-        title={selectedMFA ? selectedMFA.name : 'MFA Title'}
-        description={selectedMFA ? selectedMFA.description : 'MFA Description. Probably has a link to the wiki page for it.'}
-        instructions={''}
+        MFA={selectedMFA ? selectedMFA : 'default'}
         instructions_flag={0}
+        more_information_flag={1}
       />
     </div>
   );

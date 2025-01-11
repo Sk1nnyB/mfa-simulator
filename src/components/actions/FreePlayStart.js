@@ -25,7 +25,7 @@ function FreePlayStart() {
             ? 'Welcome to the story mode!'
             : 'Welcome!'}
         </h1>
-        <div className="start-text-box box-border">
+        <div className="start-text-box box-border text-box">
           <h4>
             What is this?
           </h4>
@@ -38,7 +38,7 @@ function FreePlayStart() {
           </ul>
           </p>
         </div>
-        <div className="start-text-box box-border">
+        <div className="start-text-box box-border text-box">
           <h4>
             What do I do?
           </h4>
@@ -50,7 +50,7 @@ function FreePlayStart() {
           </ul>
           </p>
         </div>
-        <div className="start-text-box box-border">
+        <div className="start-text-box box-border text-box">
           <h4>
             Why am I doing this?
           </h4>
