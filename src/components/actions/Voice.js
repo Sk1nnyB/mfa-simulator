@@ -10,7 +10,7 @@ function Voice() {
   const context = queryParams.get('context');
   const story = queryParams.get('story');
 
-  const [speechInput, setSpeechInput] = useState("Type here if you have no microphone access!");
+  const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'. Type here if you have no microphone access!");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
 
   const targetVoicePhrase = "this is a voice phrase";
@@ -36,9 +36,7 @@ function Voice() {
         navigate(`/play?story=6`);
       } else {
         let pos = parseInt(context[context.length - 1], 16);
-        console.log(context)
         const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-        console.log(next)
         pos === 0 ? navigate(`/play?context=${next}`) : navigate(`/play?context=${next}`, { replace: true });
       }
     } else {

@@ -1,12 +1,6 @@
 /* Container for the draggable and sensor elements */
 .swipe-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 20px;
+  margin: auto;
 }
 
 /* Sensor box styling */

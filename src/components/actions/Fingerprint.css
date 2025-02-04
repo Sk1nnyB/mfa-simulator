@@ -1,3 +1,7 @@
+.fingerprint-container {
+  margin: auto;
+}
+
 .scan-container {
   position: relative;
   width: 200px;

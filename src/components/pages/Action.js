@@ -98,10 +98,10 @@ function Action() {
         {result && result.name === 'Authentication App' ? (
           <Authentication_App />
         ) : null}
-        {result && result.name === 'Email' ? (
+        {result && result.name === 'Email Code' ? (
           <Email />
         ) : null}
-        {result && result.name === 'Fingerprint' ? (
+        {result && result.name === 'Fingerprint Scanner' ? (
           <Fingerprint />
         ) : null}
         {result && result.name === 'Password' ? (
@@ -113,10 +113,10 @@ function Action() {
         {result && result.name === 'Smart Card' ? (
           <Smart_Card />
         ) : null}
-        {result && result.name === 'Text (SMS)' ? (
+        {result && result.name === 'Text (SMS) Code' ? (
           <Text />
         ) : null}
-        {result && result.name === 'Voice' ? (
+        {result && result.name === 'Voice Recognition' ? (
           <Voice />
         ) : null}
       </div>

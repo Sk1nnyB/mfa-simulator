@@ -31,9 +31,9 @@ function FreePlayStart() {
           </h4>
           <p>
           <ul>
-            <li>This is a simulator for logging into a web service, such as Facebook or online banking.</li>
+            <li>This is an educational simulator, designed to feel like logging into a web service, such as Facebook or online banking.</li>
             <li>{story
-              ? ' The following authenticaiton methods are some of the most commonly used methods.'
+              ? ' The following authenticaiton methods are some of the most commonly used methods used on the internet.'
               : ' The following authentication methods have been pre-set by a third party.'}</li>
           </ul>
           </p>
@@ -45,8 +45,8 @@ function FreePlayStart() {
           <p>
           <ul>
             <li>You will attempt to complete a series of authentication methods.</li>
-            <li>Each method will have instructions should you get stuck.</li>
-            <li>Read the descriptions of each method presented to find out more about why it is used.</li>
+            <li>Each method will have accompanying instructions should you get stuck.</li>
+            <li>Read the descriptions of each method presented to find out more!</li>
           </ul>
           </p>
         </div>
@@ -56,8 +56,8 @@ function FreePlayStart() {
           </h4>
           <p>
           <ul>
-            <li>This is an educational tool, meant for informing users about how multi-factor authenticator methods work.</li>
-            <li>You should attempt to understand why each is used, not just what to do.</li>
+            <li>This tool was designed to help you practice using several methods of authentication, as well as understand about how they work.</li>
+            <li>You should also attempt to understand why each method is used, not just what to do.</li>
           </ul>
             {story
               ? ''

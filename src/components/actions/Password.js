@@ -63,7 +63,7 @@ function Password() {
   };
 
   return (
-    <div className="container">
+    <div className="password-container">
       <div className="password-section" style={{
         backgroundColor: validPassword ? "#dbdfe2" : "#b1e9fa",
       }}>
