@@ -6,6 +6,7 @@
   font-family: 'Inter', sans-serif;
   overflow-y: auto;
   height: 100%;
+  max-height: 100%;
   width: 100%;
   gap: 20px;
 }
@@ -16,6 +17,7 @@
   flex-direction: column;
   width: 40vw;
   height: 100%;
+  position: relative;
 }
 
 .right-container {
@@ -51,6 +53,43 @@
   padding: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+}
+
+.tooltip-circle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border-color: grey;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 16px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.tooltip-circle-aa {
+  float: right;
+}
+
+.tooltip-circle-ins {
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.auth-level-0-color {
+  color: red;
+}
+.auth-level-1-color {
+  color: rgb(255, 145, 0);
+}
+.auth-level-2-color {
+  color: rgb(72, 226, 0);
+}
+.auth-level-3-color {
+  color: blue;
 }
 
 .buttons-container {
@@ -132,6 +171,13 @@ input:checked + .slider:before {
   height: 60px;
 }
 
+#ins-tooltip {
+  position: absolute;
+  top: -5px; /* Adjust this value to control vertical positioning */
+  right: 100%; /* Tooltip position to the right of the icon */
+  transform: translateX(10px); /* Optional: Adjust tooltip distance */
+}
+
 @media (max-width: 768px) {
   .freeplay {
     flex-direction: column;
@@ -141,11 +187,15 @@ input:checked + .slider:before {
 
   .left-container, .right-container {
     width: 100%;
-    height: auto;
     margin-bottom: 20px;
+    height: 50%;
   }
 
-  .right-container {
-    margin-bottom: 0;
+  .options-container {
+    height: 50%;
+  }
+
+  .instructions-container {
+    height: 50%;
   }
 }
