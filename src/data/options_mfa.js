@@ -1,3 +1,6 @@
+import placeholder from '../images/placeholder.jpg';
+import password from '../images/password.jpg';
+
 export const optionsMFA = [
   { name: 'Password',
     description: "Passwords are words, phrases, or combinations of random numbers, letters and symbols that can be used to 'authenticate' a user. They should only be known by \
@@ -10,7 +13,8 @@ export const optionsMFA = [
     fun_fact: 'The first digital password was invented in 1961, but they have been around since Roman times.',
     wiki_link: 'https://en.wikipedia.org/wiki/Password',
     instructions: ['Create a password', 'Use your created password to log in!'],
-    note: ' DO NOT put in your password that you use for real accounts'},
+    note: ' DO NOT put in your password that you use for real accounts',
+    image: password},
   // Security Questions
   { name: 'Security Questions',
     description: 'A security question is like a password, where it is a phrase that is used to authenticate a user, but it is usually also the answer to a question. This makes it easier \
@@ -25,7 +29,8 @@ export const optionsMFA = [
     fun_fact: 'Since social media has become popular, security questions have become ineffective due to the rise in knowledge of personal information',
     wiki_link: 'https://en.wikipedia.org/wiki/Security_question',
     instructions: ['Choose and answer a security question', "Use your answer to 'answer' the question and log in"],
-    note: ''},
+    note: '',
+    image: placeholder},
   // Authentication App
   { name: 'Authentication App',
     description: 'An authentication app works by either providing the user with a one-time use code, which will expire after a set time, or providing a "push notification" that the user \
@@ -40,7 +45,8 @@ export const optionsMFA = [
     fun_fact: "As of December 2024, TikTok is the world's most downloaded mobile application",
     wiki_link: 'https://en.wikipedia.org/wiki/Google_Authenticator',
     instructions: ['Click the approval button to confirm you are trying to log in'],
-    note: ''},
+    note: '',
+    image: placeholder},
   // Text (SMS) Code
   { name: 'Text (SMS) Code',
     description: 'Text (SMS) description. Not the texts I should really be studying.',
@@ -51,7 +57,8 @@ export const optionsMFA = [
     fun_fact: 'There are multiple Guinness World Records for texting, including blind texting, which Elliot Nicholls broke with a time of 45s',
     wiki_link: 'https://en.wikipedia.org/wiki/Multi-factor_authentication#Mobile_phone-based_authentication',
     instructions: ['Find the code that has been sent to you', 'Input the code'],
-    note: ''},
+    note: '',
+    image: placeholder},
   // Email Code
   { name: 'Email Code',
     description: 'Email description. Where my efemail representation at? ',
@@ -62,7 +69,8 @@ export const optionsMFA = [
     fun_fact: "The first email sent from space, in 1991, ended with 'Hasta la vista, baby,...we'll be back!'",
     wiki_link: 'https://en.wikipedia.org/wiki/Email',
     instructions: ['Find the code that has been emailed to you', 'Input the code'],
-    note: ''},
+    note: '',
+    image: placeholder},
   // Fingerprint Scanner
   { name: 'Fingerprint Scanner',
     description: "Fingerprint scanning is the usage of a user's fingerprint in order to 'authenticate' them. As each fingerprint is unique, even between twins, \
@@ -77,7 +85,8 @@ export const optionsMFA = [
     fun_fact: 'Koalas have fingerprints too, so could also use these systems!',
     wiki_link: 'https://en.wikipedia.org/wiki/Fingerprint_scanner',
     instructions: ["Press your 'finger' (cursor) on the scanner", 'Wait for it to complete the scan'],
-    note: ''},
+    note: '',
+    image: placeholder},
   // Smart Card
   { name: 'Smart Card',
     description: "A smart card is usually a small, plastic card (about the size of a credit card) with a tiny embedded chip that can be used to identify a user. \
@@ -93,7 +102,8 @@ export const optionsMFA = [
     fun_fact: 'The invention of the smart card was originally intended for gas stations',
     wiki_link: 'https://en.wikipedia.org/wiki/Smart_card',
     instructions: ["Drag and hold the security card to the scanner", 'Wait for it to complete the scan'],
-    note: ''},
+    note: '',
+    image: placeholder},
   // Voice Recognition
   { name: 'Voice Recognition',
     description: "Voice recognition is method of authenticating a user by their voice characteristics, like tone, pitch and cadence. It can also be used with \
@@ -108,5 +118,6 @@ export const optionsMFA = [
     fun_fact: "Microsoft's voice assistant, Cortana, was named after a fictional AI assistant from Halo",
     wiki_link: 'https://en.wikipedia.org/wiki/Speaker_recognition',
     instructions: ["Press the button and then say the voice phrase: 'this is a voice phrase'", 'If you are having problems with the voice recognition, type it in instead.'],
-    note: 'If you are on firefox/safari/mobile then this may not be accessible at the moment.'},
+    note: 'If you are on firefox/safari/mobile then this may not be accessible at the moment.',
+    image: placeholder},
 ];

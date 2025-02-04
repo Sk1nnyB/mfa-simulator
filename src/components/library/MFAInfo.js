@@ -1,7 +1,7 @@
 import React from 'react';
 import '../pages/Library.css';
 import '../library/MFAInfo.css';
-import image from '../../images/placeholder.jpg';
+import placeholder from '../../images/placeholder.jpg';
 
 function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
 
@@ -35,6 +35,7 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
   };
 
   var name, description, why, examples, how, tips, fun_fact, wiki_link = "";
+  var image;
   if (MFA != 'default') {
     name = MFA.name;
     description = MFA.description;
@@ -44,6 +45,7 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
     tips = MFA.tips;
     fun_fact = MFA.fun_fact;
     wiki_link =  MFA.wiki_link;
+    image = MFA.image;
   } else {
     name = 'Authenticators';
     description = "Authenticators are methods of 'authenticating' a user, which is essentially making sure a user is who they say they are. A multi-factor authenticator \
@@ -56,6 +58,7 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
     tips = 'When dealing with authentication methods, it is important to not cut corners or use unsafe practices, especially with important accounts like banking or government websites.';
     fun_fact = 'This website was created by a student from the University of Manchester in 2024/5 as part of their dissertation!';
     wiki_link =  'https://en.wikipedia.org/wiki/Multi-factor_authentication';
+    image = placeholder;
   }
 
   return (
