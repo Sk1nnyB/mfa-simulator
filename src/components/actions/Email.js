@@ -32,8 +32,8 @@ function Email() {
 
   return (
     <div className="email-container">
-      <div className="security-code">
-        <label htmlFor="code-input">Security Code</label>
+      <div className="security-code-container">
+        <h3>Email Code</h3>
         <input
           type="text"
           id="email-code"
@@ -41,18 +41,20 @@ function Email() {
           value={inputCode}
           onChange={handleInputChange}
         />
-        <button onClick={handleClick} className="text-button">
+        <button onClick={handleClick} className="primary-button">
           Input Code
         </button>
       </div>
       <div className="email-window">
-        <div className="email-header">
-          <span>ManchesterMail</span>
-          <button className="close-btn">×</button>
-        </div>
         <div className="email-content">
-          <img src="email.png" alt="Email PNG" />
-          <p>Your code is: <span className="code">{code}</span></p>
+          <p>Hi SampleUser!
+          <br />
+            <br /> We've noticed a log in attempt from: 192.168.1.1
+            <br />Your code is: <span className="code">{code}</span>
+            <br />Please enter this code in the next 30 minutes to log in.
+            <br />
+            <br />Many thanks,
+            <br />The MFA Simulator</p>
         </div>
       </div>
     </div>
