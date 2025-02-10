@@ -20,12 +20,12 @@ function Authentication_App() {
 
   return (
     <div className="authentication-app-container">
-      <div className="phone">
+      <div className="phone phone-authenticator">
         <div className="phone-screen">
-          <div className="sms-bubble">
+          <div className="aa-notification">
             Log in detected! Are you trying to log in?
           </div>
-          <button onClick={handleClick} className="aa-button">
+          <button onClick={handleClick} className="primary-button aa-button">
               Approve
           </button>
         </div>

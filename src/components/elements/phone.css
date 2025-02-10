@@ -1,0 +1,63 @@
+.phone {
+  width: 200px;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.phone-text {
+  background-image: url('../../images/phone-text.png');
+}
+
+.phone-authenticator {
+  background-image: url('../../images/phone-authenticator.png');
+}
+
+.phone-screen {
+  width: 160px;
+  height: 280px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sms-bubble {
+  padding: 10px;
+  background-color: #d9f7be;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.sms-bubble .code {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.aa-notification {
+  max-width: 130px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f87676;
+}
+
+.aa-button {
+  width: 140px;
+}
+
+.text-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+}

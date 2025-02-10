@@ -12,6 +12,7 @@ import Footer from './components/footer/Footer';
 // Universal CSS components
 import './components/elements/sections.css';
 import './components/elements/button.css';
+import './components/elements/phone.css';
 
 function App() {
   return (

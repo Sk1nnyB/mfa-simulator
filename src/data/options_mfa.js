@@ -49,10 +49,13 @@ export const optionsMFA = [
     image: placeholder},
   // Text (SMS) Code
   { name: 'Text (SMS) Code',
-    description: 'Text (SMS) description. Not the texts I should really be studying.',
-    why: '',
+    description: "A Text (SMS) Code is a randomly generated code that is sent to a user's phone when they try and log in. It often expires after a set amount of time, so keep your phone at hand when \
+                  using this method of verification.",
+    why: "Text codes, are not only used to confirm the user's identity (through something they own) but also can be used to prevent bots. Users will often try and create these fake \
+          'bot' accounts, that can then be used for malicious purposes and text codes prevent this as it is hard to have easy access to large amounts of phone numbers. ",
     examples: 'Dating websites, PayPal, Uber',
-    how: '',
+    how: "Text systems are quite simple; once the user attempts a log in, a code is generated and then sent to the user's registered phone. The user will then enter this generated code, often before it \
+          'expires' and if it matches the generated code, they will be logged in.",
     tips: 'Always ensure that your phone number is up to date on all your accounts, especially when acquiring a new SIM card or when using an external number (such as a work number)',
     fun_fact: 'There are multiple Guinness World Records for texting, including blind texting, which Elliot Nicholls broke with a time of 45s',
     wiki_link: 'https://en.wikipedia.org/wiki/Multi-factor_authentication#Mobile_phone-based_authentication',
@@ -61,10 +64,12 @@ export const optionsMFA = [
     image: placeholder},
   // Email Code
   { name: 'Email Code',
-    description: 'Email description. Where my efemail representation at? ',
-    why: '',
+    description: "An Email Code is a randomly generated code that is sent to a user's email address when they try and log in. It often expires after a set amount of time, so keep access to this at hand when \
+                  using this method of verification. Funnily, email codes can be used to verify other email addresses, so it can help to have a 'backup' email to use for authentication.",
+    why: "Email is used in situations where a text code may be unreliable or unavailable, often favoured for access to 'temporary' emails that can be used to authenticate and then be abandoned.",
     examples: 'GitHub, Elfster, Canva',
-    how: '',
+    how: "Email systems work in the same way as text systems; once the user attempts a log in, a code is generated and then sent to the user's registered email. The user will then enter this generated code, often before it \
+          'expires' and if it matches the generated code, they will be logged in.",
     tips: 'If you cannot see a message in your inbox, refresh the website after waiting around 5 minutes or check other folders such as junk/spam',
     fun_fact: "The first email sent from space, in 1991, ended with 'Hasta la vista, baby,...we'll be back!'",
     wiki_link: 'https://en.wikipedia.org/wiki/Email',

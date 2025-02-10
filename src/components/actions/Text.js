@@ -49,7 +49,7 @@ function Text() {
             Input Code
         </button>
       </div>
-      <div className="phone">
+      <div className="phone phone-text">
         <div className="phone-screen">
           <div className="sms-bubble">
             Your code is: <span className="code">{code}</span>
