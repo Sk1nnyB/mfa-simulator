@@ -31,7 +31,7 @@ function Voice() {
       return;
     }
 
-    if (speechInput === targetVoicePhrase) {
+    if (speechInput.toLowerCase() === targetVoicePhrase) {
       if (story !== null) {
         navigate(`/play?story=6`);
       } else {
@@ -55,13 +55,13 @@ function Voice() {
       <div className='button-area'>
         <button
           onClick={toggleListening}
-          className='recording-button'
+          className='primary-button recording-button'
           style={{backgroundColor: listening ? "#ac0e02" : "#0eac23",}}>
             {listening ? 'Stop Listening' : 'Start Recording'}
           </button>
         <button
           onClick={handleVoiceSubmission}
-          className='submit-button'
+          className='primary-button'
           disabled={listening}>
           Submit
           </button>
