@@ -33,3 +33,17 @@
   background-color: #6c7b83;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .library {
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .library-list, .mfa-info-card {
+    width: 100%;
+    margin-bottom: 20px;
+    height: 50%;
+  }
+}
