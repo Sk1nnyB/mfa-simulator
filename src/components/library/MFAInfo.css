@@ -1,12 +1,3 @@
-.mfa-info-card {
-  display: flex;
-  flex-direction: column;
-  width: 40vw;
-  height: 50vh;
-  padding: 20px;
-  overflow-y: auto;
-}
-
 .mfa-instructions {
   margin-top: 30px;
   padding: 10px;
@@ -20,6 +11,7 @@
   justify-content: center;
   justify-self: center;
   margin-bottom: 15px;
+  margin-top: 10px;
 }
 
 .mfa-title {
@@ -29,6 +21,7 @@
 
 .mfa-info {
   padding: 10px;
+  margin: 10px;
 }
 
 .mfa-info h2 {

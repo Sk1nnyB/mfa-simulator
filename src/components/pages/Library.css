@@ -16,6 +16,14 @@
   overflow-y: auto;
 }
 
+.mfa-info-card {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  height: 50vh;
+  overflow-y: auto;
+}
+
 .MFA {
   padding: 20px;
   font-size: 1.2rem;
