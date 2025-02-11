@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./FreePlayEnd.css";
 import image from '../../images/celebrations.png';
+import ConfettiComponent from "../../hooks/confetti/confetti.jsx";
 
 function FreePlayEnd() {
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ function FreePlayEnd() {
     navigate(`/play?story=1`);
   };
 
-
   return (
     <div className='endscreen'>
       <div className='left-end-container'>
@@ -22,6 +22,7 @@ function FreePlayEnd() {
       </div>
       <div className='right-end-container'>
         <h2 className='freeplay-end-h2'>Congratulations!!</h2>
+        <ConfettiComponent />
         <p className='freeplay-end-p'>You've successfully passed all authentication methods. Go again or go to story!</p>
         <div className='end-buttons'>
             <button className='go-button primary-button' onClick={handleGoClick}>
@@ -37,3 +38,4 @@ function FreePlayEnd() {
 };
 
 export default FreePlayEnd;
+
