@@ -20,48 +20,42 @@ body, html {
   /* Set to width and height of my phone */
   min-width: var(--phone-width);
   min-height: var(--phone-width);
+  overflow: hidden;
 }
 
 .header {
-  max-height: 7.5vh;
-  min-height: calc(0.075*486px);
-  width: 100%;
+  background: #f1f5fc;
+  height: 80px;
   display: flex;
-  overflow: hidden;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
   position: sticky;
   top: 0;
-  left: 0;
-  z-index: 100;
-  margin: 0 auto;
-  background: #f1f5fc;
-  font-size: 1.2rem;
+  z-index: 999;
 }
 
 .main {
-  flex-grow: 1;
   overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: 87.5vh;
+  height: calc(100vh - 120px);
 }
 
 .footer {
-  max-height: 5vh;
-  min-height: calc(0.05*486px);
+  height: 40px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: fixed;
   bottom: 0;
   left: 0;
   z-index: 100;
   background: #f1f5fc;
   font-size: 1.2rem;
+  position: fixed;
 }
