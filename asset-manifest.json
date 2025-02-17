@@ -1,10 +1,14 @@
 {
   "files": {
     "main.css": "/mfa-simulator/static/css/main.87906ebe.css",
-    "main.js": "/mfa-simulator/static/js/main.c874e737.js",
+    "main.js": "/mfa-simulator/static/js/main.b36a05fc.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
     "static/media/password.jpg": "/mfa-simulator/static/media/password.b0ea05a56c034c2a2555.jpg",
+    "static/media/security_questions.jpg": "/mfa-simulator/static/media/security_questions.3c474896b00c2afab7f1.jpg",
+    "static/media/text.jpg": "/mfa-simulator/static/media/text.281efc055652d9cee3c9.jpg",
+    "static/media/authentication_app.jpg": "/mfa-simulator/static/media/authentication_app.6fd8bc510768e38ba464.jpg",
     "static/media/homepage_background.jpg": "/mfa-simulator/static/media/homepage_background.68375dfa0c587a739631.jpg",
+    "static/media/voice.jpg": "/mfa-simulator/static/media/voice.f504e3c87f15fcaaaed8.jpg",
     "static/media/celebrations.png": "/mfa-simulator/static/media/celebrations.0d5ceaf46509eb08fd8d.png",
     "static/media/placeholder.jpg": "/mfa-simulator/static/media/placeholder.a3bcb962d0da535c7694.jpg",
     "static/media/phone-authenticator.png": "/mfa-simulator/static/media/phone-authenticator.bc391d0359daf4fff48d.png",
@@ -12,11 +16,11 @@
     "static/media/phone-text.png": "/mfa-simulator/static/media/phone-text.0be35b8877847e0e5d16.png",
     "index.html": "/mfa-simulator/index.html",
     "main.87906ebe.css.map": "/mfa-simulator/static/css/main.87906ebe.css.map",
-    "main.c874e737.js.map": "/mfa-simulator/static/js/main.c874e737.js.map",
+    "main.b36a05fc.js.map": "/mfa-simulator/static/js/main.b36a05fc.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.87906ebe.css",
-    "static/js/main.c874e737.js"
+    "static/js/main.b36a05fc.js"
   ]
 }
