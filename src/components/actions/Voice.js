@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import "./Voice.css";
 import useSpeechToText from "../../hooks/speechToText";
+import useNextMFA from './FreePlayNext.js';
+import "./Voice.css";
 
 function Voice() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
-  const story = queryParams.get('story');
-
-  const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'. Type here if you have no microphone access!");
+  const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'.");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
-
   const targetVoicePhrase = "this is a voice phrase";
+  const handleNextMFA = useNextMFA();
 
   const toggleListening = () => {
     listening ? stopListening() : startInput();
@@ -32,23 +26,21 @@ function Voice() {
     }
 
     if (speechInput.toLowerCase() === targetVoicePhrase) {
-      if (story !== null) {
-        navigate(`/play?story=6`);
-      } else {
-        let pos = parseInt(context[context.length - 1], 16);
-        const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-        pos === 0 ? navigate(`/play?context=${next}`) : navigate(`/play?context=${next}`, { replace: true });
-      }
+      handleNextMFA();
     } else {
       alert(`Entered Voice Phrae: ${speechInput} is not correct! Try again.`);
     }
   };
 
+  const skipVoice = () => {
+    handleNextMFA();
+  };
+
   return (
-    <div className='voice-container'>
+    <div className='voice-container box-border'>
       <h1>Voice</h1>
       <textarea
-        disable={listening}
+        readOnly
         value={listening ? input : speechInput}
         onChange={(e)=>{setSpeechInput(e.target.value)}}
       />
@@ -64,6 +56,13 @@ function Voice() {
           className='primary-button'
           disabled={listening}>
           Submit
+          </button>
+      </div>
+      <div className='button-area'>
+        <button
+          onClick={skipVoice}
+          className='grey-button'>
+          Skip
           </button>
       </div>
     </div>

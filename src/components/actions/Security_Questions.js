@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { questions } from '../../data/security_questions'; // Import the questions
+import { questions } from '../../data/security_questions';
+import useNextMFA from './FreePlayNext.js';
 import './Security_Questions.css';
 
 function Security_Questions() {
@@ -8,11 +8,7 @@ function Security_Questions() {
   const [savedAnswer, setSavedAnswer] = useState('');
   const [inputAnswer, setInputAnswer] = useState('');
   const [validAnswer, setValidAnswer] = useState(false);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
+  const handleNextMFA = useNextMFA();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -37,10 +33,8 @@ function Security_Questions() {
     }
 
 
-    if (savedAnswer === inputAnswer) {
-      let pos = parseInt(context[context.length - 1], 16);
-      const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-      pos === 0 ? navigate(`/play?context=${next}`) : navigate(`/play?context=${next}`, { replace: true });
+    if (savedAnswer.toLowerCase() === inputAnswer.toLowerCase()) {
+      handleNextMFA();
     } else {
       alert(`Entered Answer: ${inputAnswer} is not correct! Try again.`);
     }

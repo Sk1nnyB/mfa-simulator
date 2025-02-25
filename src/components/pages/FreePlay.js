@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "./FreePlay.css";
 import { optionsMFA } from '../../data/options_mfa';
 import { useNavigate } from 'react-router-dom';
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
 
 function FreePlay() {
   const defaultLinkStub = "https://sk1nnyb.github.io/mfa-simulator/#/";
   const defaultLink = defaultLinkStub + "FreePlay";
-  const [options, setOptions] = useState(Array(optionsMFA.length).fill(false));
+  const [options, setOptions] = useState(Array((optionsMFA.length-1)).fill(false));
   const [setupLink, setSetupLink] = useState(defaultLink);
   const [playcode, setPlaycode] = useState(0);
   const [authenticationLevel, setAuthenticationLevel] = useState(0);
@@ -58,9 +58,17 @@ function FreePlay() {
   };
 
   const resetOptions = () => {
-    setOptions(Array(optionsMFA.length).fill(false));
+    setOptions(Array((optionsMFA.length-1)).fill(false));
     setSetupLink(defaultLink);
   };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(setupLink).then(() => {
+      alert("Link copied to clipboard!");
+    }).catch(err => {
+      console.error("Failed to copy link: ", err);
+    });
+  }
 
   return (
     <div className="freeplay">
@@ -68,15 +76,12 @@ function FreePlay() {
         <div className="box-border options-container">
           <a
               data-tooltip-id="ins-tooltip"
-              data-tooltip-html="Choose your options<br />
-                                If you don't like them, reset<br />
-                                Then click start<br />
-                                We'll do it no sweat!"
+              data-tooltip-html="Scroll through the options, click the switches and make your own story mode<br />"
               data-tooltip-place="top"
               className="tooltip-circle tooltip-circle-ins"
             > ? </a>
           <Tooltip id="ins-tooltip"/>
-          {optionsMFA.map((option, index) => (
+          {optionsMFA.slice(1).map((option, index) => (
             <div key={index} className="option">
               <label className="switch">
                 <input
@@ -93,14 +98,6 @@ function FreePlay() {
       </div>
       <div className="right-container">
         <div className="assurance-container">
-          <a
-            data-tooltip-id="aa-tooltip"
-            data-tooltip-html="Authentication Assurance Levels are an indicator of how strong the set up is.
-                              <br /> NOTE: Security Questions do not count as they are not strong enough."
-            data-tooltip-place="top"
-            className="tooltip-circle tooltip-circle-aa"
-          > ? </a>
-          <Tooltip id="aa-tooltip"/>
           <h2>Authentication Assurance Level</h2>
           <h3 className={`auth-level-${authenticationLevel}-color`}>{authenticationLevel}</h3>
         </div>
@@ -118,6 +115,11 @@ function FreePlay() {
             className="setup-link"
             value={setupLink}
           />
+          <div className="buttons-container">
+            <button onClick={copyToClipboard} className="freeplay-copy-button secondary-button">
+              Copy
+            </button>
+          </div>
         </div>
     </div>
   );

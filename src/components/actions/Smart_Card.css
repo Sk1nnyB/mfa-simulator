@@ -1,9 +1,7 @@
-/* Container for the draggable and sensor elements */
 .swipe-container {
   margin: auto;
 }
 
-/* Sensor box styling */
 .sensor {
   width: 125px;
   height: 125px;
@@ -13,6 +11,8 @@
   justify-content: center;
   transition: background-color 0.1s linear;
   position: relative;
+  z-index: 0;
+  background-color: white;
 }
 
 .green-fill {
@@ -24,12 +24,12 @@
   transition: height 0.1s linear;
 }
 
-/* Draggable card styling */
 .draggable-card {
   margin-top: 50px;
   width: 100px;
   height: 50px;
-  background-color: grey;
+  background-image: url('../../images/smart_card.jpg');
   cursor: move;
+  z-index: 999;
 }
 

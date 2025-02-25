@@ -4,14 +4,12 @@ import MFAInfo from '../library/MFAInfo';
 import './Library.css';
 import { optionsMFA } from '../../data/options_mfa';
 
+
 function Library() {
-  const [selectedMFA, setSelectedMFA] = useState(null);
+  const [selectedMFA, setSelectedMFA] = useState(optionsMFA.find(option => option.name === "Authenticators"));
 
   const handleSelectOption = (name) => {
     var selected = optionsMFA.find((option) => option.name === name);
-    if (selectedMFA == selected) {
-      selected = 'default';
-    }
     setSelectedMFA(selected);
   };
 
@@ -20,10 +18,10 @@ function Library() {
       <LibraryList
         options={optionsMFA.map((option) => option.name)}
         onSelect={handleSelectOption}
-        selectedOption={selectedMFA?.name}
+        selectedOption={selectedMFA.name}
       />
       <MFAInfo
-        MFA={selectedMFA ? selectedMFA : 'default'}
+        MFA={selectedMFA}
         instructions_flag={0}
         more_information_flag={1}
       />

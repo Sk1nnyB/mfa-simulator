@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from 'react-router-dom';
-import "./Password.css"; // Import a CSS file for styling
+import { Tooltip } from 'react-tooltip';
+import useNextMFA from './FreePlayNext.js';
+import "./Password.css";
 
 function Password() {
   const [savedPassword, setSavedPassword] = useState('');
@@ -14,19 +15,14 @@ function Password() {
   });
   const [validPassword, setValidPassword] = useState(false);
   const username = "SampleUsername";
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
-  const story = queryParams.get('story');
+  const handleNextMFA = useNextMFA();
 
   const validatePassword = (input) => {
     const length = input.length >= 8 && input.length <= 14;
     const lower = /[a-z]/.test(input);
     const upper = /[A-Z]/.test(input);
     const number = /[0-9]/.test(input);
-    const symbol = /[!@#$%^&*(),.?":{}|<>]/.test(input);
+    const symbol = /[!@#$%^&*(),.?":{}|<>;'\[\]=\-~_+£\/S\\`¬]/.test(input);
 
     setPasswordStatus({ length, lower, upper, number, symbol });
     length && lower && upper && number && symbol ?  setValidPassword(true) : setValidPassword(false);
@@ -50,13 +46,7 @@ function Password() {
     }
 
     if (savedPassword === inputPassword) {
-      if (story !== null) {
-        navigate(`/play?story=3`);
-      } else {
-        let pos = parseInt(context[context.length - 1], 16);
-        const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-        pos === 0 ? navigate(`/play?context=${next}`) : navigate(`/play?context=${next}`, { replace: true });
-      }
+      handleNextMFA();
     } else {
       alert(`Entered Password: ${inputPassword} is not correct! Try again.`);
     }
@@ -67,6 +57,19 @@ function Password() {
       <div className="password-section" style={{
         backgroundColor: validPassword ? "#dbdfe2" : "#b1e9fa",
       }}>
+        <a
+          data-tooltip-id="password-tooltip"
+          data-tooltip-html="<p>A strong password needs:</p>
+                            <ul>
+                              <li>A number</li>
+                              <li>A symbol</li>
+                              <li>An uppercase and lowercase letter</li>
+                              <li>A length between 8 and 14</li>
+                            </ul>"
+          data-tooltip-place="top"
+          className="tooltip-circle tooltip-circle-password"
+        > ? </a>
+        <Tooltip id="password-tooltip"/>
         <h2> Step 1: Create the password </h2>
         <label>Password</label>
         <input

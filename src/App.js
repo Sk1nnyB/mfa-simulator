@@ -13,6 +13,7 @@ import Footer from './components/footer/Footer';
 import './components/elements/sections.css';
 import './components/elements/button.css';
 import './components/elements/phone.css';
+import './components/elements/tooltip.css';
 
 function App() {
   return (

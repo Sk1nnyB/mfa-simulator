@@ -1,34 +1,16 @@
 import React, { useState, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
+import useNextMFA from './FreePlayNext.js';
 import "./Smart_Card.css";
 
 function Smart_Card() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get("context");
-  const story = queryParams.get("story");
-
   const [progress, setProgress] = useState(0); // Sensor fill progress
   const sensorRef = useRef(null); // Reference to the sensor
   const intervalRef = useRef(null); // To manage the progress interval
+  const handleNextMFA = useNextMFA();
 
   const handleSwipe = () => {
-    if (story !== null) {
-      navigate(`/play?story=5`);
-    } else {
-      let pos = parseInt(context[context.length - 1], 16);
-      const next = (parseInt(context, 16) + 1)
-        .toString(16)
-        .toUpperCase()
-        .padStart(4, "0");
-      if (pos === 0) {
-        navigate(`/play?context=${next}`);
-      } else {
-        navigate(`/play?context=${next}`, { replace: true });
-      }
-    }
+    handleNextMFA();
   };
 
   const startProgress = () => {
@@ -59,7 +41,6 @@ function Smart_Card() {
     const sensorRect = sensor.getBoundingClientRect();
     const cardRect = e.target.getBoundingClientRect();
 
-    // Check if card is overlapping the sensor
     const isOverlapping =
       cardRect.right > sensorRect.left &&
       cardRect.left < sensorRect.right &&
@@ -91,7 +72,7 @@ function Smart_Card() {
       </div>
 
       <Draggable onDrag={handleDrag}>
-        <div className="draggable-card">Security Card</div>
+        <div className="draggable-card"></div>
       </Draggable>
     </div>
   );

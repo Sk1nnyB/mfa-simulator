@@ -32,7 +32,7 @@
 .options-container {
   overflow-y: auto;
   height: auto;
-  max-height: 45vh;
+  max-height: 55vh;
   margin-top: 20px;
 }
 
@@ -53,23 +53,6 @@
   padding: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-}
-
-.tooltip-circle {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border-color: grey;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-size: 16px;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-.tooltip-circle-aa {
-  float: right;
 }
 
 .tooltip-circle-ins {
@@ -169,6 +152,10 @@ input:checked + .slider:before {
 .freeplay-start-button, .freeplay-reset-button {
   width: 180px;
   height: 60px;
+}
+
+.freeplay-copy-button {
+  margin-top: 10px;
 }
 
 #ins-tooltip {

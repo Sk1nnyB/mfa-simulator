@@ -30,6 +30,12 @@
   gap: 20px;
 }
 
+.phone-screen-text {
+  all: inherit;
+  justify-content: flex-end;
+  padding-bottom: 30px;
+}
+
 .sms-bubble {
   padding: 10px;
   background-color: #d9f7be;
@@ -37,6 +43,7 @@
   font-size: 14px;
   color: #333;
   text-align: center;
+  max-width: 130px;
 }
 
 .sms-bubble .code {

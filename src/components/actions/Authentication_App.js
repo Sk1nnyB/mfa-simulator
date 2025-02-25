@@ -1,31 +1,18 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import useNextMFA from './FreePlayNext.js';
 import "./Authentication_App.css";
 
 function Authentication_App() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
-
-  const handleClick = () => {
-    let pos = parseInt(context[context.length - 1], 16);
-    const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-    if (pos === 0) {
-      navigate(`/play?context=${next}`);
-    } else {
-      navigate(`/play?context=${next}`, { replace: true });
-    }
-  };
+  const handleNextMFA = useNextMFA();
 
   return (
-    <div className="authentication-app-container">
+    <div className="authentication-app-container box-border">
       <div className="phone phone-authenticator">
         <div className="phone-screen">
           <div className="aa-notification">
             Log in detected! Are you trying to log in?
           </div>
-          <button onClick={handleClick} className="primary-button aa-button">
+          <button onClick={handleNextMFA} className="primary-button aa-button">
               Approve
           </button>
         </div>

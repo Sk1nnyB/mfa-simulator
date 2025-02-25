@@ -47,6 +47,7 @@ function FreePlayStart() {
             <li>You will attempt to complete a series of authentication methods.</li>
             <li>Each method will have accompanying instructions should you get stuck.</li>
             <li>Read the descriptions of each method presented to find out more!</li>
+            <li>You should NOT be asked to input any real life, sensitive information. If you are asked to input this, please leave the site immediately as it may be a fake website attempting to gain sensitive information.</li>
           </ul>
           </p>
         </div>

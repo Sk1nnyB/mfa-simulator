@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import "./FreePlayEnd.css";
-import image from '../../images/celebrations.png';
+import finish from '../../images/finish.jpg';
 import ConfettiComponent from "../../hooks/confetti/confetti.jsx";
 
 function FreePlayEnd() {
@@ -17,13 +17,10 @@ function FreePlayEnd() {
 
   return (
     <div className='endscreen'>
-      <div className='left-end-container'>
-        <img className='image' src={image} alt='Celebration Photo' />
-      </div>
-      <div className='right-end-container'>
+      <div className='end-container'>
         <h2 className='freeplay-end-h2'>Congratulations!!</h2>
         <ConfettiComponent />
-        <p className='freeplay-end-p'>You've successfully passed all authentication methods. Go again or go to story!</p>
+        <p className='freeplay-end-p'>You've successfully passed all selected authentication methods. Go again or go to story!</p>
         <div className='end-buttons'>
             <button className='go-button primary-button' onClick={handleGoClick}>
                 Freeplay &#8594;

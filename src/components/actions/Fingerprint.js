@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import useNextMFA from './FreePlayNext.js';
 import './Fingerprint.css';
 
 function Fingerprint() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const context = queryParams.get('context');
-
   const [hovering, setHovering] = useState(false);
   const [progress, setProgress] = useState(0);
+  const handleNextMFA = useNextMFA();
 
   const startScan = () => {
     setHovering(true);
@@ -20,13 +16,7 @@ function Fingerprint() {
   };
 
   const scanComplete = () => {
-    let pos = parseInt(context[context.length - 1], 16);
-    const next = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-    if (pos === 0) {
-      navigate(`/play?context=${next}`);
-    } else {
-      navigate(`/play?context=${next}`, { replace: true });
-    }
+    handleNextMFA();
   };
 
   useEffect(() => {

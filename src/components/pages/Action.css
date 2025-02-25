@@ -25,19 +25,21 @@
   align-items: center;
   width: 40vw;
   height: 100%;
-  padding: 10px;
 }
 
 @media (max-width: 768px) {
   .action {
     flex-direction: column;
-    padding: 20px;
     box-sizing: border-box;
   }
 
-  .action-container, .info-container {
+  .action-container {
     width: 100%;
-    margin-bottom: 20px;
+    height: 50%;
+  }
+
+  .info-container {
+    width: 70vw;
     height: 50%;
   }
 }
