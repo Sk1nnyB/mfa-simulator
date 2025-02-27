@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import useSpeechToText from "../../hooks/speechToText";
 import useNextMFA from './FreePlayNext.js';
 import "./Voice.css";
+import firebaseUtils  from '../../firebase.js';
 
 function Voice() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
+
   const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'.");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
   const targetVoicePhrase = "this is a voice phrase";
@@ -26,6 +32,7 @@ function Voice() {
     }
 
     if (speechInput.toLowerCase() === targetVoicePhrase) {
+      firebaseUtils.updateField(runCode, "voice", "finished");
       handleNextMFA();
     } else {
       alert(`Entered Voice Phrae: ${speechInput} is not correct! Try again.`);
@@ -33,6 +40,7 @@ function Voice() {
   };
 
   const skipVoice = () => {
+    firebaseUtils.updateField(runCode, "voice", "skipped");
     handleNextMFA();
   };
 

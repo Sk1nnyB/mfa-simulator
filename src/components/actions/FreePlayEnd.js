@@ -1,11 +1,18 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import "./FreePlayEnd.css";
-import finish from '../../images/finish.jpg';
 import ConfettiComponent from "../../hooks/confetti/confetti.jsx";
+import firebaseUtils  from '../../firebase.js';
 
 function FreePlayEnd() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
+
+  const updateEndForm = async (runCode) => {
+    await firebaseUtils.endRun(runCode);
+  };
 
   const handleGoClick = () => {
     navigate(`/freeplay`);
@@ -14,6 +21,8 @@ function FreePlayEnd() {
   const handleStoryClick = () => {
     navigate(`/play?story=1`);
   };
+
+  updateEndForm(runCode);
 
   return (
     <div className='endscreen'>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './FreePlayStart.css';
+import firebaseUtils  from '../../firebase.js';
 
 function FreePlayStart() {
   const location = useLocation();
@@ -9,11 +10,34 @@ function FreePlayStart() {
   const story = queryParams.get('story');
   const navigate = useNavigate();
 
-  const handleBeginClick = () => {
-    if ((parseInt(story) === 1)) {
-      navigate(`/play?story=2`);
-    } else {
-      navigate(`/play?context=${context}&startPage=0`);
+  const handleBeginClick = async () => {
+    try {
+      const runCode = await firebaseUtils.generateUniqueRunCode(); // Await the result
+
+      if (parseInt(story) === 1) {
+        firebaseUtils.startStory(runCode);
+        navigate(`/play?story=2&phone=0&runCode=${runCode}`);
+      } else {
+        navigate(`/play?context=${context}&startPage=0&phone=0&runCode=${runCode}`);
+      }
+    } catch (error) {
+      console.error("Error generating run code:", error);
+    }
+  };
+
+  const handleBeginPhoneClick = async () => {
+    try {
+      const runCode = await firebaseUtils.generateUniqueRunCode(); // Await the result
+      firebaseUtils.updateField(runCode, "phone", true);
+
+      if (parseInt(story) === 1) {
+        firebaseUtils.startStory(runCode);
+        navigate(`/play?story=2&phone=1&runCode=${runCode}`);
+      } else {
+        navigate(`/play?context=${context}&startPage=0&phone=1&runCode=${runCode}`);
+      }
+    } catch (error) {
+      console.error("Error generating run code:", error);
     }
   };
 
@@ -65,10 +89,31 @@ function FreePlayStart() {
               : ' These methods have been specifically selected by a third party and therefore may reflect a real life system.'}
           </p>
         </div>
+        <div className="start-text-box box-border text-box">
+          <h4>
+            I want to use the phone app!
+          </h4>
+          <p>
+          <ul>
+            <li>If you want to use the phone app, just click the button: 'Start with MFA Assistant'.</li>
+            <li>For each section that requires you to use the phone app, the code will be given INSTEAD of the activity.</li>#
+            <li>This code will be the same on each run, so feel free to stay logged in if needed.</li>
+          </ul>
+            {story
+              ? ''
+              : ' These methods have been specifically selected by a third party and therefore may reflect a real life system.'}
+          </p>
+        </div>
       </div>
-      <button className="start-button primary-button" onClick={handleBeginClick}>
-            Start &#8594;
+      <div className='buttons-container'>
+        <button className="start-button primary-button" onClick={handleBeginClick}>
+          Start &#8594;
         </button>
+
+        <button className="secondary-button" onClick={handleBeginPhoneClick}>
+          Start with MFA Assistant &#8594;
+        </button>
+      </div>
     </div>
 );
 };

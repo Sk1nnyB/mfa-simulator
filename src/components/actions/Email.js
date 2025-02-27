@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import useNextMFA from './FreePlayNext.js';
 import "./Email.css";
+import firebaseUtils  from '../../firebase.js';
 
 function Email() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
+
   const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
   const [inputCode, setInputCode] = useState("");
   const handleNextMFA = useNextMFA();
@@ -14,6 +20,7 @@ function Email() {
   // Function to handle the button click
   const handleClick = () => {
     if (code === parseInt(inputCode)) {
+      firebaseUtils.updateField(runCode, "email_code", "finished");
       handleNextMFA();
     } else {
       alert(`Entered Security Code: ${inputCode} is not correct! Try again.`);

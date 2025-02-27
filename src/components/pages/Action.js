@@ -103,8 +103,6 @@ function Action() {
     }
   }, [result]);
 
-  console.log(result);
-
   if (result === 'start') {
     return (
       <div className="action">

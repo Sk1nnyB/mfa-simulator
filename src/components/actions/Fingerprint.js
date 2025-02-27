@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import useNextMFA from './FreePlayNext.js';
 import './Fingerprint.css';
+import firebaseUtils  from '../../firebase.js';
 
 function Fingerprint() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
+
   const [hovering, setHovering] = useState(false);
   const [progress, setProgress] = useState(0);
   const handleNextMFA = useNextMFA();
@@ -16,6 +22,7 @@ function Fingerprint() {
   };
 
   const scanComplete = () => {
+    firebaseUtils.updateField(runCode, "fingerprint", "finished");
     handleNextMFA();
   };
 

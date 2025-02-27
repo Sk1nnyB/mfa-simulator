@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import useNextMFA from './FreePlayNext.js';
 import "./Password.css";
+import firebaseUtils  from '../../firebase.js';
 
 function Password() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
+
   const [savedPassword, setSavedPassword] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [passwordStatus, setPasswordStatus] = useState({
@@ -46,6 +52,7 @@ function Password() {
     }
 
     if (savedPassword === inputPassword) {
+      firebaseUtils.updateField(runCode, "password", "finished");
       handleNextMFA();
     } else {
       alert(`Entered Password: ${inputPassword} is not correct! Try again.`);
