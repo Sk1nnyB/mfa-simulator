@@ -9,6 +9,8 @@ function Authentication_App() {
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
 
+  firebaseUtils.updateField(runCode, "authentication_app", "started");
+
   const handleNextMFA = useNextMFA();
   const handleAuthAppClick = () => {
     firebaseUtils.updateField(runCode, "authentication_app", "finished");

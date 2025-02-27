@@ -18,6 +18,7 @@ function FreePlayStart() {
         firebaseUtils.startStory(runCode);
         navigate(`/play?story=2&phone=0&runCode=${runCode}`);
       } else {
+        firebaseUtils.startFreePlay(runCode, context);
         navigate(`/play?context=${context}&startPage=0&phone=0&runCode=${runCode}`);
       }
     } catch (error) {
@@ -34,6 +35,7 @@ function FreePlayStart() {
         firebaseUtils.startStory(runCode);
         navigate(`/play?story=2&phone=1&runCode=${runCode}`);
       } else {
+        firebaseUtils.startFreePlay(runCode, context);
         navigate(`/play?context=${context}&startPage=0&phone=1&runCode=${runCode}`);
       }
     } catch (error) {
@@ -96,7 +98,7 @@ function FreePlayStart() {
           <p>
           <ul>
             <li>If you want to use the phone app, just click the button: 'Start with MFA Assistant'.</li>
-            <li>For each section that requires you to use the phone app, the code will be given INSTEAD of the activity.</li>#
+            <li>For each section that requires you to use the phone app, the code will be given INSTEAD of the activity.</li>
             <li>This code will be the same on each run, so feel free to stay logged in if needed.</li>
           </ul>
             {story

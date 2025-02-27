@@ -13,6 +13,8 @@ function Fingerprint() {
   const [progress, setProgress] = useState(0);
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "fingerprint", "started");
+
   const startScan = () => {
     setHovering(true);
   };

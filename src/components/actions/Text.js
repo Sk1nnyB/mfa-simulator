@@ -13,13 +13,16 @@ function Text() {
   const [inputCode, setInputCode] = useState("");
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "text_task", "started");
+  firebaseUtils.updateField(runCode, "text_code", code);
+
   const handleInputChange = (input) => {
     setInputCode(input.target.value);
   };
 
   const handleClick = () => {
     if (code === parseInt(inputCode)) {
-      firebaseUtils.updateField(runCode, "text_code", "finished");
+      firebaseUtils.updateField(runCode, "text_task", "finished");
       handleNextMFA();
     } else {
       alert(`Entered Security Code: ${inputCode} is not correct! Try again.`);

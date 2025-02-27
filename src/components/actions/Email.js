@@ -13,6 +13,9 @@ function Email() {
   const [inputCode, setInputCode] = useState("");
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "email_task", "started");
+  firebaseUtils.updateField(runCode, "email_code", code);
+
   const handleInputChange = (input) => {
     setInputCode(input.target.value);
   };
@@ -20,7 +23,7 @@ function Email() {
   // Function to handle the button click
   const handleClick = () => {
     if (code === parseInt(inputCode)) {
-      firebaseUtils.updateField(runCode, "email_code", "finished");
+      firebaseUtils.updateField(runCode, "email_task", "finished");
       handleNextMFA();
     } else {
       alert(`Entered Security Code: ${inputCode} is not correct! Try again.`);

@@ -16,6 +16,8 @@ function Security_Questions() {
   const [validAnswer, setValidAnswer] = useState(false);
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "security_questions", "started");
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     setSavedAnswer(value);

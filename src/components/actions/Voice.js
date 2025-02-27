@@ -15,6 +15,8 @@ function Voice() {
   const targetVoicePhrase = "this is a voice phrase";
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "voice", "started");
+
   const toggleListening = () => {
     listening ? stopListening() : startInput();
   }

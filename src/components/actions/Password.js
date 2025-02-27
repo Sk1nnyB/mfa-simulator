@@ -23,6 +23,8 @@ function Password() {
   const username = "SampleUsername";
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "password", "started");
+
   const validatePassword = (input) => {
     const length = input.length >= 8 && input.length <= 14;
     const lower = /[a-z]/.test(input);

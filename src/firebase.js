@@ -40,8 +40,8 @@ const generateUniqueRunCode = async () => {
         password: null,
         security_questions: null,
         authentication_app: null,
-        text_code: null,
-        email_code: null,
+        text_task: null,
+        email_task: null,
         fingerprint: null,
         smart_card: null,
         voice: null,
@@ -56,14 +56,38 @@ const startStory = async (runCode) => {
     const runRef = doc(db, "runs", runCode);
     const updateData = {
       story: true,
-      password: 0,
-      text_code: 0,
-      fingerprint: 0,
-      smart_card: 0,
+      password: "not started",
+      text_task: "not started",
+      fingerprint: "not started",
+      smart_card: "not started",
     };
     await setDoc(runRef, updateData, { merge: true });
   } catch (error) {
     console.error("Error starting story code:", error);
+  }
+};
+
+const startFreePlay = async (runCode, context) => {
+  try {
+    const runRef = doc(db, "runs", runCode);
+
+    const options = context.slice(0, -1);
+    const boptions = parseInt(options, 16)
+      .toString(2)
+      .padStart(12, '0')
+      .split('')
+      .map((bit) => parseInt(bit));
+    const updateData = {};
+    const authenticators = ["password","security_questions","authentication_app","text_task","email_task","fingerprint","smart_card","voice"];
+    for (let i = 0; i < (authenticators.length-1); i++) {
+      if (boptions[i] === 1) {
+        updateData[authenticators[i]] = "not started";
+      }
+    }
+
+    await setDoc(runRef, updateData, { merge: true });
+  } catch (error) {
+    console.error("Error starting freeplay code:", error);
   }
 };
 
@@ -94,6 +118,7 @@ const endRun = async (runCode) => {
 export default {
   generateUniqueRunCode,
   startStory,
+  startFreePlay,
   updateField,
   endRun,
 };

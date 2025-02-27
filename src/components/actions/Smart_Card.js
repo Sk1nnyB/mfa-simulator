@@ -15,6 +15,8 @@ function Smart_Card() {
   const intervalRef = useRef(null); // To manage the progress interval
   const handleNextMFA = useNextMFA();
 
+  firebaseUtils.updateField(runCode, "smart_card", "started");
+
   const handleSwipe = () => {
     firebaseUtils.updateField(runCode, "smart_card", "finished");
     handleNextMFA();
