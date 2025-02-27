@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import useNextMFA from './FreePlayNext.js';
@@ -23,7 +23,9 @@ function Password() {
   const username = "SampleUsername";
   const handleNextMFA = useNextMFA();
 
-  firebaseUtils.updateField(runCode, "password", "started");
+  useEffect(() => {
+    firebaseUtils.updateField(runCode, "password", "started");
+  }, [runCode]);
 
   const validatePassword = (input) => {
     const length = input.length >= 8 && input.length <= 14;

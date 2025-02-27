@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useNextMFA from './FreePlayNext.js';
 import "./Authentication_App.css";
@@ -9,7 +9,9 @@ function Authentication_App() {
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
 
-  firebaseUtils.updateField(runCode, "authentication_app", "started");
+  useEffect(() => {
+    firebaseUtils.updateField(runCode, "authentication_app", "started");
+  }, [runCode]);
 
   const handleNextMFA = useNextMFA();
   const handleAuthAppClick = () => {

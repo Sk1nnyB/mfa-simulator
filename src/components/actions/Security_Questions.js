@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { questions } from '../../data/security_questions';
 import useNextMFA from './FreePlayNext.js';
@@ -16,7 +16,9 @@ function Security_Questions() {
   const [validAnswer, setValidAnswer] = useState(false);
   const handleNextMFA = useNextMFA();
 
-  firebaseUtils.updateField(runCode, "security_questions", "started");
+  useEffect(() => {
+    firebaseUtils.updateField(runCode, "security_questions", "started");
+  }, [runCode]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;

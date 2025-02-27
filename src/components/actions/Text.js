@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useNextMFA from './FreePlayNext.js';
 import "./Text.css";
@@ -13,8 +13,10 @@ function Text() {
   const [inputCode, setInputCode] = useState("");
   const handleNextMFA = useNextMFA();
 
-  firebaseUtils.updateField(runCode, "text_task", "started");
-  firebaseUtils.updateField(runCode, "text_code", code);
+  useEffect(() => {
+    firebaseUtils.updateField(runCode, "text_task", "started");
+    firebaseUtils.updateField(runCode, "text_code", code);
+  }, [runCode]);
 
   const handleInputChange = (input) => {
     setInputCode(input.target.value);

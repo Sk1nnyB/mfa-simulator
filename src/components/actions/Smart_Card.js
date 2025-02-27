@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import Draggable from "react-draggable";
 import useNextMFA from './FreePlayNext.js';
@@ -15,7 +15,9 @@ function Smart_Card() {
   const intervalRef = useRef(null); // To manage the progress interval
   const handleNextMFA = useNextMFA();
 
-  firebaseUtils.updateField(runCode, "smart_card", "started");
+  useEffect(() => {
+    firebaseUtils.updateField(runCode, "smart_card", "started");
+  }, [runCode]);
 
   const handleSwipe = () => {
     firebaseUtils.updateField(runCode, "smart_card", "finished");

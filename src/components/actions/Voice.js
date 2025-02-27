@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useSpeechToText from "../../hooks/speechToText";
 import useNextMFA from './FreePlayNext.js';
@@ -15,7 +15,9 @@ function Voice() {
   const targetVoicePhrase = "this is a voice phrase";
   const handleNextMFA = useNextMFA();
 
-  firebaseUtils.updateField(runCode, "voice", "started");
+  useEffect(() => {
+    firebaseUtils.updateField(runCode, "voice", "started");
+  }, [runCode]);
 
   const toggleListening = () => {
     listening ? stopListening() : startInput();
