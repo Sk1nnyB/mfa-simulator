@@ -9,6 +9,7 @@ function Voice() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "voice");
 
   const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'.");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
@@ -17,7 +18,14 @@ function Voice() {
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "voice", "started");
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const toggleListening = () => {
     listening ? stopListening() : startInput();

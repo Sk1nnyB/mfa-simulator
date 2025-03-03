@@ -9,6 +9,7 @@ function Password() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "password");
 
   const [savedPassword, setSavedPassword] = useState('');
   const [inputPassword, setInputPassword] = useState('');
@@ -25,7 +26,14 @@ function Password() {
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "password", "started");
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const validatePassword = (input) => {
     const length = input.length >= 8 && input.length <= 14;

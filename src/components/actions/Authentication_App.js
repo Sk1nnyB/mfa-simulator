@@ -8,10 +8,18 @@ function Authentication_App() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "authentication_app");
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "authentication_app", "started");
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const handleNextMFA = useNextMFA();
   const handleAuthAppClick = () => {

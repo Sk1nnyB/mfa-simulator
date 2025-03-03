@@ -8,6 +8,7 @@ function Text() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "text_task");
 
   const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
   const [inputCode, setInputCode] = useState("");
@@ -16,7 +17,14 @@ function Text() {
   useEffect(() => {
     firebaseUtils.updateField(runCode, "text_task", "started");
     firebaseUtils.updateField(runCode, "text_code", code);
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const handleInputChange = (input) => {
     setInputCode(input.target.value);

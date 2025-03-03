@@ -8,6 +8,7 @@ function Fingerprint() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "fingerprint");
 
   const [hovering, setHovering] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -15,7 +16,14 @@ function Fingerprint() {
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "fingerprint", "started");
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const startScan = () => {
     setHovering(true);

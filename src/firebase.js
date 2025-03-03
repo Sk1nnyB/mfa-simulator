@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCWzsHzW6DxXnd-xNH8S55GkDu7nqIF6Hg",
@@ -115,10 +116,34 @@ const endRun = async (runCode) => {
   }
 };
 
+const useWaitForFinished = (runCode, section) => {
+  const [status, setStatus] = useState(null);
+
+  useEffect(() => {
+    const runRef = doc(db, "runs", runCode);
+
+    const unsubscribe = onSnapshot(runRef, (runSnapshot) => {
+      if (runSnapshot.exists()) {
+        const data = runSnapshot.data();
+        console.log(data[section]);
+        if (data[section] === "finished") {
+          setStatus("finished");
+          unsubscribe();
+        }
+      }
+    });
+
+    return () => unsubscribe();
+  }, [runCode, section]);
+
+  return status;
+};
+
 export default {
   generateUniqueRunCode,
   startStory,
   startFreePlay,
   updateField,
   endRun,
+  useWaitForFinished,
 };

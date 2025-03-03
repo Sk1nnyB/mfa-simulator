@@ -9,6 +9,7 @@ function Smart_Card() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "smart_card");
 
   const [progress, setProgress] = useState(0); // Sensor fill progress
   const sensorRef = useRef(null); // Reference to the sensor
@@ -17,7 +18,14 @@ function Smart_Card() {
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "smart_card", "started");
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const handleSwipe = () => {
     firebaseUtils.updateField(runCode, "smart_card", "finished");

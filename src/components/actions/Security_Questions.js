@@ -9,6 +9,7 @@ function Security_Questions() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
+  const finished = firebaseUtils.useWaitForFinished(runCode, "security_questions");
 
   const [selectedQuestion, setSelectedQuestion] = useState('');
   const [savedAnswer, setSavedAnswer] = useState('');
@@ -18,7 +19,14 @@ function Security_Questions() {
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "security_questions", "started");
+    firebaseUtils.updateField(runCode, "status", "active");
   }, [runCode]);
+
+  useEffect(() => {
+    if (finished) {
+      handleNextMFA();
+    }
+  }, [finished]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
