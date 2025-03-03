@@ -1,21 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { questions } from '../../data/security_questions';
-import useNextMFA from './FreePlayNext.js';
 import './Security_Questions.css';
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Security_Questions() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "security_questions");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("security_questions");
 
   const [selectedQuestion, setSelectedQuestion] = useState('');
   const [savedAnswer, setSavedAnswer] = useState('');
   const [inputAnswer, setInputAnswer] = useState('');
   const [validAnswer, setValidAnswer] = useState(false);
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "security_questions", "started");

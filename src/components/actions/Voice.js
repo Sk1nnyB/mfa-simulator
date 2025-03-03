@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import useSpeechToText from "../../hooks/speechToText";
-import useNextMFA from './FreePlayNext.js';
 import "./Voice.css";
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Voice() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "voice");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("voice");
 
   const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'.");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
   const targetVoicePhrase = "this is a voice phrase";
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "voice", "started");

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
-import useNextMFA from './FreePlayNext.js';
 import "./Password.css";
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Password() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "password");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("password");
 
   const [savedPassword, setSavedPassword] = useState('');
   const [inputPassword, setInputPassword] = useState('');
@@ -22,7 +18,7 @@ function Password() {
   });
   const [validPassword, setValidPassword] = useState(false);
   const username = "SampleUsername";
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "password", "started");

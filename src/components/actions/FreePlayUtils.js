@@ -1,4 +1,14 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import firebaseUtils  from '../../firebase.js';
+
+const useVariables = (current) => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
+  const phone = queryParams.get('phone');
+  const finished = firebaseUtils.useWaitForFinished(runCode, current);
+  return { runCode, phone, finished };
+};
 
 const useNextMFA = (current) => {
   const navigate = useNavigate();
@@ -27,5 +37,9 @@ const useNextMFA = (current) => {
   };
 };
 
-export default useNextMFA;
+export default {
+  useVariables,
+  useNextMFA,
+};
+
 

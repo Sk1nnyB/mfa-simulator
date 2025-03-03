@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import useNextMFA from './FreePlayNext.js';
 import "./Email.css";
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Email() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "email_task");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("email_task");
 
   const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
   const [inputCode, setInputCode] = useState("");
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "email_task", "started");

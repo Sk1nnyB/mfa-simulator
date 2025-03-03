@@ -1,14 +1,10 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import useNextMFA from './FreePlayNext.js';
 import "./Authentication_App.css";
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Authentication_App() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "authentication_app");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("authentication_app");
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "authentication_app", "started");
@@ -21,7 +17,7 @@ function Authentication_App() {
     }
   }, [finished]);
 
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
   const handleAuthAppClick = () => {
     firebaseUtils.updateField(runCode, "authentication_app", "finished");
     handleNextMFA();

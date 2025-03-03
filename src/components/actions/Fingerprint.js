@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import useNextMFA from './FreePlayNext.js';
 import './Fingerprint.css';
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Fingerprint() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "fingerprint");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("fingerprint");
 
   const [hovering, setHovering] = useState(false);
   const [progress, setProgress] = useState(0);
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "fingerprint", "started");

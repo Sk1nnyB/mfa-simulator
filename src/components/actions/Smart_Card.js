@@ -1,20 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
 import Draggable from "react-draggable";
-import useNextMFA from './FreePlayNext.js';
 import "./Smart_Card.css";
+import freePlayUtils  from './FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Smart_Card() {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const runCode = queryParams.get('runCode');
-  const finished = firebaseUtils.useWaitForFinished(runCode, "smart_card");
+  const { runCode, phone, finished } = freePlayUtils.useVariables("smart_card");
 
   const [progress, setProgress] = useState(0); // Sensor fill progress
   const sensorRef = useRef(null); // Reference to the sensor
   const intervalRef = useRef(null); // To manage the progress interval
-  const handleNextMFA = useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
     firebaseUtils.updateField(runCode, "smart_card", "started");
