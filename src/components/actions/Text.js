@@ -35,11 +35,6 @@ function Text() {
     }
   };
 
-  console.log(phone);
-  if (phone) {
-    return <div className="phone-code-section box-border">Go to your mobile device now! <br/> Run Code: <span className="code">{runCode}</span></div>;
-  }
-
   return (
     <div className="text-container box-border">
       <div className="text-input-container">
@@ -55,6 +50,7 @@ function Text() {
             Input Code
         </button>
       </div>
+      {phone ? <div className="phone-code-section box-border">Go to your mobile device now! <br/> Run Code: <span className="code">{runCode}</span></div> :
       <div className="phone phone-text">
         <div className="phone-screen-text">
           <div className="sms-bubble">
@@ -64,7 +60,7 @@ function Text() {
             Your code is: <span className="code">{code}</span>
           </div>
         </div>
-      </div>
+      </div> }
     </div>
   );
 }
