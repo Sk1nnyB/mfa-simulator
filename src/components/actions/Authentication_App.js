@@ -23,6 +23,10 @@ function Authentication_App() {
     handleNextMFA();
   };
 
+  if (phone) {
+    return <div className="phone-code-section box-border">Go to your mobile device now! <br/> Run Code: <span className="code">{runCode}</span></div>;
+  }
+
   return (
     <div className="authentication-app-container box-border">
       <div className="phone phone-authenticator">

@@ -5,9 +5,6 @@ import firebaseUtils  from '../../firebase.js';
 
 function Text() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("text_task");
-
-  const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
-  const [inputCode, setInputCode] = useState("");
   const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
@@ -22,6 +19,9 @@ function Text() {
     }
   }, [finished]);
 
+  const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
+  const [inputCode, setInputCode] = useState("");
+
   const handleInputChange = (input) => {
     setInputCode(input.target.value);
   };
@@ -34,6 +34,11 @@ function Text() {
       alert(`Entered Security Code: ${inputCode} is not correct! Try again.`);
     }
   };
+
+  console.log(phone);
+  if (phone) {
+    return <div className="phone-code-section box-border">Go to your mobile device now! <br/> Run Code: <span className="code">{runCode}</span></div>;
+  }
 
   return (
     <div className="text-container box-border">

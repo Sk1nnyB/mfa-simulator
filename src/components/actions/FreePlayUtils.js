@@ -5,7 +5,7 @@ const useVariables = (current) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
-  const phone = queryParams.get('phone');
+  const phone = parseInt(queryParams.get('phone'));
   const finished = firebaseUtils.useWaitForFinished(runCode, current);
   return { runCode, phone, finished };
 };
@@ -26,7 +26,7 @@ const useNextMFA = (current) => {
       const nextContext = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
 
       const navigateOptions = { replace: pos !== 0 };
-      navigate(`/play?context=${nextContext}&$phone=${phone}&runCode=${runCode}`, navigateOptions);
+      navigate(`/play?context=${nextContext}&phone=${phone}&runCode=${runCode}`, navigateOptions);
       return;
     }
 

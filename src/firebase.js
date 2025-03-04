@@ -125,7 +125,6 @@ const useWaitForFinished = (runCode, section) => {
     const unsubscribe = onSnapshot(runRef, (runSnapshot) => {
       if (runSnapshot.exists()) {
         const data = runSnapshot.data();
-        console.log(data[section]);
         if (data[section] === "finished") {
           setStatus("finished");
           unsubscribe();
