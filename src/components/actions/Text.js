@@ -7,20 +7,35 @@ function Text() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("text_task");
   const handleNextMFA = freePlayUtils.useNextMFA();
 
+  const [code, setCode] = useState(null);
+  const [inputCode, setInputCode] = useState("");
+
   useEffect(() => {
-    firebaseUtils.updateField(runCode, "text_task", "started");
-    firebaseUtils.updateField(runCode, "text_code", code);
-    firebaseUtils.updateField(runCode, "status", "active");
+    const fetchCode = async () => {
+      const firebaseCode = await firebaseUtils.getField(runCode, "text_code");
+      console.log(firebaseCode);
+      const generatedCode = firebaseCode ?? Math.floor(Math.random() * 9000) + 1000;
+
+      setCode(generatedCode);
+
+      await Promise.all([
+        firebaseUtils.updateField(runCode, "text_task", "started"),
+        firebaseUtils.updateField(runCode, "text_code", generatedCode),
+        firebaseUtils.updateField(runCode, "status", "active"),
+      ]);
+    };
+
+    if (runCode) {
+      fetchCode().catch((error) => console.error("Error fetching/updating fields:", error));
+    }
   }, [runCode]);
+
 
   useEffect(() => {
     if (finished) {
       handleNextMFA();
     }
   }, [finished]);
-
-  const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
-  const [inputCode, setInputCode] = useState("");
 
   const handleInputChange = (input) => {
     setInputCode(input.target.value);

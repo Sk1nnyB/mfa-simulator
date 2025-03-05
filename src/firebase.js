@@ -104,6 +104,24 @@ const updateField = async (runCode, section, value) => {
   }
 };
 
+const getField = async (runCode, section) => {
+  try {
+    const runRef = doc(db, "runs", runCode);
+    const docSnap = await getDoc(runRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data()[section];
+    } else {
+      console.error("No such document!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching field:", error);
+    return null;
+  }
+};
+
+
 const endRun = async (runCode) => {
   try {
     const runRef = doc(db, "runs", runCode);
@@ -143,6 +161,7 @@ export default {
   startStory,
   startFreePlay,
   updateField,
+  getField,
   endRun,
   useWaitForFinished,
 };
