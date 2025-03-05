@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mfa-simulator/static/css/main.cf149dc9.css",
-    "main.js": "/mfa-simulator/static/js/main.2e2b583d.js",
+    "main.css": "/mfa-simulator/static/css/main.d1a67b7f.css",
+    "main.js": "/mfa-simulator/static/js/main.5a6f34ce.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
     "static/media/password.jpg": "/mfa-simulator/static/media/password.b0ea05a56c034c2a2555.jpg",
     "static/media/email.jpg": "/mfa-simulator/static/media/email.82293ab28769ae3fb0f4.jpg",
@@ -9,7 +9,6 @@
     "static/media/security_questions.jpg": "/mfa-simulator/static/media/security_questions.3c474896b00c2afab7f1.jpg",
     "static/media/text.jpg": "/mfa-simulator/static/media/text.281efc055652d9cee3c9.jpg",
     "static/media/authentication_app.jpg": "/mfa-simulator/static/media/authentication_app.6fd8bc510768e38ba464.jpg",
-    "static/media/homepage_background.jpg": "/mfa-simulator/static/media/homepage_background.68375dfa0c587a739631.jpg",
     "static/media/fingerprint.jpg": "/mfa-simulator/static/media/fingerprint.60cd3ca182a7c0a4c5a4.jpg",
     "static/media/smart_card_photo.jpg": "/mfa-simulator/static/media/smart_card_photo.5e766d9d4989d3575b2f.jpg",
     "static/media/voice.jpg": "/mfa-simulator/static/media/voice.f504e3c87f15fcaaaed8.jpg",
@@ -19,12 +18,12 @@
     "static/media/email.png": "/mfa-simulator/static/media/email.37ac312a82c49b8cf801.png",
     "static/media/phone-text.png": "/mfa-simulator/static/media/phone-text.0be35b8877847e0e5d16.png",
     "index.html": "/mfa-simulator/index.html",
-    "main.cf149dc9.css.map": "/mfa-simulator/static/css/main.cf149dc9.css.map",
-    "main.2e2b583d.js.map": "/mfa-simulator/static/js/main.2e2b583d.js.map",
+    "main.d1a67b7f.css.map": "/mfa-simulator/static/css/main.d1a67b7f.css.map",
+    "main.5a6f34ce.js.map": "/mfa-simulator/static/js/main.5a6f34ce.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cf149dc9.css",
-    "static/js/main.2e2b583d.js"
+    "static/css/main.d1a67b7f.css",
+    "static/js/main.5a6f34ce.js"
   ]
 }
