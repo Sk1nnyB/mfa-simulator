@@ -8,6 +8,16 @@ import security_questions from '../images/security_questions.jpg';
 import smart_card from '../images/smart_card_photo.jpg';
 import fingerprint from '../images/fingerprint.jpg';
 import email from '../images/email.jpg';
+import placeholder from './images/placeholder.jpg';
+import authenticators from './images/authenticators.jpg';
+import password from './images/password.jpg';
+import authentication_app from './images/authentication_app.jpg';
+import text from './images/text.jpg';
+import voice from './images/voice.jpg';
+import security_questions from './images/security_questions.jpg';
+import smart_card from './images/smart_card_photo.jpg';
+import fingerprint from './images/fingerprint.jpg';
+import email from './images/email.jpg';
 
 export const optionsMFA = [
 {

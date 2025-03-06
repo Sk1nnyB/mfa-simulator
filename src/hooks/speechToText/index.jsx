@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import {useState, useRef, useEffect} from 'react'
 
 const useSpeechToText = (options) => {
     const [listening, setListening] = useState(false)
@@ -13,7 +13,7 @@ const useSpeechToText = (options) => {
         recognitionRef.current = new window.webkitSpeechRecognition()
         const recognition = recognitionRef.current
         recognition.interimResults = true
-        recognition.lang = options.lang || "en-US"
+        recognition.lang = "en-US"
         recognition.continuous = true
 
         recognition.onresult = (event) => {

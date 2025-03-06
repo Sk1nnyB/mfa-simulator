@@ -28,7 +28,7 @@
   margin-top: 50px;
   width: 100px;
   height: 50px;
-  background-image: url('../../images/smart_card.jpg');
+  background-image: url('../../data/images/smart_card.jpg');
   cursor: move;
   z-index: 999;
 }

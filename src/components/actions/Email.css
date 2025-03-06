@@ -27,7 +27,7 @@
   width: 380px;
   height: 250px;
   position: relative;
-  background-image: url('../../images/email.png');
+  background-image: url('../../data/images/email.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

@@ -11,11 +11,11 @@
 }
 
 .phone-text {
-  background-image: url('../../images/phone-text.png');
+  background-image: url('../../data/images/phone-text.png');
 }
 
 .phone-authenticator {
-  background-image: url('../../images/phone-authenticator.png');
+  background-image: url('../../data/images/phone-authenticator.png');
 }
 
 .phone-screen {

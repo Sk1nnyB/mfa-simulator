@@ -13,8 +13,8 @@ import Security_Questions from '../actions/Security_Questions';
 import Smart_Card from '../actions/Smart_Card';
 import Text from '../actions/Text';
 import Voice from '../actions/Voice';
-import authenticators from '../../images/authenticators.jpg';
-import finish from '../../images/finish.jpg';
+import authenticators from '../../data/images/authenticators.jpg';
+import finish from '../../data/images/finish.jpg';
 
 function Action() {
   const navigate = useNavigate();
