@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import '../pages/Library.css';
-import '../library/MFAInfo.css';
+import './MFAInfo.css';
 
 
 function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
@@ -21,7 +21,7 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
         <p>{tips}</p>
         <h2>Fun Fact:</h2>
         <p>{fun_fact}</p>
-        <h4>Click here for more information: <a href={wiki_link} target="_blank" rel="noopener noreferrer">Wikipedia Link</a></h4>
+        <h2>Click here for more information: <a href={wiki_link} target="_blank" rel="noopener noreferrer">Wikipedia Link</a></h2>
       </div>
     );
   };
@@ -60,7 +60,7 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
         {instructions_flag ? returnInstructions() : <img className="mfa-image" src={image} alt='Image of MFA' />}
       </div>
       <div className='mfa-title'>
-        <h3>{name}</h3>
+        <h2>{name}</h2>
       </div>
       <div className="box-border text-box mfa-info">
         <h2>What are they?</h2>

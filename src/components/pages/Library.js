@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import LibraryList from '../library/LibraryList';
-import MFAInfo from '../library/MFAInfo';
+import LibraryList from '../elements/library/LibraryList';
+import MFAInfo from '../elements/MFAInfo';
 import './Library.css';
 import { optionsMFA } from '../../data/options_mfa';
 

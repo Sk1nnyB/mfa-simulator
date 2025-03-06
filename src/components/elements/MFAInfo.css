@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 40vw;
-  min-width: 100%;
   height: 50vh;
   overflow-y: auto;
   background-color: white;
@@ -12,6 +11,7 @@
   margin-top: 30px;
   padding: 10px;
   margin: 10px;
+  font-size: 18px;
 }
 
 .mfa-image-div {
@@ -38,11 +38,11 @@
 }
 
 .mfa-info h2 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 0;
   text-align: center;
 }
 
 .mfa-info p {
-  font-size: 14px;
+  font-size: 18px;
 }

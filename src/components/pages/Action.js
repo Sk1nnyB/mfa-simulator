@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Action.css';
 import { optionsMFA } from '../../data/options_mfa';
-import MFAInfo from '../library/MFAInfo';
+import MFAInfo from '../elements/MFAInfo';
 import FreePlayStart from '../actions/FreePlayStart';
 import FreePlayEnd from '../actions/FreePlayEnd';
 import Authentication_App from '../actions/Authentication_App';

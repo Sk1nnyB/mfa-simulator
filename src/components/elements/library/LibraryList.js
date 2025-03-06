@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pages/Library.css';
+import '../../pages/Library.css';
 import '../library/LibraryList.css';
 import { Tooltip } from 'react-tooltip';
 
