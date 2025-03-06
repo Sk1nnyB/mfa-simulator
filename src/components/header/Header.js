@@ -47,6 +47,15 @@ function Header() {
             </li>
             <li className='header-item'>
               <Link
+                to='/feedback'
+                className='header-links'
+                onClick={closeMobileMenu}
+              >
+                Feedback
+              </Link>
+            </li>
+            <li className='header-item'>
+              <Link
                 to='/'
                 className='header-links home-link'
                 onClick={closeMobileMenu}

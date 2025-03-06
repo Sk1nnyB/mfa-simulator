@@ -28,7 +28,7 @@
 
 .header-menu {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
@@ -151,3 +151,17 @@
     transition: 250ms;
   }
 }
+
+@media (max-width: 500px) {
+  .header-title {
+    left: 0;
+    transform: translate(0, 50%);
+  }
+}
+
+@media (max-width: 360px) {
+  .header-title {
+    display: none;
+  }
+}
+

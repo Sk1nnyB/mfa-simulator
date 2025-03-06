@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import Library from './components/pages/Library';
 import FreePlay from './components/pages/FreePlay';
 import Action from './components/pages/Action';
+import Feedback from './components/pages/Feedback';
 import './App.css';
 // Header and Footer
 import Header from './components/header/Header';
@@ -26,6 +27,7 @@ function App() {
             <Route path='/library' element={<Library />} />
             <Route path='/freeplay' element={<FreePlay />} />
             <Route path="/play" element={<Action />} />
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </div>
         <Footer className='footer'/>

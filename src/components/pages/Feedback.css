@@ -1,0 +1,36 @@
+.feedback-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.feedback-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  padding: 20px;
+  background-color: white;
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback-form input,
+.feedback-form select,
+.feedback-form textarea {
+  font-family: 'Inter', sans-serif;
+  width: 90%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

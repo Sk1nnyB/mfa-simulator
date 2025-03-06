@@ -13,7 +13,6 @@ function Text() {
   useEffect(() => {
     const fetchCode = async () => {
       const firebaseCode = await firebaseUtils.getField(runCode, "text_code");
-      console.log(firebaseCode);
       const generatedCode = firebaseCode ?? Math.floor(Math.random() * 9000) + 1000;
 
       setCode(generatedCode);
