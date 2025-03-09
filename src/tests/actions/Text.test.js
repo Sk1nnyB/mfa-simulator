@@ -149,7 +149,6 @@ describe("Text Component", () => {
       runCode: 123456,
       phone: false,
       finished: false,
-      code: 1234,
     });
     await act(async () => {
       render(<Text />);

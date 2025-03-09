@@ -8,12 +8,25 @@ function Email() {
   const handleNextMFA = freePlayUtils.useNextMFA("email_task");
   const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
-  const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
+  const [code, setCode] = useState(null);
   const [inputCode, setInputCode] = useState("");
 
   useEffect(() => {
-    firebaseUtils.updateField(runCode, "email_code", code);
-  }, [runCode]);
+      const fetchCode = async () => {
+        const firebaseCode = await firebaseUtils.getField(runCode, "email_code");
+        const generatedCode = firebaseCode ?? Math.floor(Math.random() * 9000) + 1000;
+
+        setCode(generatedCode);
+
+        await Promise.all([
+          firebaseUtils.updateField(runCode, "email_code", generatedCode),
+        ]);
+      };
+
+      if (runCode) {
+        fetchCode().catch((error) => console.error("Error fetching/updating email code:", error));
+      }
+    }, [runCode]);
 
   useEffect(() => {
       if (finished && !hasHandledMFA) {
