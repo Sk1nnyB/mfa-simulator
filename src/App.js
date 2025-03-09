@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 // Pages
 import Home from './components/pages/Home';
 import Library from './components/pages/Library';
@@ -28,6 +28,7 @@ function App() {
             <Route path='/freeplay' element={<FreePlay />} />
             <Route path="/play" element={<Action />} />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </div>
         <Footer className='footer'/>
