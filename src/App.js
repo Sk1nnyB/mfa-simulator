@@ -19,7 +19,7 @@ import './components/elements/tooltip.css';
 function App() {
   return (
     <>
-      <Router>
+      <Router future={{ v77_relativeSplatPath: true, v7_relativeSplatPath: true, v7_startTransition: true }}>
         <Header className='header'/>
         <div className='main'>
           <Routes>

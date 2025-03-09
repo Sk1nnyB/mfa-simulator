@@ -1,14 +1,3 @@
-/* Size of VIEWPORT of browser (not pixels) */
-:root {
-  --monitor-height: 2560px;
-  --monitor-width: 1351px;
-  --laptop-height: 632px;
-  --laptop-width: 1280px;
-  --phone-height: 924px;
-  --phone-width: 486px;
-}
-
-
 body, html {
   margin: 0;
   padding: 0;
@@ -17,9 +6,6 @@ body, html {
   font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
-  /* Set to width and height of my phone */
-  /* min-width: var(--phone-width);
-  min-height: var(--phone-width); */
   overflow: hidden;
 }
 

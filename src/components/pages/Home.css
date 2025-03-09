@@ -1,133 +1,5 @@
-.carousel {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f5f5f5;
-}
-
-.carousel-wrapper {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide {
-  min-width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* First Slide - Full Background Image */
-.carousel-slide:first-child {
-  background: url('../../images/authenticators.jpg') no-repeat center center/cover;
-  color: white; /* Adjust text color for visibility */
-}
-
-/* Second & Third Slide - Images Positioned */
-.carousel-slide:nth-child(2),
-.carousel-slide:nth-child(3) {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  background: white;
-}
-
-.carousel-slide img {
-  position: absolute;
-  width: 150px; /* Adjust size */
-  height: auto;
-}
-
-/* Second Slide - Example Positioning */
-.carousel-slide.second-slide img:first-child {
-  top: 10%;
-  left: 15%;
-}
-
-.carousel-slide.second-slide img:last-child {
-  bottom: 10%;
-  right: 15%;
-}
-
-/* Third Slide - Example Positioning */
-.carousel-slide.third-slide img:first-child {
-  top: 20%;
-  left: 30%;
-}
-
-.carousel-slide.third-slide img:last-child {
-  bottom: 20%;
-  right: 30%;
-}
-
-.home-text-section {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  margin: 40px;
-  overflow-y: auto;
-  justify-content: center;
-  text-align: center;
-}
-
-.home-btns {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 32px;
-  gap: 20px;
-}
-
-.prev-btn, .next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 20px;
-  cursor: pointer;
-  font-size: 30px;
-  border-radius: 50%;
-}
-
-.prev-btn { left: 20px; }
-.next-btn { right: 20px; }
-
-.carousel-dots {
-  position: absolute;
-  bottom: 20px;
-}
-
-.dot {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin: 5px;
-  background: #bbb;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #007bff;
-}
-
-
 .home-container {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../images/authenticators.jpg") center center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../data/images/authenticators.jpg") center center/cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,19 +20,23 @@
   height: 100%;
   margin: 40px;
   overflow-y: auto;
+  overflow-x: auto;
   justify-content: center;
   text-align: center;
+  background-color: rgba(92, 91, 91, 0.7);
 }
 
 .home-mid-section > h1 {
   color: #fff;
   font-size: 100px;
+  margin: 10px;
 }
 
 .home-mid-section > p {
   margin-top: 8px;
   color: #fff;
   font-size: 32px;
+  margin: 10px;
 }
 
 .home-btns {
@@ -186,5 +62,21 @@
 
   .home-mid-section > p {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .home-mid-section > h1 {
+    font-size: 50px;
+  }
+
+  .home-mid-section > p {
+    font-size: 16px;
+  }
+
+  .home-btns {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
   }
 }

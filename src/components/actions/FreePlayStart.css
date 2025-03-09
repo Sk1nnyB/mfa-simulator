@@ -42,3 +42,17 @@
 .start-button {
   gap: 5px;
 }
+
+.start-buttons-container {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+@media (max-width: 400px) {
+  .start-buttons-container {
+    flex-direction: column;
+  }
+}

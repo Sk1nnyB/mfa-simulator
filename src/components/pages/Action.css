@@ -14,8 +14,10 @@
   flex-direction: column;
   width: 40vw;
   height: 100%;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow-y: auto;
+  margin-top: 10px;
 }
 
 .info-container {
@@ -27,7 +29,7 @@
   height: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .action {
     flex-direction: column;
     box-sizing: border-box;
@@ -39,7 +41,8 @@
   }
 
   .info-container {
-    width: 70vw;
+    min-width: 350px;
+    width: 70%;
     height: 50%;
   }
 }
