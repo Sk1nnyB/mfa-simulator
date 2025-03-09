@@ -1,8 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { useVariables, useNextMFA, updateField } from "../../hooks/freeplay/FreePlayUtils";
+import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import Fingerprint from "../../components/actions/Fingerprint";
-import firebaseUtils from "../../firebase";
 
 // Mock the dependencies
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
@@ -10,15 +9,11 @@ jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useNextMFA: jest.fn(),
 }));
 
-jest.mock("../../firebase", () => ({
-  updateField: jest.fn(),
-}));
-
-
 describe("Fingerprint Component", () => {
   let mockHandleNextMFA;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
     jest.useFakeTimers();
@@ -27,8 +22,6 @@ describe("Fingerprint Component", () => {
       phone: false,
       finished: false,
     });
-
-    jest.clearAllMocks();
   });
 
   test("skips on pre-finished", async () => {

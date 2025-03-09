@@ -21,6 +21,7 @@ function Smart_Card() {
 
   const handleSwipe = () => {
     if (!hasHandledMFA) {
+      console.log("Test");
       setHasHandledMFA(true);
       handleNextMFA();
     }
@@ -36,7 +37,7 @@ function Smart_Card() {
           handleSwipe(); // Trigger function when sensor fills
           return 100;
         }
-        return prev + 5; // Increment progress every 100ms (fills in ~5 seconds)
+        return prev + 5;
       });
     }, 100);
   };
@@ -72,6 +73,7 @@ function Smart_Card() {
       <div
         className="sensor"
         ref={sensorRef}
+        data-testid="sensor"
       >
         <div
           className="green-fill"
@@ -85,7 +87,7 @@ function Smart_Card() {
       </div>
 
       <Draggable onDrag={handleDrag}>
-        <div className="draggable-card"></div>
+        <div className="draggable-card" data-testid="draggable-card"></div>
       </Draggable>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import Feedback from '../components/pages/Feedback';
+import Feedback from '../../components/pages/Feedback';
 import emailjs from 'emailjs-com';
 
 jest.mock('emailjs-com', () => ({
@@ -11,8 +11,8 @@ global.fetch = jest.fn();
 
 describe('Feedback Component', () => {
   beforeEach(() => {
-    jest.clearAllMocks(); // Reset mocks before each test
     global.alert = jest.fn();
+    jest.clearAllMocks(); // Reset mocks before each test
   });
 
   test('renders the feedback form', () => {

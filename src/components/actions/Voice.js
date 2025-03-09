@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import useSpeechToText from "../../hooks/speechToText";
 import "./Voice.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
-import firebaseUtils  from '../../firebase.js';
 
 function Voice() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("voice");
@@ -39,7 +38,7 @@ function Voice() {
     if (speechInput.toLowerCase() === targetVoicePhrase) {
       handleNextMFA();
     } else {
-      alert(`Entered Voice Phrae: ${speechInput} is not correct! Try again.`);
+      alert(`Entered Voice Phrase: ${speechInput} is not correct! Try again.`);
     }
   };
 

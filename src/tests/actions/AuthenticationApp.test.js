@@ -1,25 +1,19 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Authentication_App from "../../components/actions/Authentication_App";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
-import firebaseUtils from "../../firebase";
 
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
 }));
 
-jest.mock("../../firebase", () => ({
-  updateField: jest.fn(),
-}));
-
 describe("Authentication_App Component", () => {
   let mockHandleNextMFA;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
-
-    jest.clearAllMocks(); // Reset mocks before each test
   });
 
   test("skips on pre-finished", async () => {

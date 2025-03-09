@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import Text from "../../components/actions/Text";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import firebaseUtils from "../../firebase";
@@ -18,10 +18,10 @@ describe("Text Component", () => {
   let mockHandleNextMFA;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
     global.alert = jest.fn();
-    jest.clearAllMocks(); // Reset mocks before each test
   });
 
   test("skips on pre-finished", async () => {

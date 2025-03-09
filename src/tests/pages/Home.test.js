@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter, useNavigate } from "react-router-dom";
-import Home from "../components/pages/Home";
+import Home from "../../components/pages/Home";
 
 // Mock useNavigate to track navigation
 jest.mock("react-router-dom", () => ({
