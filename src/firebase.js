@@ -53,20 +53,25 @@ const generateUniqueRunCode = async () => {
     return runCode;
 };
 
-const startStory = async (runCode) => {
+const startStory = async (runCode, phone_flag) => {
   try {
     const runRef = doc(db, "runs", runCode);
-    const updateData = {
+    await setDoc(runRef, {
       story: true,
       password: "not started",
       text_task: "not started",
       fingerprint: "not started",
-      smart_card: "not started",
-    };
-    await setDoc(runRef, updateData, { merge: true });
+    }, { merge: true });
+
+    const additionalData = phone_flag
+      ? { authentication_app: "not started" }
+      : { smart_card: "not started" };
+
+    await setDoc(runRef, additionalData, { merge: true });
   } catch (error) {
     console.error("Error starting story code:", error);
   }
+
 };
 
 const startFreePlay = async (runCode, context) => {

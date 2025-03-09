@@ -25,31 +25,47 @@ function Action() {
   const story = queryParams.get('story');
   const runCode = queryParams.get('runCode');
   const context = queryParams.get('context');
+
   const [result, setResult] = useState(null);
-  const [image, setImage] = useState(authenticators);
+  const [image, setImage] = useState(LoadingCircle);
+  const [progress, setProgress] = useState(null);
+  const [finished, setFinished] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const actionContainerRef = useRef(null);
   const infoContainerRef = useRef(null);
 
   async function processContext() {
-    if (story !== null || context !== null) {
+    if (story || context) {
       return 'start';
     }
 
     try {
       const story_flag = await firebaseUtils.getField(runCode, "story");
       const context_flag = await firebaseUtils.getField(runCode, "context");
-      const mfas = story_flag ? ["password", "text_task", "fingerprint", "smart_card"]
+      const phone_flag = await firebaseUtils.getField(runCode, "phone");
+      const mfas = story_flag ? phone_flag ? ["password", "text_task", "fingerprint", "authentication_app"] : ["password", "text_task", "fingerprint", "smart_card"]
       : ["password", "security_questions", "authentication_app", "text_task", "email_task", "fingerprint", "smart_card", "voice"];
 
-      if (story_flag === true || context_flag !== null) {
+      let next_mfa = null;
+      let totalMFA = 0;
+      let finishedMFA = 0;
+      if (story_flag || context_flag !== null) {
         for (const mfa of mfas) {
           const status = await firebaseUtils.getField(runCode, mfa);
-          if (status === "not started" || status === "started") {
-            return optionsMFA.find(option => option.firebase_name === mfa);
+          if (status !== null) {
+            totalMFA++;
+            if (status === "finished") {
+              finishedMFA++;
+            } else if (!next_mfa) {
+              next_mfa = optionsMFA.find(option => option.firebase_name === mfa);
+            }
           }
         }
-        return 'end';
+        setTotal(totalMFA);
+        setFinished(finishedMFA);
+        setProgress(totalMFA > 0 ? finishedMFA / totalMFA : 0);
+        return next_mfa ?? "end";
       }
 
       navigate('/freeplay', { replace: true });
@@ -64,7 +80,7 @@ function Action() {
     const fetchContext = async () => {
       try {
         const processedResult = await processContext();
-        setResult(processedResult); // Update the result state
+        setResult(processedResult);
       } catch (error) {
         console.error("Error in processContext:", error);
       }
@@ -75,12 +91,11 @@ function Action() {
 
 
   useEffect(() => {
-    if (result && result.image) {
-      setImage(result.image);
-    } else if (result) {
-      setImage(authenticators);
-    } else {
-      setImage(LoadingCircle);
+    if (result) {
+        setImage(authenticators);
+      if(result.image) {
+        setImage(result.image);
+      }
     }
   }, [result]);
 
@@ -111,24 +126,30 @@ function Action() {
 
   return (
     <div className="action" style={{ background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image}) center center/cover no-repeat`}}>
-      <div className="action-container" ref={actionContainerRef}>
-        {result && result.name === 'Authentication App' ? <Authentication_App /> : null}
-        {result && result.name === 'Email Code' ? <Email /> : null}
-        {result && result.name === 'Fingerprint Scanner' ? <Fingerprint /> : null}
-        {result && result.name === 'Password' ? <Password /> : null}
-        {result && result.name === 'Security Questions' ? <Security_Questions /> : null}
-        {result && result.name === 'Smart Card' ? <Smart_Card /> : null}
-        {result && result.name === 'Text (SMS) Code' ? <Text /> : null}
-        {result && result.name === 'Voice Recognition' ? <Voice /> : null}
-      </div>
-      <div className="info-container" ref={infoContainerRef}>
-      {result ? (
-        <MFAInfo
-          MFA={result}
-          instructions_flag={1}
-          more_information_flag={0}
-        />
-      ) : null}
+    <div className='box-border progress-bar'>
+      <progress id="progress" value={progress} max="1" />
+      <label htmlFor="progress">  Progress: {finished}/{total}</label>
+    </div>
+    <div className="action-container">
+      <div className="action-content" ref={actionContainerRef}>
+          {result && result.name === 'Authentication App' ? <Authentication_App /> : null}
+          {result && result.name === 'Email Code' ? <Email /> : null}
+          {result && result.name === 'Fingerprint Scanner' ? <Fingerprint /> : null}
+          {result && result.name === 'Password' ? <Password /> : null}
+          {result && result.name === 'Security Questions' ? <Security_Questions /> : null}
+          {result && result.name === 'Smart Card' ? <Smart_Card /> : null}
+          {result && result.name === 'Text (SMS) Code' ? <Text /> : null}
+          {result && result.name === 'Voice Recognition' ? <Voice /> : null}
+        </div>
+        <div className="info-container" ref={infoContainerRef}>
+        {result ? (
+          <MFAInfo
+            MFA={result}
+            instructions_flag={1}
+            more_information_flag={0}
+          />
+        ) : null}
+        </div>
       </div>
     </div>
   );

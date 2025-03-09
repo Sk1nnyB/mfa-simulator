@@ -18,7 +18,7 @@ function FreePlayStart() {
       }
 
       if (story === "true") {
-        firebaseUtils.startStory(runCode);
+        firebaseUtils.startStory(runCode, isPhone);
       } else {
         firebaseUtils.startFreePlay(runCode, context);
       }

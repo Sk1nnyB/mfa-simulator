@@ -2,47 +2,79 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   gap: 20px;
   font-family: 'Inter', sans-serif;
 }
 
-.action-container {
+.progress-bar {
+  background-color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-top: 10px;
+}
+
+progress {
+  width: 100%;
+  height: 30px; /* Increased height of the progress bar */
+}
+
+label {
+  font-size: 1rem; /* Adjust font size if necessary */
+  margin-top: 5px; /* Small space between progress bar and label */
+}
+
+.action-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  overflow-y: auto;
+}
+
+.action-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 40vw;
   height: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  overflow-y: auto;
-  margin-top: 10px;
 }
 
 .info-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 40vw;
   height: 100%;
 }
 
 @media (max-width: 1000px) {
-  .action {
+  .action-container {
     flex-direction: column;
     box-sizing: border-box;
   }
 
-  .action-container {
+  .action-content {
     width: 100%;
     height: 50%;
+    margin-bottom: 10px;
   }
 
   .info-container {
     min-width: 350px;
     width: 70%;
     height: 50%;
+    margin-bottom: 10px;
   }
 }
