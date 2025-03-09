@@ -3,6 +3,7 @@ import "./FreePlay.css";
 import { optionsMFA } from '../../data/options_mfa';
 import { useNavigate } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
+import Popup from 'reactjs-popup';
 
 function FreePlay() {
   const defaultLinkStub = "https://sk1nnyb.github.io/mfa-simulator/#/";
@@ -12,6 +13,8 @@ function FreePlay() {
   const [playcode, setPlaycode] = useState(0);
   const [authenticationLevel, setAuthenticationLevel] = useState(0);
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
 
   const toggleOption = (index) => {
     setOptions((prevOptions) => {
@@ -96,6 +99,31 @@ function FreePlay() {
         <div className="assurance-container">
           <h2>Authentication Assurance Level</h2>
           <h3 className={`auth-level-${authenticationLevel}-color`}>{authenticationLevel}</h3>
+          <Popup
+            trigger={<button className="primary-button"> What are AALs? </button>}
+            modal
+            nested
+          >
+            {close => (
+              <div className="box-border modal">
+                <div className="modal-header">Authentication Assurance Levels </div>
+                <div className="modal-content">
+                  {' '}
+                  Content about AALs
+                </div>
+                <div className="modal-actions">
+                  <button
+                    className="secondary-button"
+                    onClick={() => {
+                      close();
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            )}
+          </Popup>
         </div>
         <div className="freeplay-buttons-container">
           <button onClick={handleStartClick} disabled={playcode === 0} className="freeplay-start-button primary-button">
