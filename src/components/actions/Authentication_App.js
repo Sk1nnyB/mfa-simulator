@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Authentication_App.css";
-import freePlayUtils  from './FreePlayUtils.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Authentication_App() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("authentication_app");
   const handleNextMFA = freePlayUtils.useNextMFA("authentication_app");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   useEffect(() => {
-    if (finished) {
+    if (finished && !hasHandledMFA) {
+      setHasHandledMFA(true);
       handleNextMFA();
     }
   }, [finished]);
 
   const handleAuthAppClick = () => {
-    firebaseUtils.updateField(runCode, "authentication_app", "finished");
-    handleNextMFA();
+    if (!hasHandledMFA) {
+      setHasHandledMFA(true);
+      handleNextMFA();
+    }
   };
 
   if (phone) {

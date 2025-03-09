@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import Text from "../../components/actions/Text";
-import { useVariables, useNextMFA } from "../../components/actions/FreePlayUtils";
+import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import firebaseUtils from "../../firebase";
 
 jest.mock("../../components/actions/FreePlayUtils", () => ({

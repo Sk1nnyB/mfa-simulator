@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { useVariables, useNextMFA, updateField } from "../../components/actions/FreePlayUtils";
+import { useVariables, useNextMFA, updateField } from "../../hooks/freeplay/FreePlayUtils";
 import Fingerprint from "../../components/actions/Fingerprint";
 import firebaseUtils from "../../firebase";
 

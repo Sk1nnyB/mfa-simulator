@@ -8,7 +8,7 @@ const useVariables = (current) => {
   const runCode = queryParams.get('runCode');
 
   const [phone, setPhone] = useState(null);
-  const [finished, setFinished] = useState(null);
+  const finished = firebaseUtils.useWaitForFinished(runCode, current);
 
   useEffect(() => {
     const fetchPhone = async () => {
@@ -29,15 +29,14 @@ const useVariables = (current) => {
 };
 
 const useNextMFA = (current) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
 
   return async () => {
     await firebaseUtils.updateField(runCode, current, "finished");
-    const position = await firebaseUtils.getField(runCode, "position");
-    await firebaseUtils.updateField(runCode, "position", position + 1);
-    window.location.reload();
+    navigate(0);
   };
 };
 

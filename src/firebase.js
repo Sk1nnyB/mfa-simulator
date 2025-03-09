@@ -39,7 +39,6 @@ const generateUniqueRunCode = async () => {
         phone: false,
         story: false,
         context: false,
-        position: 1,
         password: null,
         security_questions: null,
         authentication_app: null,

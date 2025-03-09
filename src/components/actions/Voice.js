@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import useSpeechToText from "../../hooks/speechToText";
 import "./Voice.css";
-import freePlayUtils  from './FreePlayUtils.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Voice() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("voice");
   const handleNextMFA = freePlayUtils.useNextMFA("voice");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'.");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
   const targetVoicePhrase = "this is a voice phrase";
 
   useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const toggleListening = () => {
     listening ? stopListening() : startInput();
@@ -35,7 +37,6 @@ function Voice() {
     }
 
     if (speechInput.toLowerCase() === targetVoicePhrase) {
-      firebaseUtils.updateField(runCode, "voice", "finished");
       handleNextMFA();
     } else {
       alert(`Entered Voice Phrae: ${speechInput} is not correct! Try again.`);
@@ -43,8 +44,11 @@ function Voice() {
   };
 
   const skipVoice = () => {
-    firebaseUtils.updateField(runCode, "voice", "skipped");
-    handleNextMFA();
+    // firebaseUtils.updateField(runCode, "voice", "skipped");
+    if (!hasHandledMFA) {
+      setHasHandledMFA(true);
+      handleNextMFA();
+    }
   };
 
   return (

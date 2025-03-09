@@ -1,13 +1,3 @@
-import placeholder from '../images/placeholder.jpg';
-import authenticators from '../images/authenticators.jpg';
-import password from '../images/password.jpg';
-import authentication_app from '../images/authentication_app.jpg';
-import text from '../images/text.jpg';
-import voice from '../images/voice.jpg';
-import security_questions from '../images/security_questions.jpg';
-import smart_card from '../images/smart_card_photo.jpg';
-import fingerprint from '../images/fingerprint.jpg';
-import email from '../images/email.jpg';
 import placeholder from './images/placeholder.jpg';
 import authenticators from './images/authenticators.jpg';
 import password from './images/password.jpg';
@@ -32,6 +22,7 @@ export const optionsMFA = [
     image: authenticators
 },
   { name: 'Password',
+    firebase_name: 'password',
     description: "Passwords are words, phrases, or combinations of random numbers, letters and symbols that can be used to 'authenticate' a user. They should only be known by \
                   the user, so do not share your passwords and always store them in a secure location.",
     why: 'Passwords are used due to their ability to be easily implemented in any piece of software or website. They are also easy for us, the user, to understand and use!',
@@ -41,7 +32,7 @@ export const optionsMFA = [
     tips: 'Try to use a different password for each account you create. Then, if one password is leaked, all your other accounts will still be secure!',
     fun_fact: 'The first digital password was invented in 1961, but they have been around since Roman times.',
     wiki_link: 'https://en.wikipedia.org/wiki/Password',
-    instructions: ['Create a strong password by changing all lights to green.', 'Use your created password to log in!'],
+    instructions: ['Create a strong password by changing all lights to green.', 'Use your created password to log in! You may need to scroll down on the step 1 task.'],
     secure: 'A good password needs a wide variety of symbols, letters and numbers to prevent against brute force attacks. A brute force attack is when someone attempts to guess a \
             password by randomly generating sequences of symbols until they find the matching one. By increasing the number of symbols, you increase the amount of possible combinations.\
             This is also why passwords should be longer than 8 symbols, but no longer than 14 as this can make them harder to remember.',
@@ -49,6 +40,7 @@ export const optionsMFA = [
     image: password},
   // Security Questions
   { name: 'Security Questions',
+    firebase_name: 'security_questions',
     description: 'A security question is like a password, in that it is a phrase used to authenticate a user, usually in the form of an answer to a question. This makes it easier \
                   for the user to remember than a password, as it is based on your knowledge of yourself rather than pure memory.',
     why: 'When a password is forgotten, lost or otherwise needs to be reset, it can be helpful to still authenticate the user in a less secure way, to prevent malicious resetting or tampering. \
@@ -60,11 +52,12 @@ export const optionsMFA = [
     tips: 'Try not to tell anyone any information that relates to or could answer your security questions.',
     fun_fact: 'Since social media has become popular, security questions have become ineffective due to the rise in knowledge of personal information',
     wiki_link: 'https://en.wikipedia.org/wiki/Security_question',
-    instructions: ['Choose and answer a security question', "Use your answer to 'answer' the question and log in"],
+    instructions: ['Choose and answer a security question', "Use your answer to 'answer' the question and log in. You may need to scroll down."],
     note: '',
     image: security_questions},
   // Authentication App
   { name: 'Authentication App',
+    firebase_name: 'authentication_app',
     description: 'An authentication app works by either providing the user with a one-time use code, which will expire after a set time, or providing a "push notification" that the user \
                   can either accept or decline.',
     why: "Authentication apps supplement a password, to strengthen the security of the system. This means that even if someone has your password, they cannot log in \
@@ -80,6 +73,7 @@ export const optionsMFA = [
     image: authentication_app},
   // Text (SMS) Code
   { name: 'Text (SMS) Code',
+    firebase_name: 'text_task',
     description: "A Text (SMS) Code is a randomly generated code that is sent to a user's phone when they try and log in. It often expires after a set amount of time, so keep your phone at hand when \
                   using this method of verification.",
     why: "Text codes, are not only used to confirm the user's identity (through something they own) but also can be used to prevent bots from signing up. Bad actors will often try and create these fake \
@@ -95,6 +89,7 @@ export const optionsMFA = [
     image: text},
   // Email Code
   { name: 'Email Code',
+    firebase_name: 'email_task',
     description: "An Email Code is a randomly generated code that is sent to a user's email address when they try to log in. It often expires after a set amount of time, so keep access to this at hand when \
                   using this method of verification. Email codes can also be used to verify other email addresses, so it can help to have a 'backup' email to use for authentication.",
     why: "Email is used in situations where a text code may be unreliable or unavailable, often favoured for access to 'temporary' emails that can be used to authenticate and then be abandoned.",
@@ -109,6 +104,7 @@ export const optionsMFA = [
     image: email},
   // Fingerprint Scanner
   { name: 'Fingerprint Scanner',
+    firebase_name: 'fingerprint',
     description: "Fingerprint scanning is the use of a fingerprint in order to authenticate a user. As each fingerprint is unique, even between twins, it is a reliable and powerful \
                   way of ensuring that the user is who they claim they are.",
     why: "Fingerprint scanning is used for many reasons; it is easy to input a fingerprint on a phone or scanner (it is just one press after all), fingerprints are also harder to \
@@ -125,6 +121,7 @@ export const optionsMFA = [
     image: fingerprint},
   // Smart Card
   { name: 'Smart Card',
+    firebase_name: 'smart_card',
     description: "A smart card is usually a small, plastic card (about the size of a credit card) with a tiny embedded chip that can be used to identify a user. \
                   It is typically 'tapped', 'swiped' or 'inserted' into a device that then reads it's contents. Although they can't be forgotten like passwords, they \
                   can still be lost, so it is recommended to store them somewhere safe, like a phone or wallet.",
@@ -142,6 +139,7 @@ export const optionsMFA = [
     image: smart_card},
   // Voice Recognition
   { name: 'Voice Recognition',
+    firebase_name: 'voice',
     description: "Voice recognition is method of authenticating a user by their voice characteristics, like tone, pitch and cadence. It can also be used with \
                   a verbal 'password', to strengthen the certainty.",
     why: 'Voice recognition is useful for systems that have no physical inputs, like buttons or a screen or systems that need increased security. Just like a fingerprint, \

@@ -1,26 +1,29 @@
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
 import "./Smart_Card.css";
-import freePlayUtils  from './FreePlayUtils.js';
-import firebaseUtils  from '../../firebase.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 
 function Smart_Card() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("smart_card");
   const handleNextMFA = freePlayUtils.useNextMFA("smart_card");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [progress, setProgress] = useState(0); // Sensor fill progress
   const sensorRef = useRef(null); // Reference to the sensor
   const intervalRef = useRef(null); // To manage the progress interval
 
   useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const handleSwipe = () => {
-    firebaseUtils.updateField(runCode, "smart_card", "finished");
-    handleNextMFA();
+    if (!hasHandledMFA) {
+      setHasHandledMFA(true);
+      handleNextMFA();
+    }
   };
 
   const startProgress = () => {

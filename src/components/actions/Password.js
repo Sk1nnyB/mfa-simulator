@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Tooltip } from 'react-tooltip';
 import "./Password.css";
-import freePlayUtils  from './FreePlayUtils.js';
-import firebaseUtils  from '../../firebase.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 
 function Password() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("password");
   const handleNextMFA = freePlayUtils.useNextMFA("password");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [savedPassword, setSavedPassword] = useState('');
   const [inputPassword, setInputPassword] = useState('');
@@ -21,17 +21,18 @@ function Password() {
   const username = "SampleUsername";
 
   useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const validatePassword = (input) => {
     const length = input.length >= 8 && input.length <= 14;
     const lower = /[a-z]/.test(input);
     const upper = /[A-Z]/.test(input);
     const number = /[0-9]/.test(input);
-    const symbol = /[!@#$%^&*(),.?":{}|<>;'\[\]=\-~_+£\/S\\`¬]/.test(input);
+    const symbol = /[!@#$%^&*(),.?":{}|<>;'\[\]=\-~_+£\/\\`¬]/.test(input);
 
     setPasswordStatus({ length, lower, upper, number, symbol });
     length && lower && upper && number && symbol ?  setValidPassword(true) : setValidPassword(false);
@@ -54,8 +55,8 @@ function Password() {
       return;
     }
 
-    if (savedPassword === inputPassword) {
-      firebaseUtils.updateField(runCode, "password", "finished");
+    if (savedPassword === inputPassword && !hasHandledMFA) {
+      setHasHandledMFA(true);
       handleNextMFA();
     } else {
       alert(`Entered Password: ${inputPassword} is not correct! Try again.`);

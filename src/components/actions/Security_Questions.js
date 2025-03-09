@@ -1,28 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { questions } from '../../data/security_questions';
 import './Security_Questions.css';
-import freePlayUtils  from './FreePlayUtils.js';
-import firebaseUtils  from '../../firebase.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 
 function Security_Questions() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("security_questions");
+  const handleNextMFA = freePlayUtils.useNextMFA("security_questions");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [selectedQuestion, setSelectedQuestion] = useState('');
   const [savedAnswer, setSavedAnswer] = useState('');
   const [inputAnswer, setInputAnswer] = useState('');
   const [validAnswer, setValidAnswer] = useState(false);
-  const handleNextMFA = freePlayUtils.useNextMFA();
 
   useEffect(() => {
-    firebaseUtils.updateField(runCode, "security_questions", "started");
-    firebaseUtils.updateField(runCode, "status", "active");
-  }, [runCode]);
-
-  useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -47,8 +43,8 @@ function Security_Questions() {
     }
 
 
-    if (savedAnswer.toLowerCase() === inputAnswer.toLowerCase()) {
-      firebaseUtils.updateField(runCode, "security_questions", "finished");
+    if (savedAnswer.toLowerCase() === inputAnswer.toLowerCase() && !hasHandledMFA) {
+      setHasHandledMFA(true);
       handleNextMFA();
     } else {
       alert(`Entered Answer: ${inputAnswer} is not correct! Try again.`);
@@ -57,7 +53,7 @@ function Security_Questions() {
 
   return (
     <div className="questions-container">
-      <div className="questions-select-container" style={{
+      <div className="box-border questions-select-container" style={{
         backgroundColor: validAnswer ? (selectedQuestion ? "#dbdfe2" : "#b1e9fa") : "#b1e9fa",
       }}>
         <h2>Step 1: Select Your Question</h2>
@@ -99,7 +95,7 @@ function Security_Questions() {
           onChange={(e) => setInputAnswer(e.target.value)}
         />
         <button onClick={handleInputClick} className="enter-button primary-button">
-          Enter
+          Enter!
         </button>
       </div>
     </div>

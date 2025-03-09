@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Authentication_App from "../../components/actions/Authentication_App";
-import { useVariables, useNextMFA } from "../../components/actions/FreePlayUtils";
+import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import firebaseUtils from "../../firebase";
 
 jest.mock("../../components/actions/FreePlayUtils", () => ({

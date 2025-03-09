@@ -17,7 +17,7 @@ function FreePlay() {
     setOptions((prevOptions) => {
       const newOptions = prevOptions.map((option, i) => (i === index ? !option : option));
       let option = newOptions[index];
-      let value = 2 ** (12 - (index + 1));
+      let value = 2 ** (index);
 
       setPlaycode((prevPlaycode) => {
         const newPlaycode = option ? prevPlaycode + value : prevPlaycode - value;
@@ -26,9 +26,7 @@ function FreePlay() {
           setSetupLink(defaultLink);
           setAuthenticationLevel(0);
         } else {
-          let hexPlaycode = (newPlaycode * 16).toString(16);
-          hexPlaycode = hexPlaycode.padStart(4, '0');
-          setSetupLink(defaultLinkStub+"play?context="+hexPlaycode+"&startPage=1");
+          setSetupLink(defaultLinkStub+"play?context="+newPlaycode);
 
           // [Password(0), Sec Ques(1), Auth App(2), Text(3), Email(4), Fingerprint(5), Smart Card(6), Voice(7)]
           let categories = 0;
@@ -52,9 +50,7 @@ function FreePlay() {
   };
 
   const handleStartClick = () => {
-    let hexPlaycode = (playcode * 16).toString(16);
-    hexPlaycode = hexPlaycode.padStart(4, '0');
-    navigate(`/play?context=${hexPlaycode}&startPage=1`);
+    navigate(`/play?context=${playcode}`);
   };
 
   const resetOptions = () => {
@@ -72,36 +68,36 @@ function FreePlay() {
 
   return (
     <div className="freeplay">
-      <div className="left-container">
-        <div className="box-border options-container">
-          <a
-              data-tooltip-id="ins-tooltip"
-              data-tooltip-html="Scroll through the options, click the switches and make your own story mode<br />"
-              data-tooltip-place="top"
-              className="tooltip-circle tooltip-circle-ins"
-            > ? </a>
-          <Tooltip id="ins-tooltip"/>
-          {optionsMFA.slice(1).map((option, index) => (
-            <div key={index} className="option">
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  checked={options[index]}
-                  onChange={() => toggleOption(index)}
-                />
-                <span className="slider"></span>
-              </label>
-              <span>{option.name}</span>
-            </div>
-          ))}
-        </div>
+      <div className="box-border left-container">
+        <a
+            data-tooltip-id="ins-tooltip"
+            data-tooltip-html="Scroll through the options,<br/>
+                              click the switches and<br/>
+                              make your own story mode<br />"
+            data-tooltip-place="top"
+            className="tooltip-circle tooltip-circle-ins"
+          > ? </a>
+        <Tooltip id="ins-tooltip"/>
+        {optionsMFA.slice(1).map((option, index) => (
+          <div key={index} className="option">
+            <label className="switch">
+              <input
+                type="checkbox"
+                checked={options[index]}
+                onChange={() => toggleOption(index)}
+              />
+              <span className="slider"></span>
+            </label>
+            <span>{option.name}</span>
+          </div>
+        ))}
       </div>
-      <div className="right-container">
+      <div className="box-border right-container">
         <div className="assurance-container">
           <h2>Authentication Assurance Level</h2>
           <h3 className={`auth-level-${authenticationLevel}-color`}>{authenticationLevel}</h3>
         </div>
-        <div className="buttons-container">
+        <div className="freeplay-buttons-container">
           <button onClick={handleStartClick} disabled={playcode === 0} className="freeplay-start-button primary-button">
             Start!
           </button>
@@ -115,7 +111,7 @@ function FreePlay() {
             className="setup-link"
             value={setupLink}
           />
-          <div className="buttons-container">
+          <div className="freeplay-buttons-container">
             <button onClick={copyToClipboard} className="freeplay-copy-button secondary-button">
               Copy
             </button>

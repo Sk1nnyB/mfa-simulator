@@ -10,34 +10,20 @@ function FreePlayStart() {
   const story = queryParams.get('story');
   const navigate = useNavigate();
 
-  const handleBeginClick = async () => {
+  const handleBeginClick = async (isPhone = false) => {
     try {
       const runCode = await firebaseUtils.generateUniqueRunCode(); // Await the result
+      if (isPhone) {
+        await firebaseUtils.updateField(runCode, "phone", true);
+      }
 
-      if (parseInt(story) === 1) {
+      if (story === "true") {
         firebaseUtils.startStory(runCode);
-        navigate(`/play?story=2&phone=0&runCode=${runCode}`);
       } else {
         firebaseUtils.startFreePlay(runCode, context);
-        navigate(`/play?context=${context}&startPage=0&phone=0&runCode=${runCode}`);
       }
-    } catch (error) {
-      console.error("Error generating run code:", error);
-    }
-  };
 
-  const handleBeginPhoneClick = async () => {
-    try {
-      const runCode = await firebaseUtils.generateUniqueRunCode(); // Await the result
-      firebaseUtils.updateField(runCode, "phone", true);
-
-      if (parseInt(story) === 1) {
-        firebaseUtils.startStory(runCode);
-        navigate(`/play?story=2&phone=1&runCode=${runCode}`);
-      } else {
-        firebaseUtils.startFreePlay(runCode, context);
-        navigate(`/play?context=${context}&startPage=0&phone=1&runCode=${runCode}`);
-      }
+      navigate(`/play?runCode=${runCode}`);
     } catch (error) {
       console.error("Error generating run code:", error);
     }
@@ -107,12 +93,12 @@ function FreePlayStart() {
           </p>
         </div>
       </div>
-      <div className='buttons-container'>
-        <button className="start-button primary-button" onClick={handleBeginClick}>
+      <div className='start-buttons-container'>
+        <button className="start-button primary-button" onClick={() => handleBeginClick(false)}>
           Start &#8594;
         </button>
 
-        <button className="secondary-button" onClick={handleBeginPhoneClick}>
+        <button className="secondary-button" onClick={() => handleBeginClick(true)}>
           Start with MFA Assistant &#8594;
         </button>
       </div>

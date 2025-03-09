@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Security_Questions from '../../components/actions/Security_Questions';
 import firebaseUtils from "../../firebase";
-import { useVariables, useNextMFA } from "../../components/actions/FreePlayUtils";
+import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import { questions } from '../../data/security_questions';
 
 jest.mock('../../components/actions/FreePlayUtils', () => ({

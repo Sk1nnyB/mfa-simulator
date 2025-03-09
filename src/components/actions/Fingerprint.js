@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Fingerprint.css';
-import freePlayUtils  from './FreePlayUtils.js';
-import firebaseUtils  from '../../firebase.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 
 function Fingerprint() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("fingerprint");
   const handleNextMFA = freePlayUtils.useNextMFA("fingerprint");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [hovering, setHovering] = useState(false);
   const [progress, setProgress] = useState(0);
 
-
   useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const startScan = () => {
     setHovering(true);
@@ -26,8 +26,10 @@ function Fingerprint() {
   };
 
   const scanComplete = () => {
-    firebaseUtils.updateField(runCode, "fingerprint", "finished");
-    handleNextMFA();
+    if (!hasHandledMFA) {
+      setHasHandledMFA(true);
+      handleNextMFA();
+    }
   };
 
   useEffect(() => {

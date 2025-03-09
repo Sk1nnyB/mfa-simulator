@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "./Email.css";
-import freePlayUtils  from './FreePlayUtils.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Email() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("email_task");
   const handleNextMFA = freePlayUtils.useNextMFA("email_task");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [code] = useState(Math.floor(Math.random() * 9000) + 1000);
   const [inputCode, setInputCode] = useState("");
@@ -15,10 +16,11 @@ function Email() {
   }, [runCode]);
 
   useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const handleInputChange = (input) => {
     setInputCode(input.target.value);
@@ -26,9 +28,9 @@ function Email() {
 
   // Function to handle the button click
   const handleClick = () => {
-    if (code === parseInt(inputCode)) {
-      firebaseUtils.updateField(runCode, "email_task", "finished");
-      handleNextMFA();
+    if (code === parseInt(inputCode) && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
     } else {
       alert(`Entered Security Code: ${inputCode} is not correct! Try again.`);
     }

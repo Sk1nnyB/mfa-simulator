@@ -46,7 +46,8 @@ function Feedback() {
         alert("Feedback sent successfully!");
       }
     } catch (error) {
-      console.error("GitHub Issue Error: ", error);
+      // console.error("GitHub Issue Error: ", error);
+      alert("Feedback was not sent! Please try again later.")
     }
   };
 
@@ -61,7 +62,7 @@ function Feedback() {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, EMAIL_ID);
       alert("Feedback sent successfully!");
     } catch (error) {
-      console.error("Email Error: ", error);
+      // console.error("Email Error: ", error);
       alert("Feedback was not sent! The inbox may be full. Please try again tomorrow.");
     }
   };

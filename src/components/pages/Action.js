@@ -37,47 +37,26 @@ function Action() {
     }
 
     try {
-      const position = await firebaseUtils.getField(runCode, "position");
       const story_flag = await firebaseUtils.getField(runCode, "story");
-      const phone_flag = await firebaseUtils.getField(runCode, "phone");
-
-      if (story_flag === true) {
-        if (parseInt(position) === 1) {
-          return optionsMFA[1];
-        } else if (parseInt(position) === 2) {
-          return optionsMFA[4];
-        } else if (parseInt(position) === 3) {
-          return optionsMFA[6];
-        } else if (parseInt(position) === 4) {
-          return optionsMFA[7];
-        } else if (parseInt(position) === 5) {
-          return 'end';
-        }
-      }
-
       const context_flag = await firebaseUtils.getField(runCode, "context");
-      if (context_flag !== null) {
-        const binaryString = context_flag.toString(2).split('').map(bit => parseInt(bit, 10)).reverse();
-        const num_mfa = binaryString.filter((bit) => bit === 1).length;
-        if (position === (num_mfa + 1)) {
-          return 'end';
-        }
-        console.log(position);
-        let count = 0;
-        for (let i = 0; i < binaryString.length; i++) {
-          if (binaryString[i] === 1) {
-            count++;
-            if (count === parseInt(position)) {
-              return optionsMFA[i + 1];
-            }
+      const mfas = story_flag ? ["password", "text_task", "fingerprint", "smart_card"]
+      : ["password", "security_questions", "authentication_app", "text_task", "email_task", "fingerprint", "smart_card", "voice"];
+
+      if (story_flag === true || context_flag !== null) {
+        for (const mfa of mfas) {
+          const status = await firebaseUtils.getField(runCode, mfa);
+          if (status === "not started" || status === "started") {
+            return optionsMFA.find(option => option.firebase_name === mfa);
           }
         }
+        return 'end';
       }
 
       navigate('/freeplay', { replace: true });
 
     } catch (error) {
       console.error("Error in processContext:", error);
+      navigate('/freeplay', { replace: true });
     }
   }
 

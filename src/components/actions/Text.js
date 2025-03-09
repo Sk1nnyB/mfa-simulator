@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "./Text.css";
-import freePlayUtils  from './FreePlayUtils.js';
+import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
 
 function Text() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("text_task");
   const handleNextMFA = freePlayUtils.useNextMFA("text_task");
+  const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
   const [code, setCode] = useState(null);
   const [inputCode, setInputCode] = useState("");
@@ -29,18 +30,19 @@ function Text() {
 
 
   useEffect(() => {
-    if (finished) {
-      handleNextMFA();
-    }
-  }, [finished]);
+      if (finished && !hasHandledMFA) {
+        setHasHandledMFA(true);
+        handleNextMFA();
+      }
+    }, [finished]);
 
   const handleInputChange = (input) => {
     setInputCode(input.target.value);
   };
 
   const handleClick = () => {
-    if (code === parseInt(inputCode)) {
-      firebaseUtils.updateField(runCode, "text_task", "finished");
+    if (code === parseInt(inputCode) && !hasHandledMFA) {
+      setHasHandledMFA(true);
       handleNextMFA();
     } else {
       alert(`Entered Security Code: ${inputCode} is not correct! Try again.`);
