@@ -5,7 +5,7 @@ import firebaseUtils  from '../../firebase.js';
 
 function Text() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("text_task");
-  const handleNextMFA = freePlayUtils.useNextMFA();
+  const handleNextMFA = freePlayUtils.useNextMFA("text_task");
 
   const [code, setCode] = useState(null);
   const [inputCode, setInputCode] = useState("");
@@ -18,9 +18,7 @@ function Text() {
       setCode(generatedCode);
 
       await Promise.all([
-        firebaseUtils.updateField(runCode, "text_task", "started"),
         firebaseUtils.updateField(runCode, "text_code", generatedCode),
-        firebaseUtils.updateField(runCode, "status", "active"),
       ]);
     };
 

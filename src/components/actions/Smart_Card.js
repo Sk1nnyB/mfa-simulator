@@ -6,16 +6,11 @@ import firebaseUtils  from '../../firebase.js';
 
 function Smart_Card() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("smart_card");
+  const handleNextMFA = freePlayUtils.useNextMFA("smart_card");
 
   const [progress, setProgress] = useState(0); // Sensor fill progress
   const sensorRef = useRef(null); // Reference to the sensor
   const intervalRef = useRef(null); // To manage the progress interval
-  const handleNextMFA = freePlayUtils.useNextMFA();
-
-  useEffect(() => {
-    firebaseUtils.updateField(runCode, "smart_card", "started");
-    firebaseUtils.updateField(runCode, "status", "active");
-  }, [runCode]);
 
   useEffect(() => {
     if (finished) {

@@ -19,7 +19,7 @@ function FreePlayEnd() {
   };
 
   const handleStoryClick = () => {
-    navigate(`/play?story=1`);
+    navigate(`/play?story=true`);
   };
 
   updateEndForm(runCode);

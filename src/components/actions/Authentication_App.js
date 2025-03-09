@@ -5,11 +5,7 @@ import firebaseUtils  from '../../firebase.js';
 
 function Authentication_App() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("authentication_app");
-
-  useEffect(() => {
-    firebaseUtils.updateField(runCode, "authentication_app", "started");
-    firebaseUtils.updateField(runCode, "status", "active");
-  }, [runCode]);
+  const handleNextMFA = freePlayUtils.useNextMFA("authentication_app");
 
   useEffect(() => {
     if (finished) {
@@ -17,7 +13,6 @@ function Authentication_App() {
     }
   }, [finished]);
 
-  const handleNextMFA = freePlayUtils.useNextMFA();
   const handleAuthAppClick = () => {
     firebaseUtils.updateField(runCode, "authentication_app", "finished");
     handleNextMFA();

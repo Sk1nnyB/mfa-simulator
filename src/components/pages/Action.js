@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import firebaseUtils  from '../../firebase.js';
 import './Action.css';
 import { optionsMFA } from '../../data/options_mfa';
 import MFAInfo from '../elements/MFAInfo';
@@ -15,13 +16,14 @@ import Text from '../actions/Text';
 import Voice from '../actions/Voice';
 import authenticators from '../../data/images/authenticators.jpg';
 import finish from '../../data/images/finish.jpg';
+import LoadingCircle from '../../data/images/LoadingCircle.gif';
 
 function Action() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const story = queryParams.get('story');
-  const startPage = queryParams.get('startPage');
+  const runCode = queryParams.get('runCode');
   const context = queryParams.get('context');
   const [result, setResult] = useState(null);
   const [image, setImage] = useState(authenticators);
@@ -29,68 +31,77 @@ function Action() {
   const actionContainerRef = useRef(null);
   const infoContainerRef = useRef(null);
 
-  function processContext() {
-    if (story !== null) {
-      if (parseInt(story) === 2) {
-        return optionsMFA[1];
-      } else if (parseInt(story) === 3) {
-        return optionsMFA[4];
-      } else if (parseInt(story) === 4) {
-        return optionsMFA[6];
-      } else if (parseInt(story) === 5) {
-        return optionsMFA[7];
-      } else if (parseInt(story) === 6) {
-        return 'end';
-      }
+  async function processContext() {
+    if (story !== null || context !== null) {
       return 'start';
     }
 
-    if (startPage !== null && parseInt(startPage) === 1) {
-      return 'start';
-    }
+    try {
+      const position = await firebaseUtils.getField(runCode, "position");
+      const story_flag = await firebaseUtils.getField(runCode, "story");
+      const phone_flag = await firebaseUtils.getField(runCode, "phone");
 
-    if (context.length !== 4) {
-      navigate('/freeplay', { replace: true });
-    }
-
-    let options = context.slice(0, -1); // Take up to the first 3 as MFA present in options array
-    let boptions = parseInt(options, 16)
-      .toString(2)
-      .padStart(12, '0')
-      .split('')
-      .map((bit) => parseInt(bit));
-    let pos = parseInt(context[context.length - 1], 16); // Take the last as the current position in the array
-    let num_mfa = [...boptions].filter((bit) => bit === 1).length;
-
-    if (pos === num_mfa) {
-      return 'end';
-    } else if (pos > num_mfa) {
-      navigate('/freeplay', { replace: true });
-    }
-
-    let count = 0;
-    for (let i = 0; i < (optionsMFA.length-1); i++) {
-      if (boptions[i] === 1) {
-        if (count === pos) {
-          return optionsMFA[i+1];
+      if (story_flag === true) {
+        if (parseInt(position) === 1) {
+          return optionsMFA[1];
+        } else if (parseInt(position) === 2) {
+          return optionsMFA[4];
+        } else if (parseInt(position) === 3) {
+          return optionsMFA[6];
+        } else if (parseInt(position) === 4) {
+          return optionsMFA[7];
+        } else if (parseInt(position) === 5) {
+          return 'end';
         }
-        count++;
       }
+
+      const context_flag = await firebaseUtils.getField(runCode, "context");
+      if (context_flag !== null) {
+        const binaryString = context_flag.toString(2).split('').map(bit => parseInt(bit, 10)).reverse();
+        const num_mfa = binaryString.filter((bit) => bit === 1).length;
+        if (position === (num_mfa + 1)) {
+          return 'end';
+        }
+        console.log(position);
+        let count = 0;
+        for (let i = 0; i < binaryString.length; i++) {
+          if (binaryString[i] === 1) {
+            count++;
+            if (count === parseInt(position)) {
+              return optionsMFA[i + 1];
+            }
+          }
+        }
+      }
+
+      navigate('/freeplay', { replace: true });
+
+    } catch (error) {
+      console.error("Error in processContext:", error);
     }
   }
 
   useEffect(() => {
-    if (context || story) {
-      const processedResult = processContext();
-      setResult(processedResult); // Update the result state
-    }
-  }, [story, startPage, context]);
+    const fetchContext = async () => {
+      try {
+        const processedResult = await processContext();
+        setResult(processedResult); // Update the result state
+      } catch (error) {
+        console.error("Error in processContext:", error);
+      }
+    };
+
+    fetchContext();
+  }, [story, context, runCode]);
+
 
   useEffect(() => {
     if (result && result.image) {
       setImage(result.image);
-    } else {
+    } else if (result) {
       setImage(authenticators);
+    } else {
+      setImage(LoadingCircle);
     }
   }, [result]);
 
@@ -132,11 +143,13 @@ function Action() {
         {result && result.name === 'Voice Recognition' ? <Voice /> : null}
       </div>
       <div className="info-container" ref={infoContainerRef}>
+      {result ? (
         <MFAInfo
-          MFA={result ? result : 'Error'}
-          instructions_flag={result ? 1 : 0}
+          MFA={result}
+          instructions_flag={1}
           more_information_flag={0}
         />
+      ) : null}
       </div>
     </div>
   );

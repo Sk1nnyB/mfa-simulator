@@ -25,19 +25,17 @@ describe("Header Component Regular Screen", () => {
         <Header />
       </MemoryRouter>
     );
-
-    // Act
     const links = [
-      { text: "Story Mode", href: "/play?story=1" },
+      { text: "Story Mode", href: "/play?story=true" },
       { text: "Free Play", href: "/Freeplay" },
       { text: "Library", href: "/library" },
       { text: "Feedback", href: "/feedback" },
       { text: "Home", href: "/" },
     ];
 
+    // Assert
     links.forEach(({ text, href }) => {
       const link = screen.getByRole("link", { name: text });
-      // Assert
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute("href", href);
     });

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import firebaseUtils  from '../../firebase.js';
 
@@ -5,35 +6,38 @@ const useVariables = (current) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const runCode = queryParams.get('runCode');
-  const phone = parseInt(queryParams.get('phone'));
-  const finished = firebaseUtils.useWaitForFinished(runCode, current);
+
+  const [phone, setPhone] = useState(null);
+  const [finished, setFinished] = useState(null);
+
+  useEffect(() => {
+    const fetchPhone = async () => {
+      const phoneData = await firebaseUtils.getField(runCode, "phone");
+      setPhone(phoneData);
+      const task_finished = await firebaseUtils.getField(runCode, current);
+      if (task_finished !== "started") {
+        firebaseUtils.updateField(runCode, current, "started");
+      }
+    };
+    fetchPhone();
+  }, [runCode, current]);
+
+  firebaseUtils.updateField(runCode, "status", "active");
+  firebaseUtils.useWaitForFinished(runCode, current);
+
   return { runCode, phone, finished };
 };
 
 const useNextMFA = (current) => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const runCode = queryParams.get('runCode');
 
-  return () => {
-    const queryParams = new URLSearchParams(location.search);
-    const context = queryParams.get('context');
-    const story = parseInt(queryParams.get('story'), 10);
-    const runCode = queryParams.get('runCode');
-    const phone = queryParams.get('phone');
-
-    if (context) {
-      const pos = parseInt(context[context.length - 1], 16);
-      const nextContext = (parseInt(context, 16) + 1).toString(16).toUpperCase().padStart(4, '0');
-
-      const navigateOptions = { replace: pos !== 0 };
-      navigate(`/play?context=${nextContext}&phone=${phone}&runCode=${runCode}`, navigateOptions);
-      return;
-    }
-
-    navigate(`/play?story=${story+1}&phone=${phone}&runCode=${runCode}`);
-    return;
-
-
+  return async () => {
+    await firebaseUtils.updateField(runCode, current, "finished");
+    const position = await firebaseUtils.getField(runCode, "position");
+    await firebaseUtils.updateField(runCode, "position", position + 1);
+    window.location.reload();
   };
 };
 

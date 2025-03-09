@@ -38,6 +38,8 @@ const generateUniqueRunCode = async () => {
         endTime: null,
         phone: false,
         story: false,
+        context: false,
+        position: 1,
         password: null,
         security_questions: null,
         authentication_app: null,
@@ -72,19 +74,16 @@ const startFreePlay = async (runCode, context) => {
   try {
     const runRef = doc(db, "runs", runCode);
 
-    const options = context.slice(0, -1);
-    const boptions = parseInt(options, 16)
-      .toString(2)
-      .padStart(12, '0')
-      .split('')
-      .map((bit) => parseInt(bit));
+    const binaryString = parseInt(context).toString(2).split('').map(bit => parseInt(bit, 10)).reverse();
     const updateData = {};
     const authenticators = ["password","security_questions","authentication_app","text_task","email_task","fingerprint","smart_card","voice"];
-    for (let i = 0; i < (authenticators.length-1); i++) {
-      if (boptions[i] === 1) {
+    for (let i = 0; i < (binaryString.length); i++) {
+      if (binaryString[i] === 1) {
         updateData[authenticators[i]] = "not started";
       }
     }
+
+    updateData["context"] = parseInt(context);
 
     await setDoc(runRef, updateData, { merge: true });
   } catch (error) {
@@ -138,23 +137,29 @@ const useWaitForFinished = (runCode, section) => {
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
-    const runRef = doc(db, "runs", runCode);
+    try {
+      const runRef = doc(db, "runs", runCode);
 
-    const unsubscribe = onSnapshot(runRef, (runSnapshot) => {
-      if (runSnapshot.exists()) {
-        const data = runSnapshot.data();
-        if (data[section] === "finished") {
-          setStatus("finished");
-          unsubscribe();
+      const unsubscribe = onSnapshot(runRef, (runSnapshot) => {
+        if (runSnapshot.exists()) {
+          const data = runSnapshot.data();
+          if (data[section] === "finished") {
+            setStatus("finished");
+            unsubscribe();
+          }
         }
-      }
-    });
+      });
 
-    return () => unsubscribe();
+      return () => unsubscribe();
+    } catch (error) {
+      console.error("Error waiting for run to finish:", error);
+    }
   }, [runCode, section]);
 
   return status;
 };
+
+// Function to get position reference listener
 
 export default {
   generateUniqueRunCode,

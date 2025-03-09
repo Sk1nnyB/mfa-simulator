@@ -21,7 +21,7 @@ function Header() {
           <ul className={click ? 'header-menu active' : 'header-menu'}>
             <li className='header-item'>
               <Link
-                to='/play?story=1'
+                to='/play?story=true'
                 className='header-links'
                 onClick={closeMobileMenu}>
                 Story Mode

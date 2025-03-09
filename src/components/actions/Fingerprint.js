@@ -5,15 +5,11 @@ import firebaseUtils  from '../../firebase.js';
 
 function Fingerprint() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("fingerprint");
+  const handleNextMFA = freePlayUtils.useNextMFA("fingerprint");
 
   const [hovering, setHovering] = useState(false);
   const [progress, setProgress] = useState(0);
-  const handleNextMFA = freePlayUtils.useNextMFA();
 
-  useEffect(() => {
-    firebaseUtils.updateField(runCode, "fingerprint", "started");
-    firebaseUtils.updateField(runCode, "status", "active");
-  }, [runCode]);
 
   useEffect(() => {
     if (finished) {

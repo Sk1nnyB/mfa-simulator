@@ -41,7 +41,7 @@ describe("Home Component", () => {
     fireEvent.click(storyButton);
 
     // Assert
-    expect(navigate).toHaveBeenCalledWith("/play?story=1");
+    expect(navigate).toHaveBeenCalledWith("/play?story=true");
   });
 
   test("navigates freeplay", () => {

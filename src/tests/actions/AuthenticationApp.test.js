@@ -22,10 +22,37 @@ describe("Authentication_App Component", () => {
     jest.clearAllMocks(); // Reset mocks before each test
   });
 
+  test("skips on pre-finished", async () => {
+    // Arrange
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone: false,
+      finished: true,
+    });
+    render(<Authentication_App />);
+
+    // Act / Assert
+    expect(mockHandleNextMFA).toHaveBeenCalled();
+  });
+
+  test("initializes firebase", () => {
+    // Arrange
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone: false,
+      finished: false,
+    });
+    render(<Authentication_App />);
+
+    // Assert
+    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "authentication_app", "started");
+    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "status", "active");
+  });
+
   test("renders mobile redirect", () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: "123456",
+      runCode: 123456,
       phone: true,
       finished: false,
     });
@@ -40,7 +67,7 @@ describe("Authentication_App Component", () => {
   test("renders action", () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: "123456",
+      runCode: 123456,
       phone: false,
       finished: false,
     });
@@ -51,37 +78,10 @@ describe("Authentication_App Component", () => {
     expect(screen.getByRole("button", { name: /Approve/i })).toBeInTheDocument();
   });
 
-  test("initializes firebase", () => {
-    // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
-    render(<Authentication_App />);
-
-    // Act / Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith("123456", "authentication_app", "started");
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith("123456", "status", "active");
-  });
-
-  test("calls handleNextMFA", () => {
-    // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: true,
-    });
-    render(<Authentication_App />);
-
-    // Act / Assert
-    expect(mockHandleNextMFA).toHaveBeenCalled();
-  });
-
   test("approve button", () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: "123456",
+      runCode: 123456,
       phone: false,
       finished: false,
     });
@@ -92,7 +92,7 @@ describe("Authentication_App Component", () => {
     fireEvent.click(approveButton);
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith("123456", "authentication_app", "finished");
+    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "authentication_app", "finished");
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 });

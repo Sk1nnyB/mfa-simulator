@@ -23,12 +23,25 @@ describe("Fingerprint Component", () => {
     useNextMFA.mockReturnValue(mockHandleNextMFA);
     jest.useFakeTimers();
     useVariables.mockReturnValue({
-      runCode: "test123",
+      runCode: 123456,
       phone: false,
       finished: false,
     });
 
     jest.clearAllMocks();
+  });
+
+  test("skips on pre-finished", async () => {
+    // Arrange
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone: false,
+      finished: true,
+    });
+    render(<Fingerprint />);
+
+    // Act / Assert
+    expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
   test("renders fingerprint scanner", () => {
@@ -77,7 +90,7 @@ describe("Fingerprint Component", () => {
     });
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith("test123", "fingerprint", "finished");
+    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "fingerprint", "finished");
   });
 
   test("scanner bar stop scanning on exit", () => {

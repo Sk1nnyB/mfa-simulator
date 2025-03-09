@@ -6,6 +6,7 @@ import firebaseUtils  from '../../firebase.js';
 
 function Password() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("password");
+  const handleNextMFA = freePlayUtils.useNextMFA("password");
 
   const [savedPassword, setSavedPassword] = useState('');
   const [inputPassword, setInputPassword] = useState('');
@@ -18,12 +19,6 @@ function Password() {
   });
   const [validPassword, setValidPassword] = useState(false);
   const username = "SampleUsername";
-  const handleNextMFA = freePlayUtils.useNextMFA();
-
-  useEffect(() => {
-    firebaseUtils.updateField(runCode, "password", "started");
-    firebaseUtils.updateField(runCode, "status", "active");
-  }, [runCode]);
 
   useEffect(() => {
     if (finished) {

@@ -6,16 +6,11 @@ import firebaseUtils  from '../../firebase.js';
 
 function Voice() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("voice");
+  const handleNextMFA = freePlayUtils.useNextMFA("voice");
 
   const [speechInput, setSpeechInput] = useState("The voice phrase is: 'this is a voice phrase'.");
   const {listening, input, startInput, stopInput} = useSpeechToText({});
   const targetVoicePhrase = "this is a voice phrase";
-  const handleNextMFA = freePlayUtils.useNextMFA();
-
-  useEffect(() => {
-    firebaseUtils.updateField(runCode, "voice", "started");
-    firebaseUtils.updateField(runCode, "status", "active");
-  }, [runCode]);
 
   useEffect(() => {
     if (finished) {

@@ -9,7 +9,7 @@ jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),
   useLocation: () => ({
-    search: "?runCode=test123",
+    search: "?runCode=123456",
   }),
 }));
 
@@ -53,7 +53,7 @@ describe("FreePlayEnd Component", () => {
     fireEvent.click(screen.getByRole("button", { name: /Story/i }));
 
     // Assert
-    expect(navigate).toHaveBeenCalledWith("/play?story=1");
+    expect(navigate).toHaveBeenCalledWith("/play?story=true");
   });
 
   test("navigates freeplay", () => {
@@ -81,6 +81,6 @@ describe("FreePlayEnd Component", () => {
 
     // Assert
     expect(firebaseUtils.endRun).toHaveBeenCalledTimes(1);
-    expect(firebaseUtils.endRun).toHaveBeenCalledWith("test123");
+    expect(firebaseUtils.endRun).toHaveBeenCalledWith("123456");
   });
 });
