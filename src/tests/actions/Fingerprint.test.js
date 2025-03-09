@@ -5,7 +5,7 @@ import Fingerprint from "../../components/actions/Fingerprint";
 import firebaseUtils from "../../firebase";
 
 // Mock the dependencies
-jest.mock("../../components/actions/FreePlayUtils", () => ({
+jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
 }));
@@ -90,7 +90,7 @@ describe("Fingerprint Component", () => {
     });
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "fingerprint", "finished");
+    expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
   test("scanner bar stop scanning on exit", () => {
@@ -104,5 +104,6 @@ describe("Fingerprint Component", () => {
 
     // Assert
     expect(screen.getByText(/Place your "finger" here!/i)).toBeInTheDocument();
+    expect(mockHandleNextMFA).not.toHaveBeenCalled();
   });
 });

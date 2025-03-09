@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Footer from "../components/footer/Footer";
+import Footer from "../components/elements/footer/Footer";
 
 describe("Footer Component", () => {
   test("renders footer with a download link", () => {

@@ -5,7 +5,7 @@ import firebaseUtils from "../../firebase";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import { questions } from '../../data/security_questions';
 
-jest.mock('../../components/actions/FreePlayUtils', () => ({
+jest.mock('../../hooks/freeplay/FreePlayUtils', () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
 }));
@@ -171,7 +171,6 @@ describe('Security_Questions Component', () => {
     fireEvent.click(screen.getByRole('button', { name: /Enter!/i }));
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith('123456', 'security_questions', 'finished');
     expect(useNextMFA()).toHaveBeenCalled();
   });
 });

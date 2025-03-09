@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./Authentication_App.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
-import firebaseUtils  from '../../firebase.js';
 
 function Authentication_App() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("authentication_app");

@@ -3,7 +3,7 @@ import Authentication_App from "../../components/actions/Authentication_App";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import firebaseUtils from "../../firebase";
 
-jest.mock("../../components/actions/FreePlayUtils", () => ({
+jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
 }));
@@ -78,7 +78,6 @@ describe("Authentication_App Component", () => {
     fireEvent.click(approveButton);
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "authentication_app", "finished");
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 });

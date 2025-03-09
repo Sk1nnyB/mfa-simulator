@@ -8,8 +8,8 @@ import Action from './components/pages/Action';
 import Feedback from './components/pages/Feedback';
 import './App.css';
 // Header and Footer
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import Header from './components/elements/header/Header';
+import Footer from './components/elements/footer/Footer';
 // Universal CSS components
 import './components/elements/sections.css';
 import './components/elements/button.css';

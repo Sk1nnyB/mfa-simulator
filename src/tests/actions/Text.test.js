@@ -4,7 +4,7 @@ import Text from "../../components/actions/Text";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import firebaseUtils from "../../firebase";
 
-jest.mock("../../components/actions/FreePlayUtils", () => ({
+jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
 }));
@@ -159,10 +159,6 @@ describe("Text Component", () => {
     fireEvent.change(screen.getByPlaceholderText('Enter Code Here!'), { target: { value: 1234 } });
     fireEvent.click(screen.getByRole("button", { name: /Input Code/i }));
 
-    // Assert
-    await waitFor(() => {
-      expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "text_task", "finished");
-    });
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 });
