@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mfa-simulator/static/css/main.4f7fc594.css",
-    "main.js": "/mfa-simulator/static/js/main.a285aee2.js",
+    "main.css": "/mfa-simulator/static/css/main.3b639803.css",
+    "main.js": "/mfa-simulator/static/js/main.e6422295.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
     "static/media/password.jpg": "/mfa-simulator/static/media/password.b0ea05a56c034c2a2555.jpg",
     "static/media/email.jpg": "/mfa-simulator/static/media/email.82293ab28769ae3fb0f4.jpg",
@@ -17,13 +17,14 @@
     "static/media/phone-authenticator.png": "/mfa-simulator/static/media/phone-authenticator.bc391d0359daf4fff48d.png",
     "static/media/email.png": "/mfa-simulator/static/media/email.37ac312a82c49b8cf801.png",
     "static/media/phone-text.png": "/mfa-simulator/static/media/phone-text.0be35b8877847e0e5d16.png",
+    "static/media/LoadingCircle.gif": "/mfa-simulator/static/media/LoadingCircle.2269af3deb78e6590032.gif",
     "index.html": "/mfa-simulator/index.html",
-    "main.4f7fc594.css.map": "/mfa-simulator/static/css/main.4f7fc594.css.map",
-    "main.a285aee2.js.map": "/mfa-simulator/static/js/main.a285aee2.js.map",
+    "main.3b639803.css.map": "/mfa-simulator/static/css/main.3b639803.css.map",
+    "main.e6422295.js.map": "/mfa-simulator/static/js/main.e6422295.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f7fc594.css",
-    "static/js/main.a285aee2.js"
+    "static/css/main.3b639803.css",
+    "static/js/main.e6422295.js"
   ]
 }
