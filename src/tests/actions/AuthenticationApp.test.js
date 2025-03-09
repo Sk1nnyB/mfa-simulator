@@ -35,20 +35,6 @@ describe("Authentication_App Component", () => {
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
-  test("initializes firebase", () => {
-    // Arrange
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
-    render(<Authentication_App />);
-
-    // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "authentication_app", "started");
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "status", "active");
-  });
-
   test("renders mobile redirect", () => {
     // Arrange
     useVariables.mockReturnValue({

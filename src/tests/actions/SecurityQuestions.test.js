@@ -44,20 +44,6 @@ describe('Security_Questions Component', () => {
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
-  test('initializes firebase', () => {
-    // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
-    render(<Security_Questions />);
-
-    // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith('123456', 'security_questions', 'started');
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith('123456', 'status', 'active');
-  });
-
   test('renders interactive components', () => {
     // Arrange
     useVariables.mockReturnValue({

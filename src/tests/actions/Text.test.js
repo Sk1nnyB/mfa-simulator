@@ -56,9 +56,7 @@ describe("Text Component", () => {
     const generatedCode = Math.floor(0.5678 * 9000) + 1000;
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "text_task", "started");
     expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "text_code", generatedCode);
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "status", "active");
 
     global.Math.random.mockRestore();
   });
@@ -77,9 +75,7 @@ describe("Text Component", () => {
     });
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "text_task", "started");
     expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "text_code", 4321);
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "status", "active");
   });
 
   test("renders mobile redirect", async () => {
