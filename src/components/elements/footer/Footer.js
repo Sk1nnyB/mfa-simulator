@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className='footer'>
       <div className='footer'>
-        <p><a href="../../data/MFA-Dissertation.pdf" download="MFA-Dissertation.pdf">Learn more about this work</a></p>
+        <p><a href="../../../public/data/MFA-Dissertation.pdf" download="MFA-Dissertation.pdf">Learn more about this work</a></p>
       </div>
     </footer>
   );

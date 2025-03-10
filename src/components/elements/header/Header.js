@@ -47,6 +47,15 @@ function Header() {
             </li>
             <li className='header-item'>
               <Link
+                to='/mfa-assistant'
+                className='header-links'
+                onClick={closeMobileMenu}
+              >
+                Assistant App
+              </Link>
+            </li>
+            <li className='header-item'>
+              <Link
                 to='/feedback'
                 className='header-links'
                 onClick={closeMobileMenu}

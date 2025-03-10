@@ -11,7 +11,7 @@ describe("Footer Component", () => {
 
     // Assert
     expect(downloadLink).toBeInTheDocument();
-    expect(downloadLink).toHaveAttribute("href", "../../data/MFA-Dissertation.pdf");
+    expect(downloadLink).toHaveAttribute("href", "../../../public/data/MFA-Dissertation.pdf");
     expect(downloadLink).toHaveAttribute("download", "MFA-Dissertation.pdf");
   });
 });
