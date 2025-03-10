@@ -6,6 +6,7 @@ import Library from './components/pages/Library';
 import FreePlay from './components/pages/FreePlay';
 import Action from './components/pages/Action';
 import Feedback from './components/pages/Feedback';
+import MFA_Assistant from './components/pages/MFA_Assistant';
 import './App.css';
 // Header and Footer
 import Header from './components/elements/header/Header';
@@ -28,6 +29,7 @@ function App() {
             <Route path='/freeplay' element={<FreePlay />} />
             <Route path="/play" element={<Action />} />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path="/mfa-assistant" element={<MFA_Assistant />} />
             <Route path='*' element={<Navigate to='/' replace />} />
           </Routes>
         </div>
