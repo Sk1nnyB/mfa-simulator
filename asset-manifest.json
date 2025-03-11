@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mfa-simulator/static/css/main.f3df80a1.css",
-    "main.js": "/mfa-simulator/static/js/main.0ba17c45.js",
+    "main.css": "/mfa-simulator/static/css/main.99732b5e.css",
+    "main.js": "/mfa-simulator/static/js/main.d9cd6662.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
     "static/media/password.jpg": "/mfa-simulator/static/media/password.b0ea05a56c034c2a2555.jpg",
     "static/media/email.jpg": "/mfa-simulator/static/media/email.82293ab28769ae3fb0f4.jpg",
@@ -12,6 +12,7 @@
     "static/media/fingerprint.jpg": "/mfa-simulator/static/media/fingerprint.60cd3ca182a7c0a4c5a4.jpg",
     "static/media/smart_card_photo.jpg": "/mfa-simulator/static/media/smart_card_photo.5e766d9d4989d3575b2f.jpg",
     "static/media/voice.jpg": "/mfa-simulator/static/media/voice.f504e3c87f15fcaaaed8.jpg",
+    "static/media/phone-assistant-app.png": "/mfa-simulator/static/media/phone-assistant-app.8f0f8b8c1de5f1c1b698.png",
     "static/media/placeholder.jpg": "/mfa-simulator/static/media/placeholder.a3bcb962d0da535c7694.jpg",
     "static/media/finish.jpg": "/mfa-simulator/static/media/finish.f8f4eabbdf524dadc3b5.jpg",
     "static/media/phone-authenticator.png": "/mfa-simulator/static/media/phone-authenticator.bc391d0359daf4fff48d.png",
@@ -19,12 +20,12 @@
     "static/media/phone-text.png": "/mfa-simulator/static/media/phone-text.0be35b8877847e0e5d16.png",
     "static/media/LoadingCircle.gif": "/mfa-simulator/static/media/LoadingCircle.2269af3deb78e6590032.gif",
     "index.html": "/mfa-simulator/index.html",
-    "main.f3df80a1.css.map": "/mfa-simulator/static/css/main.f3df80a1.css.map",
-    "main.0ba17c45.js.map": "/mfa-simulator/static/js/main.0ba17c45.js.map",
+    "main.99732b5e.css.map": "/mfa-simulator/static/css/main.99732b5e.css.map",
+    "main.d9cd6662.js.map": "/mfa-simulator/static/js/main.d9cd6662.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f3df80a1.css",
-    "static/js/main.0ba17c45.js"
+    "static/css/main.99732b5e.css",
+    "static/js/main.d9cd6662.js"
   ]
 }
