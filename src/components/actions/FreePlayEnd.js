@@ -26,7 +26,7 @@ function FreePlayEnd() {
 
   return (
     <div className='endscreen'>
-      <div className='end-container'>
+      <div className='box-border end-container'>
         <h2 className='freeplay-end-h2'>Congratulations!!</h2>
         <ConfettiComponent />
         <p className='freeplay-end-p'>You've successfully passed all selected authentication methods. Go again or go to story!</p>

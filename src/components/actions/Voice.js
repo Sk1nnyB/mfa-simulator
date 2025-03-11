@@ -57,6 +57,7 @@ function Voice() {
         readOnly
         value={listening ? input : speechInput}
         onChange={(e)=>{setSpeechInput(e.target.value)}}
+        className='voice-textarea'
       />
       <div className='button-area'>
         <button
@@ -75,7 +76,7 @@ function Voice() {
       <div className='button-area'>
         <button
           onClick={skipVoice}
-          className='grey-button'>
+          className='skip-button'>
           Skip
           </button>
       </div>

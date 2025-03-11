@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding: 20px;
+  height: 100%;
+  width: 100%;
+  gap: 20px;
 }
 
 .feedback-content {
@@ -12,16 +13,21 @@
   justify-content: center;
   align-items: center;
   width: 40vw;
-  padding: 20px;
+  height: 80%;
+  max-height: 400px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  overflow-y: auto;
   background-color: white;
 }
 
 .feedback-form {
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .feedback-form input,
@@ -33,4 +39,17 @@
   margin: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+@media (max-height: 700px) {
+  .feedback-content {
+    justify-content: start;
+  }
+}
+
+@media (max-width: 500px) {
+  .feedback-button {
+    width: 120px;
+    font-size: 14px;
+  }
 }

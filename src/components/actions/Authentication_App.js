@@ -26,7 +26,7 @@ function Authentication_App() {
   }
 
   return (
-    <div className="authentication-app-container box-border">
+    <div className="authentication-app-container">
       <div className="phone phone-authenticator">
         <div className="phone-screen">
           <div className="aa-notification">

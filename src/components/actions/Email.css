@@ -1,10 +1,13 @@
 .email-container {
+  height: fit-content;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   padding: 20px;
   margin: auto;
+  overflow-y: auto;
   background-color: white;
 }
 
@@ -24,7 +27,7 @@
 }
 
 .email-window {
-  width: 380px;
+  width: 300px;
   height: 250px;
   position: relative;
   background-image: url('../../data/images/email.png');
@@ -39,6 +42,7 @@
   text-align: left;
   margin-top: 30px;
   padding: 20px;
+  width: 260px;
 }
 
 .email-content .code {
@@ -47,6 +51,22 @@
 }
 
 .email-content p {
-  font-size: 13px;
+  font-size: 11px;
   color: #333;
+}
+
+@media (max-height: 1200px) {
+  .email-container {
+    align-items: center;
+  }
+}
+
+@media (max-width: 1000px) and (min-height: 820px) {
+  .email-container {
+    height: fit-content;
+    max-width: 80%;
+    width: fit-content;
+    flex-direction: row;
+    align-items: center;
+  }
 }

@@ -80,7 +80,7 @@ function Security_Questions() {
         />
       </div>
 
-      <div className="questions-input-container" style={{
+      <div className="box-border questions-input-container" style={{
         backgroundColor: validAnswer ? (selectedQuestion ? "#b1e9fa" : "#dbdfe2") : "#dbdfe2",
       }}>
         <h2>Step 2: Answer Chosen Question</h2>

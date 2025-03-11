@@ -26,6 +26,11 @@ function Feedback() {
     } else {
       await sendEmail();
     }
+    setFormData({
+      title: "",
+      type: "Bug",
+      description: "",
+    });
   };
 
   const createGitHubIssue = async () => {

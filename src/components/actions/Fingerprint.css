@@ -1,5 +1,6 @@
 .fingerprint-container {
   margin: auto;
+  overflow: auto;
 }
 
 .scan-container {

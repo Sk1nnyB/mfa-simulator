@@ -1,6 +1,7 @@
 .phone {
-  width: 200px;
-  height: 350px;
+  width: 220px;
+  min-height: 350px;
+  min-height: 350px;
   background-size: cover;
   background-position: center;
   display: flex;

@@ -1,5 +1,6 @@
 .swipe-container {
   margin: auto;
+  overflow: auto;
 }
 
 .sensor {
