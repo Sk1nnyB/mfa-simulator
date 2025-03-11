@@ -89,6 +89,7 @@ function Password() {
           value={savedPassword}
           onChange={handlePasswordChange}
           autoComplete="new-password"
+          data-testid="password-entry1"
         />
         <div className="password-validation">
           <span
@@ -132,7 +133,8 @@ function Password() {
         <input type="Password"
         placeholder="Enter Here!"
         onChange={(e) => setInputPassword(e.target.value)}
-        autoComplete="new-password"/>
+        autoComplete="new-password"
+        data-testid="password-entry2"/>
         <button type="submit" className="login-button primary-button" onClick={handleInputClick}>
           Log In
         </button>

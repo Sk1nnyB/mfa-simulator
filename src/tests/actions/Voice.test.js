@@ -1,10 +1,9 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
-import Voice from "../../components/actions/Voice";
-import useSpeechToText from "../../hooks/speechToText";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
+import useSpeechToText from "../../hooks/speechToText";
+import Voice from "../../components/actions/Voice";
 
-// Mock necessary hooks and functions
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
@@ -216,6 +215,7 @@ describe("Voice Component", () => {
   });
 
   test("skipping voice input triggers MFA", () => {
+    // Arrange
     useSpeechToText.mockReturnValue({
       listening: false,
       input: "",
@@ -224,10 +224,10 @@ describe("Voice Component", () => {
     });
     render(<Voice />);
 
-    const skipButton = screen.getByText("Skip");
+    // Act
+    fireEvent.click(screen.getByText("Skip"));
 
-    // Clicking skip should trigger handleNextMFA
-    fireEvent.click(skipButton);
+    // Assert
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 });

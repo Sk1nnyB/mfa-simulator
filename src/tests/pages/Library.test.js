@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Library from '../../components/pages/Library';
 
-// Mock child components to focus on rendering
 jest.mock('../../components/elements/library/LibraryList', () => ({ options, onSelect, selectedOption }) => (
   <div>LibraryList Component</div>
 ));

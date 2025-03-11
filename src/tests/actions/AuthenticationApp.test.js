@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Authentication_App from "../../components/actions/Authentication_App";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
+import Authentication_App from "../../components/actions/Authentication_App";
 
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
@@ -38,7 +38,7 @@ describe("Authentication_App Component", () => {
     });
     render(<Authentication_App />);
 
-    // Act / Assert
+    // Assert
     expect(screen.getByText(/Go to your mobile device now!/i)).toBeInTheDocument();
     expect(screen.getByText(/Run Code:/i)).toBeInTheDocument();
     expect(screen.getByText("123456")).toBeInTheDocument();
@@ -53,7 +53,7 @@ describe("Authentication_App Component", () => {
     });
     render(<Authentication_App />);
 
-    // Act / Assert
+    // Assert
     expect(screen.getByText(/Log in detected!/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Approve/i })).toBeInTheDocument();
   });

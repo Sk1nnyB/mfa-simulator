@@ -1,8 +1,7 @@
 import { render, fireEvent, screen, waitFor, act } from "@testing-library/react";
-import Smart_Card from "../../components/actions/Smart_Card"; // Import your component
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
+import Smart_Card from "../../components/actions/Smart_Card";
 
-// Mock the freePlayUtils hooks
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),

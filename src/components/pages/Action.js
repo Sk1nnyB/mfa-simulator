@@ -128,7 +128,7 @@ function Action() {
     <div className="action" style={{ background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image}) center center/cover no-repeat`}}>
     <div className='box-border progress-bar'>
       <progress id="progress" value={progress} max="1" />
-      <label htmlFor="progress">  Progress: {finished}/{total} | Playing Run: {runCode}</label>
+      <label htmlFor="progress">Progress: {finished}/{total} | Playing Run: {runCode}</label>
     </div>
     <div className="action-container">
       <div className="action-content" ref={actionContainerRef}>

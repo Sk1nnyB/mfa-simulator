@@ -13,8 +13,6 @@ function FreePlay() {
   const [playcode, setPlaycode] = useState(0);
   const [authenticationLevel, setAuthenticationLevel] = useState(0);
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
 
   const toggleOption = (index) => {
     setOptions((prevOptions) => {
@@ -98,7 +96,9 @@ function FreePlay() {
       <div className="box-border right-container">
         <div className="assurance-container">
           <h2>Authentication Assurance Level</h2>
-          <h3 className={`auth-level-${authenticationLevel}-color`}>{authenticationLevel}</h3>
+          <h3 className={`auth-level-${authenticationLevel}-color`} data-testid="auth-level">
+            {authenticationLevel}
+          </h3>
           <Popup
             trigger={<button className="primary-button"> What are AALs? </button>}
             modal

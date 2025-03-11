@@ -6,7 +6,7 @@ describe("Footer Component", () => {
     // Arrange
     render(<Footer />);
 
-    // Act (Find the link)
+    // Act
     const downloadLink = screen.getByRole("link", { name: /learn more about this work/i });
 
     // Assert

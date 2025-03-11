@@ -4,7 +4,6 @@ import { MemoryRouter, useNavigate } from "react-router-dom";
 import firebaseUtils from "../../firebase";
 import FreePlayEnd from "../../components/actions/FreePlayEnd";
 
-// Mock useNavigate to track navigation
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),
@@ -35,7 +34,7 @@ describe("FreePlayEnd Component", () => {
       </MemoryRouter>
     );
 
-    // Assert text render
+    // Assert
     expect(screen.getByText(/Congratulations!!/i)).toBeInTheDocument();
     expect(screen.getByText(/You've successfully passed all selected authentication methods. Go again or go to story!/i)).toBeInTheDocument();
     expect(screen.getByTestId("confetti")).toBeInTheDocument();

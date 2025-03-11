@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import Home from "../../components/pages/Home";
 
-// Mock useNavigate to track navigation
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: jest.fn(),
@@ -24,7 +23,7 @@ describe("Home Component", () => {
       </MemoryRouter>
     );
 
-    // Assert description render
+    // Assert
     expect(screen.getByText(/Learn all about different authentication methods in the Library, then try them yourself in the Story Mode or make your own log in system in Freeplay!/i)).toBeInTheDocument();
   });
 

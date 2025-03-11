@@ -3,7 +3,6 @@ import { MemoryRouter } from "react-router-dom";
 import freePlayUtils from "../../hooks/freeplay/FreePlayUtils";
 import firebaseUtils from "../../firebase.js";
 
-// Mock firebaseUtils functions
 jest.mock("../../firebase.js", () => ({
   getField: jest.fn(),
   updateField: jest.fn(),
@@ -40,9 +39,7 @@ describe("useVariables Hook", () => {
   });
 
   test("status updated if already updated", async () => {
-    firebaseUtils.getField
-      .mockResolvedValueOnce(false) // Mock phone
-      .mockResolvedValueOnce("started"); // Mock task status
+    firebaseUtils.getField.mockResolvedValueOnce(false).mockResolvedValueOnce("started");
 
     const fakeRunCode = "123456";
     const { waitForNextUpdate } = renderHook(() => freePlayUtils.useVariables("test_task"), {

@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import MFA_Assistant from '../../components/pages/MFA_Assistant';
 
-// Mocking the image import
 jest.mock('../../data/images/phone-assistant-app.png', () => 'mock-image.png');
 
 describe('MFA_Assistant Component', () => {

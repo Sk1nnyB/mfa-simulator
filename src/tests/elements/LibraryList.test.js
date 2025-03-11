@@ -8,7 +8,7 @@ describe("LibraryList Component", () => {
   const selectedMFA = "MFA 1";
 
   beforeEach(() => {
-    jest.clearAllMocks(); // Reset mock function before each test
+    jest.clearAllMocks();
   });
 
   test("renders all MFAs correctly", () => {

@@ -30,6 +30,7 @@ describe("Header Component Regular Screen", () => {
       { text: "Free Play", href: "/Freeplay" },
       { text: "Library", href: "/library" },
       { text: "Feedback", href: "/feedback" },
+      { text: "Assistant App", href: "/mfa-assistant" },
       { text: "Home", href: "/" },
     ];
 
