@@ -14,7 +14,7 @@ function FreePlayStart() {
     try {
       const runCode = await firebaseUtils.generateUniqueRunCode(); // Await the result
       if (isPhone) {
-        await firebaseUtils.updateField(runCode, "phone", true);
+        await firebaseUtils.setField(runCode, "phone", true);
       }
 
       if (story === "true") {

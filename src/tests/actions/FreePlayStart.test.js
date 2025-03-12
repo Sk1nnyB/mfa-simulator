@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
 
 jest.mock('../../firebase', () => ({
   generateUniqueRunCode: jest.fn(),
-  updateField: jest.fn(),
+  setField: jest.fn(),
   startStory: jest.fn(),
   startFreePlay: jest.fn(),
 }));
@@ -95,7 +95,7 @@ describe('FreePlayStart Component', () => {
 
     // Assert
     expect(firebaseUtils.generateUniqueRunCode).toHaveBeenCalled();
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith('123456', 'phone', true);
+    expect(firebaseUtils.setField).toHaveBeenCalledWith('123456', 'phone', true);
     expect(firebaseUtils.startStory).toHaveBeenCalledWith('123456', true);
     expect(navigate).toHaveBeenCalledWith('/play?runCode=123456');
   });
@@ -136,7 +136,7 @@ describe('FreePlayStart Component', () => {
 
     // Assert
     expect(firebaseUtils.generateUniqueRunCode).toHaveBeenCalled();
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith('123456', 'phone', true);
+    expect(firebaseUtils.setField).toHaveBeenCalledWith('123456', 'phone', true);
     expect(firebaseUtils.startFreePlay).toHaveBeenCalledWith('123456', "1");
     expect(navigate).toHaveBeenCalledWith('/play?runCode=123456');
   });

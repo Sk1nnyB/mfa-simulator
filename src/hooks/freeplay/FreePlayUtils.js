@@ -16,13 +16,13 @@ const useVariables = (current) => {
       setPhone(phoneData);
       const task_finished = await firebaseUtils.getField(runCode, current);
       if (task_finished !== "started") {
-        firebaseUtils.updateField(runCode, current, "started");
+        firebaseUtils.setField(runCode, current, "started");
       }
     };
     fetchPhone();
   }, [runCode, current]);
 
-  firebaseUtils.updateField(runCode, "status", "active");
+  firebaseUtils.setField(runCode, "status", "active");
   firebaseUtils.useWaitForFinished(runCode, current);
 
   return { runCode, phone, finished };
@@ -35,7 +35,7 @@ const useNextMFA = (current) => {
   const runCode = queryParams.get('runCode');
 
   return async () => {
-    await firebaseUtils.updateField(runCode, current, "finished");
+    await firebaseUtils.setField(runCode, current, "finished");
     navigate(0);
   };
 };

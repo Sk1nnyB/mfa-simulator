@@ -19,7 +19,7 @@ function Text() {
       setCode(generatedCode);
 
       await Promise.all([
-        firebaseUtils.updateField(runCode, "text_code", generatedCode),
+        firebaseUtils.setField(runCode, "text_code", generatedCode),
       ]);
     };
 

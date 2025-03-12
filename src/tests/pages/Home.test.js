@@ -11,6 +11,7 @@ describe("Home Component", () => {
   let navigate;
 
   beforeEach(() => {
+    jest.clearAllMocks();
     navigate = jest.fn();
     useNavigate.mockReturnValue(navigate);
   });
@@ -27,7 +28,7 @@ describe("Home Component", () => {
     expect(screen.getByText(/Learn all about different authentication methods in the Library, then try them yourself in the Story Mode or make your own log in system in Freeplay!/i)).toBeInTheDocument();
   });
 
-  test("navigates story mode ", () => {
+  test("story mode button", () => {
     // Arrange
     render(
       <MemoryRouter>
@@ -36,14 +37,13 @@ describe("Home Component", () => {
     );
 
     // Act
-    const storyButton = screen.getByRole("button", { name: /Try Story Mode/i });
-    fireEvent.click(storyButton);
+    fireEvent.click(screen.getByRole("button", { name: /Try Story Mode/i }));
 
     // Assert
     expect(navigate).toHaveBeenCalledWith("/play?story=true");
   });
 
-  test("navigates freeplay", () => {
+  test("freeplay button", () => {
     // Arrange
     render(
       <MemoryRouter>
@@ -52,8 +52,7 @@ describe("Home Component", () => {
     );
 
     // Act
-    const freeplayButton = screen.getByRole("button", { name: /Freeplay/i });
-    fireEvent.click(freeplayButton);
+    fireEvent.click(screen.getByRole("button", { name: /Freeplay/i }));
 
     // Assert
     expect(navigate).toHaveBeenCalledWith("/freeplay");

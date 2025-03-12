@@ -23,14 +23,14 @@ describe('MFA_Assistant Component', () => {
     render(<MFA_Assistant />);
 
     // Assert
-    expect(screen.getByText(/Download \(for Android\)/i)).toBeInTheDocument();
     const downloadButton = screen.getByText(/Download \(for Android\)/i);
+    expect(downloadButton).toBeInTheDocument();
     const downloadLink = downloadButton.closest('a');
     expect(downloadLink).toHaveAttribute('href', '../../../public/data/MFA-Assistant.apk');
     expect(downloadLink).toHaveAttribute('download', 'MFA_Assistant.apk');
   });
 
-  test('button file download', () => {
+  test('button downloads file', () => {
     // Arrange
     render(<MFA_Assistant />);
 

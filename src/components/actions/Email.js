@@ -19,7 +19,7 @@ function Email() {
         setCode(generatedCode);
 
         await Promise.all([
-          firebaseUtils.updateField(runCode, "email_code", generatedCode),
+          firebaseUtils.setField(runCode, "email_code", generatedCode),
         ]);
       };
 

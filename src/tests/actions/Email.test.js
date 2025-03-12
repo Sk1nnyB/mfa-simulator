@@ -10,7 +10,7 @@ jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
 }));
 
 jest.mock("../../firebase", () => ({
-  updateField: jest.fn(),
+  setField: jest.fn(),
   getField: jest.fn(),
 }));
 
@@ -56,7 +56,7 @@ describe("Email Component", () => {
     const generatedCode = Math.floor(0.5678 * 9000) + 1000;
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "email_code", generatedCode);
+    expect(firebaseUtils.setField).toHaveBeenCalledWith(123456, "email_code", generatedCode);
     global.Math.random.mockRestore();
   });
 
@@ -69,7 +69,7 @@ describe("Email Component", () => {
     });
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(123456, "email_code", 4321);
+    expect(firebaseUtils.setField).toHaveBeenCalledWith(123456, "email_code", 4321);
   });
 
   test("renders action", async () => {

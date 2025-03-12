@@ -11,7 +11,7 @@ describe("LibraryList Component", () => {
     jest.clearAllMocks();
   });
 
-  test("renders all MFAs correctly", () => {
+  test("renders MFAs", () => {
     // Arrange
     render(<LibraryList options={mfas} onSelect={mockOnSelect} selectedOption={selectedMFA} />);
 
@@ -46,9 +46,9 @@ describe("LibraryList Component", () => {
   test("tooltip is present", () => {
     // Arrange
     render(<LibraryList options={mfas} onSelect={mockOnSelect} selectedOption={selectedMFA} />);
+    const tooltipElement = screen.getByText("?");
 
     // Assert
-    const tooltipElement = screen.getByText("?");
     expect(tooltipElement).toBeInTheDocument();
     expect(tooltipElement).toHaveClass("tooltip-circle");
   });

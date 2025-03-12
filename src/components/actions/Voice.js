@@ -43,7 +43,7 @@ function Voice() {
   };
 
   const skipVoice = () => {
-    // firebaseUtils.updateField(runCode, "voice", "skipped");
+    // firebaseUtils.setField(runCode, "voice", "skipped");
     if (!hasHandledMFA) {
       setHasHandledMFA(true);
       handleNextMFA();

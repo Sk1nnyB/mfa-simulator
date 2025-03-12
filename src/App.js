@@ -20,6 +20,7 @@ import './components/elements/tooltip.css';
 function App() {
   return (
     <>
+    {/* Add these flags to disable warnings */}
       <Router future={{ v77_relativeSplatPath: true, v7_relativeSplatPath: true, v7_startTransition: true }}>
         <Header className='header'/>
         <div className='main'>

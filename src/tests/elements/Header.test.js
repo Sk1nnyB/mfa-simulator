@@ -11,11 +11,8 @@ describe("Header Component Regular Screen", () => {
       </MemoryRouter>
     );
 
-    // Act
-    const title = screen.getByText(/The MFA Simulator/i);
-
     // Assert
-    expect(title).toBeInTheDocument();
+    expect(screen.getByText(/The MFA Simulator/i)).toBeInTheDocument();
   });
 
   test("renders navigation links", () => {

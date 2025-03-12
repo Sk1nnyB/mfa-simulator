@@ -5,8 +5,6 @@ describe("Footer Component", () => {
   test("renders footer with a download link", () => {
     // Arrange
     render(<Footer />);
-
-    // Act
     const downloadLink = screen.getByRole("link", { name: /learn more about this work/i });
 
     // Assert

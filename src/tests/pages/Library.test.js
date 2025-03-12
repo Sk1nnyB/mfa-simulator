@@ -11,7 +11,7 @@ jest.mock('../../components/elements/MFAInfo', () => ({ MFA }) => (
 ));
 
 describe('Library Component', () => {
-  test('renders LibraryList and MFAInfo', () => {
+  test('renders components', () => {
     // Arrange
     render(<Library />);
 

@@ -11,11 +11,11 @@ global.fetch = jest.fn();
 
 describe('Feedback Component', () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     global.alert = jest.fn();
-    jest.clearAllMocks(); // Reset mocks before each test
   });
 
-  test('renders the feedback form', () => {
+  test('renders form content', () => {
     // Arrange
     render(<Feedback />);
 
@@ -26,7 +26,7 @@ describe('Feedback Component', () => {
     expect(screen.getByText('Submit Feedback!')).toBeInTheDocument();
   });
 
-  test('updates form values on input', () => {
+  test('updates form', () => {
     // Arrange
     render(<Feedback />);
 
@@ -89,7 +89,7 @@ describe('Feedback Component', () => {
   //   });
   // });
 
-  test('calls sendEmail when Feedback type is selected and feedback is submitted', async () => {
+  test('email is sent on feedback', async () => {
     // Arrange
     render(<Feedback />);
     fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
@@ -117,7 +117,7 @@ describe('Feedback Component', () => {
     });
   });
 
-  test('handles error when sending feedback via email', async () => {
+  test('handles email error', async () => {
     // Arrange
     render(<Feedback />);
     fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Feature request' } });

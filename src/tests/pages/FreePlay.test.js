@@ -43,7 +43,7 @@ describe("FreePlay Component", () => {
     expect(screen.getByText("Here's the link to your setup:")).toBeInTheDocument();
   });
 
-  test("checkbox works", () => {
+  test("renders checkboxes", () => {
     // Arrange
     render(
       <MemoryRouter>
@@ -65,7 +65,7 @@ describe("FreePlay Component", () => {
     expect(checkboxes[2]).toBeChecked();
   });
 
-  test("authentication level updates", () => {
+  test("renders authentication level", () => {
     // Arrange
     render(
       <MemoryRouter>
@@ -87,13 +87,15 @@ describe("FreePlay Component", () => {
     expect(screen.getByTestId("auth-level")).toHaveTextContent("3");
   });
 
-  test("playcode and link changes", () => {
+  test("renders playcode link", () => {
+    // Arrange
     render(
       <MemoryRouter>
         <FreePlay />
       </MemoryRouter>
     );
 
+    // Act / Assert Cycle
     const checkboxes = screen.getAllByRole("checkbox");
     fireEvent.click(checkboxes[7]);
     expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/play?context=128")).toBeInTheDocument();
@@ -102,7 +104,7 @@ describe("FreePlay Component", () => {
     expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/FreePlay")).toBeInTheDocument();
   });
 
-  test("resets options", () => {
+  test("reset options button", () => {
     // Arrange
     render(
       <MemoryRouter>
@@ -124,7 +126,7 @@ describe("FreePlay Component", () => {
     });
   });
 
-  test("copies link to clipboard", () => {
+  test("copies link button", () => {
     // Arrange
     Object.assign(navigator, {
       clipboard: {
@@ -144,7 +146,7 @@ describe("FreePlay Component", () => {
     expect(navigator.clipboard.writeText).toHaveBeenCalled();
   });
 
-  test("start button navigates", () => {
+  test("start button", () => {
     // Arrange
     render(
       <MemoryRouter>
@@ -161,13 +163,14 @@ describe("FreePlay Component", () => {
     expect(navigate).toHaveBeenCalledWith("/play?context=1");
   });
 
-  test("displays tooltip", () => {
+  test("tooltip button", () => {
     // Arrange
     render(
       <MemoryRouter>
         <FreePlay />
       </MemoryRouter>
     );
+
     // Act
     fireEvent.mouseOver(screen.getByText("?"));
 
@@ -175,14 +178,13 @@ describe("FreePlay Component", () => {
     expect(screen.getByTestId("tooltip")).toBeInTheDocument();
   });
 
-  test("displays popup", () => {
+  test("popup button", () => {
     // Arrange
     render(
       <MemoryRouter>
         <FreePlay />
       </MemoryRouter>
     );
-
 
     // Act
     fireEvent.click(screen.getByText("What are AALs?"));

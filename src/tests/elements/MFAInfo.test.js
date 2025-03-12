@@ -29,11 +29,11 @@ describe('MFAInfo Component', () => {
     );
 
     // Assert
-    expect(screen.getByText(/Instructions/i)).toBeInTheDocument();
-    expect(screen.getByText(/Instruction 1/i)).toBeInTheDocument();
-    expect(screen.getByText(/Instruction 2/i)).toBeInTheDocument();
-    expect(screen.getByText(/Instruction 3/i)).toBeInTheDocument();
-    expect(screen.getByText(/Test Note/i)).toBeInTheDocument();
+    expect(screen.getByText("Instructions")).toBeInTheDocument();
+    expect(screen.getByText("Instruction 1")).toBeInTheDocument();
+    expect(screen.getByText("Instruction 2")).toBeInTheDocument();
+    expect(screen.getByText("Instruction 3")).toBeInTheDocument();
+    expect(screen.getByText("Test Note")).toBeInTheDocument();
   });
 
   test('renders with image', () => {
@@ -61,13 +61,13 @@ describe('MFAInfo Component', () => {
     );
 
     // Assert
-    expect(screen.getByText(/Where are they found?/i)).toBeInTheDocument();
+    expect(screen.getByText("Where are they found?")).toBeInTheDocument();
     expect(screen.getByText(mockMFA.examples)).toBeInTheDocument();
-    expect(screen.getByText(/Tips on usage:/i)).toBeInTheDocument();
+    expect(screen.getByText("Tips on usage:")).toBeInTheDocument();
     expect(screen.getByText(mockMFA.tips)).toBeInTheDocument();
-    expect(screen.getByText(/Fun Fact:/i)).toBeInTheDocument();
+    expect(screen.getByText("Fun Fact:")).toBeInTheDocument();
     expect(screen.getByText(mockMFA.fun_fact)).toBeInTheDocument();
-    expect(screen.getByText(/Click here for more information:/i)).toBeInTheDocument();
+    expect(screen.getByText("Click here for more information:")).toBeInTheDocument();
   });
 
   test('renders without more information ', () => {
@@ -81,7 +81,7 @@ describe('MFAInfo Component', () => {
     );
 
     // Assert
-    expect(screen.queryByText(/Where are they found?/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("Where are they found?")).not.toBeInTheDocument();
     expect(screen.queryByText(mockMFA.examples)).not.toBeInTheDocument();
     expect(screen.queryByText(mockMFA.tips)).not.toBeInTheDocument();
     expect(screen.queryByText(mockMFA.fun_fact)).not.toBeInTheDocument();
@@ -115,7 +115,7 @@ describe('MFAInfo Component', () => {
     );
 
     // Assert
-    expect(screen.getByText(/What makes a secure/i)).toBeInTheDocument();
+    expect(screen.getByText("What makes a secure MFA?")).toBeInTheDocument();
     expect(screen.getByText(mockMFA.secure)).toBeInTheDocument();
   });
 
@@ -131,6 +131,6 @@ describe('MFAInfo Component', () => {
     );
 
     // Assert
-    expect(screen.queryByText(/What makes a secure/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("What makes a secure MFA?")).not.toBeInTheDocument();
   });
 });

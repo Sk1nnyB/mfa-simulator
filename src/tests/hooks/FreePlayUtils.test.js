@@ -5,7 +5,7 @@ import firebaseUtils from "../../firebase.js";
 
 jest.mock("../../firebase.js", () => ({
   getField: jest.fn(),
-  updateField: jest.fn(),
+  setField: jest.fn(),
   useWaitForFinished: jest.fn(),
 }));
 
@@ -15,11 +15,9 @@ describe("useVariables Hook", () => {
     global.alert = jest.fn();
   });
 
-  test("fetches variables and updates fields on mount", async () => {
-    firebaseUtils.getField
-      .mockResolvedValueOnce(false) // Mock phone
-      .mockResolvedValueOnce("not_started"); // Mock task status
-
+  test("fetches variables and updates fields", async () => {
+    // Arrange
+    firebaseUtils.getField.mockResolvedValueOnce(false).mockResolvedValueOnce("not_started");
     const fakeRunCode = "123456";
     const { result, waitForNextUpdate } = renderHook(() => freePlayUtils.useVariables("test_task"), {
       wrapper: ({ children }) => (
@@ -28,19 +26,19 @@ describe("useVariables Hook", () => {
         </MemoryRouter>
       ),
     });
-
     await waitForNextUpdate();
 
+    // Assert
     expect(result.current.runCode).toBe(fakeRunCode);
     expect(result.current.phone).toBe(false);
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(fakeRunCode, "test_task", "started");
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(fakeRunCode, "status", "active");
+    expect(firebaseUtils.setField).toHaveBeenCalledWith(fakeRunCode, "test_task", "started");
+    expect(firebaseUtils.setField).toHaveBeenCalledWith(fakeRunCode, "status", "active");
     expect(firebaseUtils.useWaitForFinished).toHaveBeenCalled();
   });
 
   test("status updated if already updated", async () => {
+    // Arrange
     firebaseUtils.getField.mockResolvedValueOnce(false).mockResolvedValueOnce("started");
-
     const fakeRunCode = "123456";
     const { waitForNextUpdate } = renderHook(() => freePlayUtils.useVariables("test_task"), {
       wrapper: ({ children }) => (
@@ -49,10 +47,10 @@ describe("useVariables Hook", () => {
         </MemoryRouter>
       ),
     });
-
     await waitForNextUpdate();
 
-    expect(firebaseUtils.updateField).not.toHaveBeenCalledWith(fakeRunCode, "test_task", "started");
+    // Assert
+    expect(firebaseUtils.setField).not.toHaveBeenCalledWith(fakeRunCode, "test_task", "started");
   });
 });
 
@@ -71,14 +69,12 @@ describe("useNextMFA Hook", () => {
         </MemoryRouter>
       ),
     });
-
-    // Act
     await act(async () => {
       await result.current();
     });
 
     // Assert
-    expect(firebaseUtils.updateField).toHaveBeenCalledWith(fakeRunCode, "test_task", "finished");
+    expect(firebaseUtils.setField).toHaveBeenCalledWith(fakeRunCode, "test_task", "finished");
     // expect(mockNavigate).toHaveBeenCalledWith(0);
   });
 });

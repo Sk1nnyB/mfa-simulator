@@ -34,7 +34,8 @@ describe("Action Component", () => {
     mockUseLocation.mockReturnValue({ search: '' });
   });
 
-  test("renders start when story is true", async () => {
+  test("renders story start", async () => {
+    // Arrange
     mockUseLocation.mockReturnValue({ search: '?story=true' });
     render(
       <MemoryRouter>
@@ -42,10 +43,12 @@ describe("Action Component", () => {
       </MemoryRouter>
     );
 
+    // Assert
     await waitFor(() => expect(screen.getByTestId("freeplay-start")).toBeInTheDocument());
   });
 
-  test("renders start when context is true", async () => {
+  test("renders start", async () => {
+    // Arrange
     mockUseLocation.mockReturnValue({ search: '?story=true' });
     render(
       <MemoryRouter>
@@ -53,16 +56,20 @@ describe("Action Component", () => {
       </MemoryRouter>
     );
 
+    // Assert
     await waitFor(() => expect(screen.getByTestId("freeplay-start")).toBeInTheDocument());
   });
 
-  test("navigates to /freeplay if no valid context or story is found", async () => {
+  test("navigates to /freeplay if no valid context / story", async () => {
+    // Arrange
     firebaseUtils.getField.mockResolvedValue(null);
     render(
       <MemoryRouter>
         <Action />
       </MemoryRouter>
     );
+
+    // Assert
     await waitFor(() => expect(navigate).toHaveBeenCalledWith("/freeplay", { replace: true }));
   });
 
@@ -184,7 +191,7 @@ describe("Action Component", () => {
     expect(screen.getByText("Progress: 0/4 | Playing Run: 123456")).toBeInTheDocument();
   });
 
-  test("renders FreePlayEnd when result is 'end'", async () => {
+  test("renders end", async () => {
     // Arrange
     firebaseUtils.getField.mockImplementation((runCode, field) => {
       if (field === "context") return Promise.resolve(1);
