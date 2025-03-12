@@ -3,13 +3,13 @@ import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "firebase/firestor
 import { useEffect, useState } from "react";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWzsHzW6DxXnd-xNH8S55GkDu7nqIF6Hg",
-  authDomain: "mfasimulator-2b102.firebaseapp.com",
-  projectId: "mfasimulator-2b102",
-  storageBucket: "mfasimulator-2b102.firebasestorage.app",
-  messagingSenderId: "478572047299",
-  appId: "1:478572047299:web:ec665cd1770e1365ab6b76",
-  measurementId: "G-LD3P7GFSRM"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
