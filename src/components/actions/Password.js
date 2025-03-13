@@ -64,8 +64,8 @@ function Password() {
   };
 
   return (
-    <div className="password-container">
-      <div className="password-section" style={{
+    <div className="boxes-action-container">
+      <div className="box-border action-box" style={{
         backgroundColor: validPassword ? "#dbdfe2" : "#b1e9fa",
       }}>
         <a
@@ -119,7 +119,7 @@ function Password() {
           </span>
         </div>
       </div>
-      <div className="login-section" style={{
+      <div className="box-border action-box" style={{
         backgroundColor: validPassword ? "#b1e9fa" : "#dbdfe2",
       }}>
         <h2> Step 2: Log in </h2>

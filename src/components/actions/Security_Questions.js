@@ -52,8 +52,8 @@ function Security_Questions() {
   };
 
   return (
-    <div className="questions-container">
-      <div className="box-border questions-select-container" style={{
+    <div className="boxes-action-container">
+      <div className="box-border action-box questions-box-container" style={{
         backgroundColor: validAnswer ? (selectedQuestion ? "#dbdfe2" : "#b1e9fa") : "#b1e9fa",
       }}>
         <h2>Step 1: Select Your Question</h2>
@@ -80,7 +80,7 @@ function Security_Questions() {
         />
       </div>
 
-      <div className="box-border questions-input-container" style={{
+      <div className="box-border action-box questions-box-container questions-input-container" style={{
         backgroundColor: validAnswer ? (selectedQuestion ? "#b1e9fa" : "#dbdfe2") : "#dbdfe2",
       }}>
         <h2>Step 2: Answer Chosen Question</h2>

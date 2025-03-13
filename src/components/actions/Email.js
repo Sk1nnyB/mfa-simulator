@@ -50,7 +50,7 @@ function Email() {
   };
 
   return (
-    <div className="email-container box-border">
+    <div className="email-container generic-action-container box-border">
       <div className="security-code-container">
         <h3>Email Code</h3>
         <input

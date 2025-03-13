@@ -52,7 +52,7 @@ function Fingerprint() {
   }, [hovering]);
 
   return (
-    <div className="fingerprint-container">
+    <div className="sensor-container">
       <div
         className="scan-container"
         onMouseEnter={startScan}

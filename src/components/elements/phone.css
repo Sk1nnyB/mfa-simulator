@@ -1,7 +1,4 @@
 .phone {
-  width: 220px;
-  min-height: 350px;
-  min-height: 350px;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -12,10 +9,14 @@
 }
 
 .phone-text {
+  min-width: 260px;
+  min-height: 410px;
   background-image: url('../../data/images/phone-text.png');
 }
 
 .phone-authenticator {
+  min-width: 230px;
+  min-height: 410px;
   background-image: url('../../data/images/phone-authenticator.png');
 }
 

@@ -51,7 +51,7 @@ function Voice() {
   };
 
   return (
-    <div className='voice-container box-border'>
+    <div className='voice-container generic-action-container box-border'>
       <h1>Voice</h1>
       <textarea
         readOnly

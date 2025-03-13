@@ -5,7 +5,7 @@ import './Feedback.css';
 function Feedback() {
   const [formData, setFormData] = useState({
     title: "",
-    type: "Bug",
+    type: "Bug or Error",
     description: "",
   });
 
@@ -21,7 +21,7 @@ function Feedback() {
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
-    if (formData.type === "Bug") {
+    if (formData.type === "Bug or Error") {
       await createGitHubIssue();
     } else {
       await sendEmail();
@@ -48,11 +48,11 @@ function Feedback() {
       });
 
       if (response.ok) {
-        alert("Feedback sent successfully!");
+        alert(`Bug sent successfully!`);
       }
     } catch (error) {
       // console.error("GitHub Issue Error: ", error);
-      alert("Feedback was not sent! Please try again later.")
+      alert("Bug was not sent! Please try again later.")
     }
   };
 
@@ -65,10 +65,10 @@ function Feedback() {
 
     try {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, EMAIL_ID);
-      alert("Feedback sent successfully!");
+      alert("Email sent successfully!");
     } catch (error) {
       // console.error("Email Error: ", error);
-      alert("Feedback was not sent! The inbox may be full. Please try again tomorrow.");
+      alert("Email was not sent! The inbox may be full. Please try again tomorrow.");
     }
   };
 

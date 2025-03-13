@@ -50,7 +50,7 @@ function Text() {
   };
 
   return (
-    <div className="text-container box-border">
+    <div className="generic-action-container box-border text-container">
       <div className="text-input-container">
         <label htmlFor="security-code">Security Code</label>
         <input

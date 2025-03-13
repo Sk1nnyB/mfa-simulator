@@ -21,7 +21,6 @@ function Smart_Card() {
 
   const handleSwipe = () => {
     if (!hasHandledMFA) {
-      console.log("Test");
       setHasHandledMFA(true);
       handleNextMFA();
     }
@@ -69,7 +68,7 @@ function Smart_Card() {
   };
 
   return (
-    <div className="swipe-container">
+    <div className="sensor-container">
       <div
         className="sensor"
         ref={sensorRef}
