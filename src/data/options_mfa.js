@@ -152,7 +152,7 @@ export const optionsMFA = [
             as bad actors can replicate your voice in the use of scams if they have enough samples.',
     fun_fact: "Microsoft's voice assistant, Cortana, was named after a fictional AI assistant from Halo",
     wiki_link: 'https://en.wikipedia.org/wiki/Speaker_recognition',
-    instructions: ["Press the button and then say the voice phrase: 'this is a voice phrase'", 'If you are having problems with the voice recognition, skip this instead.'],
+    instructions: ["Press the button and then say the voice phrase: 'this is a voice phrase'", "If you mess up, stop recording and try again!"],
     note: 'If you are on firefox/safari/mobile then this may not be accessible at the moment.',
     image: voice},
 ];
