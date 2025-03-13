@@ -3,8 +3,8 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import Password from '../../components/actions/Password';
 
-
 jest.mock("react-tooltip", () => ({ Tooltip: () => <div data-testid="tooltip"></div> }));
+
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
@@ -15,21 +15,19 @@ describe('Password Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    global.alert = jest.fn();
-    mockHandleNextMFA = jest.fn();
-    useNextMFA.mockReturnValue(mockHandleNextMFA);
     useVariables.mockReturnValue({
       runCode: 123456,
       phone: false,
       finished: false,
     });
+    mockHandleNextMFA = jest.fn();
+    useNextMFA.mockReturnValue(mockHandleNextMFA);
+    global.alert = jest.fn();
   });
 
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     render(<Password />);
@@ -73,17 +71,16 @@ describe('Password Component', () => {
     expect(passwordValidation).toHaveClass('valid');
   });
 
-  // test('password tooltip', () => {
-  //   // Arrange
-  //   render(<Password />);
+  test("tooltip button", () => {
+    // Arrange
+    render(<Password />);
 
-  //   // Act
-  //   const tooltipButton = screen.getByText('?');
-  //   fireEvent.click(tooltipButton);
+    // Act
+    fireEvent.mouseOver(screen.getByText("?"));
 
-  //   // Assert
-  //   expect(screen.getByText(/A strong password needs:/i)).toBeInTheDocument();
-  // });
+    // Assert
+    expect(screen.getByTestId("tooltip")).toBeInTheDocument();
+  });
 
   test('passwords do not match error', () => {
     // Arrange

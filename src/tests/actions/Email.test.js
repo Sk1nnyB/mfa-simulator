@@ -32,8 +32,6 @@ describe("Email Component", () => {
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     await act(async () => {
@@ -63,7 +61,6 @@ describe("Email Component", () => {
   test("initializes firebase with preset code", async () => {
     // Arrange
     firebaseUtils.getField.mockResolvedValue(4321);
-
     await act(async () => {
       render(<Email />);
     });
@@ -75,15 +72,13 @@ describe("Email Component", () => {
   test("renders action", async () => {
     // Arrange
     jest.spyOn(global.Math, "random").mockReturnValue(0.5678);
-
     await act(async () => {
       render(<Email />);
     });
-
     const generatedCode = Math.floor(0.5678 * 9000) + 1000;
 
     // Act / Assert
-    expect(screen.getByText(/Email Code/i)).toBeInTheDocument();
+    expect(screen.getByText("Email Code")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Input Code/i })).toBeInTheDocument();
     expect(screen.getByText(/Hi SampleUser!/i)).toBeInTheDocument();
     expect(screen.getByText(/We've noticed a log in attempt from: 192.168.1.1/i)).toBeInTheDocument();
@@ -92,6 +87,7 @@ describe("Email Component", () => {
     expect(screen.getByText(/Many thanks,/i)).toBeInTheDocument();
     expect(screen.getByText(/The MFA Simulator/i)).toBeInTheDocument();
 
+    // Clean up
     global.Math.random.mockRestore();
   });
 
@@ -101,11 +97,10 @@ describe("Email Component", () => {
     await act(async () => {
       render(<Email />);
     });
-    await act(async () => {});
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Enter Code Here!'), { target: { value: 5678 } }); // Enter an incorrect code
-    fireEvent.click(screen.getByRole("button", { name: /Input Code/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Input Code" }));
 
     // Assert
     expect(window.alert).toHaveBeenCalledWith('Entered Security Code: 5678 is not correct! Try again.');
@@ -121,7 +116,7 @@ describe("Email Component", () => {
 
     // Act
     fireEvent.change(screen.getByPlaceholderText('Enter Code Here!'), { target: { value: 1234 } });
-    fireEvent.click(screen.getByRole("button", { name: /Input Code/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Input Code" }));
 
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });

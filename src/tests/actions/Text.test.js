@@ -19,6 +19,11 @@ describe("Text Component", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone: false,
+      finished: false,
+    });
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
     global.alert = jest.fn();
@@ -27,49 +32,35 @@ describe("Text Component", () => {
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     await act(async () => {
       render(<Text />);
     });
 
-    // Act / Assert
+    // Assert
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
   test("initializes firebase with no preset code", async () => {
     // Arrange
     firebaseUtils.getField.mockResolvedValue(null);
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
     jest.spyOn(global.Math, "random").mockReturnValue(0.5678);
-
     await act(async () => {
       render(<Text />);
     });
-
     const generatedCode = Math.floor(0.5678 * 9000) + 1000;
 
     // Assert
     expect(firebaseUtils.setField).toHaveBeenCalledWith(123456, "text_code", generatedCode);
 
+    // Clean up
     global.Math.random.mockRestore();
   });
 
   test("initializes firebase with preset code", async () => {
     // Arrange
     firebaseUtils.getField.mockResolvedValue(4321);
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
-
     await act(async () => {
       render(<Text />);
     });
@@ -85,7 +76,6 @@ describe("Text Component", () => {
       phone: true,
       finished: false,
     });
-
     await act(async () => {
       render(<Text />);
     });
@@ -98,20 +88,13 @@ describe("Text Component", () => {
 
   test("renders action", async () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
     jest.spyOn(global.Math, "random").mockReturnValue(0.5678);
-
     await act(async () => {
       render(<Text />);
     });
-
     const generatedCode = Math.floor(0.5678 * 9000) + 1000;
 
-    // Act / Assert
+    // Assert
     expect(screen.getByText(/Security Code/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Input Code/i })).toBeInTheDocument();
     expect(screen.getByText(/Hey! We've noticed you've attempted to log into your Manchester Email!/i)).toBeInTheDocument();
@@ -123,11 +106,6 @@ describe("Text Component", () => {
   test("submit incorrect code button",  async () => {
     // Arrange
     firebaseUtils.getField.mockResolvedValue(1234);
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
     await act(async () => {
       render(<Text />);
     });
@@ -145,11 +123,6 @@ describe("Text Component", () => {
   test("submit correct code button", async () => {
     // Arrange
     firebaseUtils.getField.mockResolvedValue(1234);
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
     await act(async () => {
       render(<Text />);
     });

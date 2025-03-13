@@ -21,6 +21,11 @@ describe('Security_Questions Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone: false,
+      finished: false,
+    });
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
     global.alert = jest.fn();
@@ -29,8 +34,6 @@ describe('Security_Questions Component', () => {
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     render(<Security_Questions />);
@@ -41,11 +44,6 @@ describe('Security_Questions Component', () => {
 
   test('renders interactive components', () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
     render(<Security_Questions />);
 
     // Assert
@@ -57,11 +55,6 @@ describe('Security_Questions Component', () => {
 
   test('no question selected alert', async () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
     render(<Security_Questions />);
 
     // Act
@@ -73,11 +66,6 @@ describe('Security_Questions Component', () => {
 
   test('no answer given alert', async () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
     render(<Security_Questions />);
 
     // Act
@@ -92,11 +80,6 @@ describe('Security_Questions Component', () => {
 
   test('answer too short alert', async () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
     render(<Security_Questions />);
 
     // Act
@@ -117,11 +100,6 @@ describe('Security_Questions Component', () => {
 
   test('answer is incorrect alert', async () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
     render(<Security_Questions />);
 
     // Act
@@ -131,11 +109,9 @@ describe('Security_Questions Component', () => {
     fireEvent.change(screen.getByLabelText(/Answer:/i), {
       target: { value: 'test1' },
     });
-
     fireEvent.change(screen.getByLabelText(/Security Question:/i), {
       target: { value: 'test2' },
     });
-
     fireEvent.click(screen.getByRole('button', { name: /Enter/i }));
 
     // Assert
@@ -144,11 +120,6 @@ describe('Security_Questions Component', () => {
 
   test('answer is correct', async () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone: false,
-      finished: false,
-    });
     render(<Security_Questions />);
 
     // Act
@@ -158,14 +129,12 @@ describe('Security_Questions Component', () => {
     fireEvent.change(screen.getByLabelText(/Answer:/i), {
       target: { value: 'test' },
     });
-
     fireEvent.change(screen.getByLabelText(/Security Question:/i), {
       target: { value: 'test' },
     });
-
     fireEvent.click(screen.getByRole('button', { name: /Enter!/i }));
 
     // Assert
-    expect(useNextMFA()).toHaveBeenCalled();
+    expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 });

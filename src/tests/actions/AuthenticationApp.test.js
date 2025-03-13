@@ -12,6 +12,11 @@ describe("Authentication_App Component", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone: false,
+      finished: false,
+    });
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
   });
@@ -19,13 +24,11 @@ describe("Authentication_App Component", () => {
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     render(<Authentication_App />);
 
-    // Act / Assert
+    // Assert
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
@@ -60,11 +63,6 @@ describe("Authentication_App Component", () => {
 
   test("approve button", () => {
     // Arrange
-    useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
-      finished: false,
-    });
     render(<Authentication_App />);
 
     // Act

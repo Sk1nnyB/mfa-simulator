@@ -3,7 +3,6 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import { useVariables, useNextMFA } from "../../hooks/freeplay/FreePlayUtils";
 import Fingerprint from "../../components/actions/Fingerprint";
 
-// Mock the dependencies
 jest.mock("../../hooks/freeplay/FreePlayUtils", () => ({
   useVariables: jest.fn(),
   useNextMFA: jest.fn(),
@@ -14,32 +13,31 @@ describe("Fingerprint Component", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockHandleNextMFA = jest.fn();
-    useNextMFA.mockReturnValue(mockHandleNextMFA);
-    jest.useFakeTimers();
     useVariables.mockReturnValue({
       runCode: 123456,
       phone: false,
       finished: false,
     });
+    mockHandleNextMFA = jest.fn();
+    useNextMFA.mockReturnValue(mockHandleNextMFA);
+    jest.useFakeTimers();
   });
 
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     render(<Fingerprint />);
 
-    // Act / Assert
+    // Assert
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
   test("renders fingerprint scanner", () => {
     // Arrange
     render(<Fingerprint />);
+
     // Assert
     expect(screen.getByText(/Place your "finger" here!/i)).toBeInTheDocument();
   });

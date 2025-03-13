@@ -18,53 +18,42 @@ describe("Voice Component", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockStartInput = jest.fn();
-    mockStopInput = jest.fn();
+    useVariables.mockReturnValue({
+      runCode: 123456,
+      phone:  false,
+      finished: false,
+    });
     mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
     global.alert = jest.fn();
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone:  true,
-      finished: false,
+    mockStartInput = jest.fn();
+    mockStopInput = jest.fn();
+    useSpeechToText.mockReturnValue({
+      listening: false,
+      input: "",
+      startInput: mockStartInput,
+      stopInput: mockStopInput,
     });
-    global.alert = jest.fn();
   });
 
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
-
-    useSpeechToText.mockReturnValue({
-      listening: false,
-      input: "",
-      startInput: jest.fn(),
-      stopInput: jest.fn(),
-    });
-
     await act(async () => {
       render(<Voice />);
     });
 
-    // Act / Assert
+    // Assert
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
   test("renders action", () => {
     // Arrange
-    useSpeechToText.mockReturnValue({
-      listening: false,
-      input: "",
-      startInput: jest.fn(),
-      stopInput: jest.fn(),
-    });
-
     render(<Voice />);
 
+    // Assert
     expect(screen.getByText("Voice")).toBeInTheDocument();
     expect(screen.getByText("Start Recording")).toBeInTheDocument();
     expect(screen.getByText("Submit")).toBeInTheDocument();
@@ -72,33 +61,19 @@ describe("Voice Component", () => {
 
   test("start/stop recording buttons", () => {
     // Arrange
-    const startInput = jest.fn();
-    const stopInput = jest.fn();
-    useVariables.mockReturnValue({
-      runCode: "123456",
-      phone:  true,
-      finished: false,
-    });
-    useSpeechToText.mockReturnValue({
-      listening: false,
-      input: "",
-      startInput,
-      stopInput,
-    });
     render(<Voice />);
 
     // Act
     fireEvent.click(screen.getByText("Start Recording"));
 
     // Assert
-    expect(startInput).toHaveBeenCalled();
+    expect(mockStartInput).toHaveBeenCalled();
 
     // Arrange
     useSpeechToText.mockReturnValue({
       listening: true,
       input: "this is a voice phrase",
-      startInput,
-      stopInput,
+      stopInput: mockStopInput,
     });
     render(<Voice />);
 
@@ -106,7 +81,7 @@ describe("Voice Component", () => {
     fireEvent.click(screen.getByText("Stop Listening"));
 
     // Assert
-    expect(stopInput).toHaveBeenCalled();
+    expect(mockStopInput).toHaveBeenCalled();
   });
 
   test("changes text area on speaking", async () => {

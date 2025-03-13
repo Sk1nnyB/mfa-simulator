@@ -35,8 +35,8 @@ describe("FreePlayEnd Component", () => {
     );
 
     // Assert
-    expect(screen.getByText(/Congratulations!!/i)).toBeInTheDocument();
-    expect(screen.getByText(/You've successfully passed all selected authentication methods. Go again or go to story!/i)).toBeInTheDocument();
+    expect(screen.getByText("Congratulations!!")).toBeInTheDocument();
+    expect(screen.getByText("You've successfully passed all selected authentication methods. Go again or go to story!")).toBeInTheDocument();
     expect(screen.getByTestId("confetti")).toBeInTheDocument();
   });
 
@@ -49,7 +49,7 @@ describe("FreePlayEnd Component", () => {
     );
 
     // Act
-    fireEvent.click(screen.getByRole("button", { name: /Story/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Story" }));
 
     // Assert
     expect(navigate).toHaveBeenCalledWith("/play?story=true");
@@ -64,7 +64,7 @@ describe("FreePlayEnd Component", () => {
     );
 
     // Act
-    fireEvent.click(screen.getByRole("button", { name: /Freeplay →/i }));
+    fireEvent.click(screen.getByRole("button", { name: "Freeplay →" }));
 
     // Assert
     expect(navigate).toHaveBeenCalledWith("/freeplay");

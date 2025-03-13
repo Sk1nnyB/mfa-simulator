@@ -58,4 +58,4 @@ const useSpeechToText = (options) => {
     }
 }
 
-export default useSpeechToText
+export default useSpeechToText;

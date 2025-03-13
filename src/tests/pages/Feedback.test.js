@@ -41,53 +41,55 @@ describe('Feedback Component', () => {
     expect(screen.getByRole('combobox').value).toBe('Feedback');
   });
 
-    // test('handles error when creating GitHub issue', async () => {
-  //   // Arrange
-  //   render(<Feedback />);
-  //   fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
-  //   fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
-  //   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug' } });
-  //   global.fetch.mockRejectedValueOnce(new Error('GitHub issue creation failed'));
+  test('github ticket created on bug', async () => {
+    // Arrange
+    render(<Feedback />);
+    fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
+    fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
+    global.fetch.mockResolvedValueOnce({ ok: true });
 
-  //   // Act: Simulate form submission
-  //   fireEvent.click(screen.getByText('Submit Feedback!'));
+    // Act
+    fireEvent.click(screen.getByText('Submit Feedback!'));
 
-  //   // Assert: Check if error handling works
-  //   await waitFor(() => {
-  //     expect(global.alert).toHaveBeenCalledWith('Feedback was not sent! Please try again later.');
-  //   });
-  // });
+    // Assert
+    await waitFor(() =>
+      expect(global.fetch).toHaveBeenCalledWith(
+        `https://api.github.com/repos/${process.env.REACT_APP_GITHUB_REPO}/issues`,
+        expect.objectContaining({
+          method: 'POST',
+          headers: expect.objectContaining({
+            Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+          }),
+          body: JSON.stringify({
+            title: 'Test Title',
+            body: 'Test Description',
+          }),
+        })
+      )
+    );
 
-  // test('calls createGitHubIssue', async () => {
-  //   // Arrange
-  //   render(<Feedback />);
-  //   fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
-  //   fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
-  //   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
-  //   global.fetch.mockResolvedValueOnce({ ok: true });
+    await waitFor(() => {
+      expect(global.alert).toHaveBeenCalledWith('Bug sent successfully!');
+    });
+  });
 
-  //   // Act
-  //   fireEvent.click(screen.getByText('Submit Feedback!'));
+  test('handles GitHub issue error', async () => {
+    // Arrange
+    render(<Feedback />);
+    fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
+    fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
+    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
+    global.fetch.mockRejectedValueOnce(new Error('Network Error'));
 
-  //   // Assert
-  //   await waitFor(() => expect(global.fetch).toHaveBeenCalledWith(
-  //     `${process.env.REACT_APP_GITHUB_REPO}`,
-  //     expect.objectContaining({
-  //       method: 'POST',
-  //       headers: expect.objectContaining({
-  //         Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-  //       }),
-  //       body: JSON.stringify({
-  //         title: 'Test Title',
-  //         body: 'Test Description',
-  //       }),
-  //     })
-  //   ));
+    // Act: Simulate form submission
+    fireEvent.click(screen.getByText('Submit Feedback!'));
 
-  //   await waitFor(() => {
-  //     expect(global.alert).toHaveBeenCalledWith('Feedback sent successfully!');
-  //   });
-  // });
+    // Assert: Check if error handling works
+    await waitFor(() => {
+      expect(global.alert).toHaveBeenCalledWith('Bug was not sent! Please try again later.');
+    });
+  });
 
   test('email is sent on feedback', async () => {
     // Arrange
@@ -113,7 +115,7 @@ describe('Feedback Component', () => {
     ));
 
     await waitFor(() => {
-      expect(global.alert).toHaveBeenCalledWith('Feedback sent successfully!');
+      expect(global.alert).toHaveBeenCalledWith('Email sent successfully!');
     });
   });
 
@@ -130,7 +132,7 @@ describe('Feedback Component', () => {
 
     // Assert
     await waitFor(() => {
-      expect(global.alert).toHaveBeenCalledWith('Feedback was not sent! The inbox may be full. Please try again tomorrow.');
+      expect(global.alert).toHaveBeenCalledWith('Email was not sent! The inbox may be full. Please try again tomorrow.');
     });
   });
 });

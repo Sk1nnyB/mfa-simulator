@@ -5,9 +5,7 @@ const ConfettiComponent = () => {
   useEffect(() => {
     const duration = 0.2 * 1000;
     const animationEnd = Date.now() + duration;
-
     const randomInRange = (min, max) => Math.random() * (max - min) + min;
-
     const frame = () => {
       confetti({
         particleCount: 5,
@@ -27,7 +25,7 @@ const ConfettiComponent = () => {
     frame();
   }, []);
 
-  return null; // No UI needed, just an effect
+  return null;
 };
 
 export default ConfettiComponent;

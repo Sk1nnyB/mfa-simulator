@@ -12,27 +12,25 @@ describe("Smart_Card Component", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    mockHandleNextMFA = jest.fn();
     useVariables.mockReturnValue({
-      runCode: "123456",
+      runCode: 123456,
       phone: null,
       finished: false,
     });
+    mockHandleNextMFA = jest.fn();
     useNextMFA.mockReturnValue(mockHandleNextMFA);
   });
 
   test("skips on pre-finished", async () => {
     // Arrange
     useVariables.mockReturnValue({
-      runCode: 123456,
-      phone: false,
       finished: true,
     });
     await act(async () => {
       render(<Smart_Card />);
     });
 
-    // Act / Assert
+    // Assert
     expect(mockHandleNextMFA).toHaveBeenCalled();
   });
 
@@ -41,12 +39,9 @@ describe("Smart_Card Component", () => {
     render(<Smart_Card />);
     const draggableCard = screen.getByTestId("draggable-card");
     const sensor = screen.getByTestId("sensor");
-
     await waitFor(() => {
       expect(screen.getByText("Drag the card here!")).toBeInTheDocument();
     });
-
-    // Set up mock for getBoundingClientRect
     const sensorMock = {
       left: 50,
       right: 150,
@@ -59,21 +54,17 @@ describe("Smart_Card Component", () => {
       top: 100,
       bottom: 200,
     };
-
-    // Mock the getBoundingClientRect function
     sensor.getBoundingClientRect = jest.fn(() => sensorMock);
     draggableCard.getBoundingClientRect = jest.fn(() => cardMockInside);
 
-    // Act: Simulate dragging the card over the sensor
+    // Act
     fireEvent.mouseDown(draggableCard, { clientX: 100, clientY: 100 }); // Mouse down at the initial position
     fireEvent.mouseMove(draggableCard, { clientX: 150, clientY: 150 }); // Move card inside sensor area
     fireEvent.mouseMove(draggableCard, { clientX: 200, clientY: 200 }); // Continue moving the card
     fireEvent.mouseUp(draggableCard); // End the drag
-
-    // Simulate dragging the card inside the sensor
     fireEvent.mouseMove(draggableCard, { clientX: 120, clientY: 120 }); // Move inside the sensor area
 
-    // Wait for the progress bar to start increasing
+    // Assert
     await waitFor(() => {
       expect(screen.getByText("Scanning card... Please wait...")).toBeInTheDocument();
     });
@@ -84,12 +75,9 @@ describe("Smart_Card Component", () => {
     render(<Smart_Card />);
     const draggableCard = screen.getByTestId("draggable-card");
     const sensor = screen.getByTestId("sensor");
-
     await waitFor(() => {
       expect(screen.getByText("Drag the card here!")).toBeInTheDocument();
     });
-
-    // Set up mock for getBoundingClientRect
     const sensorMock = {
       left: 50,
       right: 150,
@@ -102,21 +90,17 @@ describe("Smart_Card Component", () => {
       top: 100,
       bottom: 200,
     };
-
-    // Mock the getBoundingClientRect function
     sensor.getBoundingClientRect = jest.fn(() => sensorMock);
     draggableCard.getBoundingClientRect = jest.fn(() => cardMockInside);
 
-    // Act: Simulate dragging the card over the sensor
+    // Act
     fireEvent.mouseDown(draggableCard, { clientX: 100, clientY: 100 }); // Mouse down at the initial position
     fireEvent.mouseMove(draggableCard, { clientX: 150, clientY: 150 }); // Move card inside sensor area
     fireEvent.mouseMove(draggableCard, { clientX: 200, clientY: 200 }); // Continue moving the card
     fireEvent.mouseUp(draggableCard); // End the drag
-
-    // Simulate dragging the card inside the sensor
     fireEvent.mouseMove(draggableCard, { clientX: 120, clientY: 120 }); // Move inside the sensor area
 
-    // Wait until the progress reaches 100% and ensure handleNextMFA is called
+    // Assert
     await waitFor(() => {
       expect(mockHandleNextMFA).not.toHaveBeenCalled();
     }, { timeout: 5000 });
@@ -127,12 +111,9 @@ describe("Smart_Card Component", () => {
     render(<Smart_Card />);
     const draggableCard = screen.getByTestId("draggable-card");
     const sensor = screen.getByTestId("sensor");
-
     await waitFor(() => {
       expect(screen.getByText("Drag the card here!")).toBeInTheDocument();
     });
-
-    // Set up mock for getBoundingClientRect
     const sensorMock = {
       left: 50,
       right: 150,
@@ -145,20 +126,17 @@ describe("Smart_Card Component", () => {
       top: 100,
       bottom: 200,
     };
-
-    // Mock the getBoundingClientRect function
     sensor.getBoundingClientRect = jest.fn(() => sensorMock);
     draggableCard.getBoundingClientRect = jest.fn(() => cardMockInside);
 
-    // Act: Simulate dragging the card over the sensor
+    // Act
     fireEvent.mouseDown(draggableCard, { clientX: 100, clientY: 100 }); // Mouse down at the initial position
     fireEvent.mouseMove(draggableCard, { clientX: 150, clientY: 150 }); // Move card inside sensor area
     fireEvent.mouseMove(draggableCard, { clientX: 200, clientY: 200 }); // Continue moving the card
     fireEvent.mouseUp(draggableCard); // End the drag
-
-    // Simulate dragging the card inside the sensor
     fireEvent.mouseMove(draggableCard, { clientX: 120, clientY: 120 }); // Move inside the sensor area
 
+    // Assert
     await waitFor(() => {
       expect(mockHandleNextMFA).not.toHaveBeenCalled();
     }, { timeout: 2000 });
