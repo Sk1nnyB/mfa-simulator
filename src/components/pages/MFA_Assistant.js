@@ -11,7 +11,7 @@ function MFA_Assistant() {
           <h2>The MFA Assistant!</h2>
           <p>The MFA Assistant is an app that allows you to follow along with a Story Mode or Free Play simulation in real time!</p>
           <p>Just click the button below to download the app to your phone and follow the instructions there.</p>
-          <a href="../../../public/data/MFA-Assistant.apk" download="MFA_Assistant.apk">
+          <a href="https://sk1nnyb.github.io/mfa-simulator/data/MFA-Assistant.apk" download="MFA_Assistant.apk">
             <button className='primary-button assistant-download-button'>
               Download (for Android)
             </button>
