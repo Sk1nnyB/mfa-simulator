@@ -117,29 +117,8 @@ describe("Action Component", () => {
   test("context renders correct initial task", async () => {
     // Arrange
     firebaseUtils.getField.mockImplementation((runCode, field) => {
-      if (field === "context") return Promise.resolve(255);
+      if (field === "context") return Promise.resolve(312);
       if (field === "password") return Promise.resolve("not started");
-      return Promise.resolve(null);
-    });
-    await act(async () => {
-      render(
-        <MemoryRouter>
-          <Action />
-        </MemoryRouter>
-      );
-    });
-
-    // Assert
-    expect(screen.getByText("Password")).toBeInTheDocument();
-    expect(screen.getByText("Password_Task")).toBeInTheDocument();
-  });
-
-  test("context renders correct 2nd task", async () => {
-    // Arrange
-    firebaseUtils.getField.mockImplementation((runCode, field) => {
-      if (field === "context") return Promise.resolve(5);
-      if (field === "password") return Promise.resolve("finished");
-      if (field === "authentication_app") return Promise.resolve("not started");
       return Promise.resolve(null);
     });
     await act(async () => {
@@ -155,10 +134,31 @@ describe("Action Component", () => {
     expect(screen.getByText("Authentication_Task")).toBeInTheDocument();
   });
 
+  test("context renders correct 2nd task", async () => {
+    // Arrange
+    firebaseUtils.getField.mockImplementation((runCode, field) => {
+      if (field === "context") return Promise.resolve(312);
+      if (field === "password") return Promise.resolve("not started");
+      if (field === "authentication_app") return Promise.resolve("finished");
+      return Promise.resolve(null);
+    });
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <Action />
+        </MemoryRouter>
+      );
+    });
+
+    // Assert
+    expect(screen.getByText("Password")).toBeInTheDocument();
+    expect(screen.getByText("Password_Task")).toBeInTheDocument();
+  });
+
   test("renders progress bar", async () => {
     // Arrange
     firebaseUtils.getField.mockImplementation((runCode, field) => {
-      if (field === "context") return Promise.resolve(5);
+      if (field === "context") return Promise.resolve(13);
       if (field === "password") return Promise.resolve("finished");
       if (field === "authentication_app") return Promise.resolve("not started");
       return Promise.resolve(null);
@@ -179,6 +179,10 @@ describe("Action Component", () => {
   test("displays runCode on the screen", async () => {
     // Arrange
     mockUseLocation.mockReturnValue({ search: '?runCode=123456' });
+    firebaseUtils.getField.mockImplementation((runCode, field) => {
+      if (field === "story") return Promise.resolve(true);
+      return Promise.resolve(null);
+    });
     await act(async () => {
       render(
         <MemoryRouter>
@@ -195,7 +199,7 @@ describe("Action Component", () => {
     // Arrange
     firebaseUtils.getField.mockImplementation((runCode, field) => {
       if (field === "context") return Promise.resolve(1);
-      if (field === "authentication_app") return Promise.resolve("finished");
+      if (field === "password") return Promise.resolve("finished");
       return Promise.resolve(null);
     });
     render(

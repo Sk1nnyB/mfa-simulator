@@ -80,10 +80,10 @@ describe("FreePlay Component", () => {
     fireEvent.click(checkboxes[0]);
     expect(screen.getByTestId("auth-level")).toHaveTextContent("1");
 
-    fireEvent.click(checkboxes[2]);
+    fireEvent.click(checkboxes[5]);
     expect(screen.getByTestId("auth-level")).toHaveTextContent("2");
 
-    fireEvent.click(checkboxes[5]);
+    fireEvent.click(checkboxes[2]);
     expect(screen.getByTestId("auth-level")).toHaveTextContent("3");
   });
 
@@ -98,9 +98,15 @@ describe("FreePlay Component", () => {
     // Act / Assert Cycle
     const checkboxes = screen.getAllByRole("checkbox");
     fireEvent.click(checkboxes[7]);
-    expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/play?context=128")).toBeInTheDocument();
+    fireEvent.click(checkboxes[5]);
+    fireEvent.click(checkboxes[4]);
+    expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/play?context=865")).toBeInTheDocument();
 
     fireEvent.click(checkboxes[7]);
+    expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/play?context=65")).toBeInTheDocument();
+
+    fireEvent.click(checkboxes[5]);
+    fireEvent.click(checkboxes[4]);
     expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/FreePlay")).toBeInTheDocument();
   });
 

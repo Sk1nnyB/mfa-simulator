@@ -84,16 +84,13 @@ const startFreePlay = async (runCode, context) => {
     // Get the authentication methods
     const runRef = doc(db, "runs", runCode);
 
-    // Turn the context into a binary number e.g. 11 -> 1101
-    const binaryString = parseInt(context).toString(2).split('').map(bit => parseInt(bit, 10)).reverse();
-
     // Match each number to an authentication method
     const updateData = {};
     const authenticators = ["password","security_questions","authentication_app","text_task","email_task","fingerprint","smart_card","voice"];
-    for (let i = 0; i < (binaryString.length); i++) {
-      if (binaryString[i] === 1) {
-        updateData[authenticators[i]] = "not started";
-      }
+    const digits = String(context).split("").map(Number);
+
+    for (const digit of digits) {
+      updateData[authenticators[digit - 1]] = "not started";
     }
     updateData["context"] = parseInt(context);
 

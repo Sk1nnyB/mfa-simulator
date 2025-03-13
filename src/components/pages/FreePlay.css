@@ -1,3 +1,15 @@
+.instruction-ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+.instruction-ol li {
+  counter-increment: level;
+}
+.instruction-ol li::before {
+  content: "Level " counter(level) ": ";
+  font-weight: bold;
+}
+
 .freeplay {
   display: flex;
   justify-content: center;
@@ -76,7 +88,9 @@
   display: flex;
   border: 1px solid #ccc;
   resize: none;
-  min-height: 50px;
+  text-align: center;
+  min-height: 75px;
+  min-width: 400px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -116,14 +130,20 @@
   border-radius: 10px;
 }
 
-.slider:before {
+.slider::before {
+  content: attr(data-number);
   position: absolute;
-  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 18px;
   width: 18px;
   left: 3px;
   bottom: 3px;
   background-color: white;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
   transition: 0.4s;
   border-radius: 50%;
 }
@@ -160,6 +180,7 @@ input:checked + .slider:before {
   font-size: 16px;
   background-color: white;
   max-width: 500px;
+  max-height: 500px;
   width: 100%;
   margin: 20px auto;
   overflow: hidden;
@@ -177,10 +198,9 @@ input:checked + .slider:before {
 }
 
 .modal-content {
-  width: 100%;
-  padding: 15px 20px;
+  width: 90%;
   line-height: 1.5;
-  text-align: center;
+  overflow-y: auto;
 }
 
 .modal-actions {

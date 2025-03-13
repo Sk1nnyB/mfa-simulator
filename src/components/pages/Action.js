@@ -50,26 +50,36 @@ function Action() {
       let next_mfa = null;
       let totalMFA = 0;
       let finishedMFA = 0;
-      if (story_flag || context_flag !== null) {
-        for (const mfa of mfas) {
+      if (context_flag !== null) {
+        const contextString = context_flag.toString();
+        totalMFA = contextString.length;
+        for (const digit of contextString) {
+          const index = parseInt(digit, 10) - 1;
+          const mfa = mfas[index];
           const status = await firebaseUtils.getField(runCode, mfa);
-          if (status !== null) {
-            totalMFA++;
-            if (status === "finished") {
-              finishedMFA++;
-            } else if (!next_mfa) {
-              next_mfa = optionsMFA.find(option => option.firebase_name === mfa);
-            }
+          if (status === "finished") {
+            finishedMFA++;
+          } else if (!next_mfa) {
+            next_mfa = optionsMFA.find(option => option.firebase_name === mfa);
           }
         }
-        setTotal(totalMFA);
-        setFinished(finishedMFA);
-        setProgress(totalMFA > 0 ? finishedMFA / totalMFA : 0);
-        return next_mfa ?? "end";
+      } else if (story_flag !== null) {
+        totalMFA = 4;
+        for (const mfa of mfas) {
+          const status = await firebaseUtils.getField(runCode, mfa);
+          if (status === "finished") {
+            finishedMFA++;
+          } else if (!next_mfa) {
+            next_mfa = optionsMFA.find(option => option.firebase_name === mfa);
+          }
+        }
+      } else {
+        navigate('/freeplay', { replace: true });
       }
-
-      navigate('/freeplay', { replace: true });
-
+      setTotal(totalMFA);
+      setFinished(finishedMFA);
+      setProgress(totalMFA > 0 ? finishedMFA / totalMFA : 0);
+      return next_mfa ?? "end";
     } catch (error) {
       console.error("Error in processContext:", error);
       navigate('/freeplay', { replace: true });

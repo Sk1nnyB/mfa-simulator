@@ -9,6 +9,7 @@ function FreePlay() {
   const defaultLinkStub = "https://sk1nnyb.github.io/mfa-simulator/#/";
   const defaultLink = defaultLinkStub + "FreePlay";
   const [options, setOptions] = useState(Array((optionsMFA.length-1)).fill(false));
+  const [optionOrder, setOptionOrder] = useState([]);
   const [setupLink, setSetupLink] = useState(defaultLink);
   const [playcode, setPlaycode] = useState(0);
   const [authenticationLevel, setAuthenticationLevel] = useState(0);
@@ -18,34 +19,51 @@ function FreePlay() {
     setOptions((prevOptions) => {
       const newOptions = prevOptions.map((option, i) => (i === index ? !option : option));
       let option = newOptions[index];
-      let value = 2 ** (index);
+      let value = index + 1;
+
+      setOptionOrder((prevOrder) => {
+        if (option) {
+          return [...prevOrder, index]; // Add new index
+        } else {
+          return prevOrder.filter((i) => i !== index); // Remove index and shift numbers
+        }
+      });
 
       setPlaycode((prevPlaycode) => {
-        const newPlaycode = option ? prevPlaycode + value : prevPlaycode - value;
+        const newPlaycode = option ? (prevPlaycode * 10) + value : parseInt(prevPlaycode.toString().replace(value.toString(), ''), 10);
 
-        if (newPlaycode === 0) {
+        if (newPlaycode === 0 || isNaN(newPlaycode)) {
           setSetupLink(defaultLink);
           setAuthenticationLevel(0);
         } else {
           setSetupLink(defaultLinkStub+"play?context="+newPlaycode);
 
           // [Password(0), Sec Ques(1), Auth App(2), Text(3), Email(4), Fingerprint(5), Smart Card(6), Voice(7)]
-          let categories = 0;
+          let knowledge = false;
+          let ownership = false;
+          let biological = false;
           if (newOptions[0]) {
-            categories += 1;
+            knowledge = true;
           }
           if (newOptions[2] || newOptions[3] || newOptions[4] || newOptions[6]) {
-            categories += 1;
+            ownership = true;
           }
           if (newOptions[5] || newOptions[7]) {
-            categories += 1;
+            biological = true;
           }
-          setAuthenticationLevel(categories);
-        }
 
+          if (ownership && (biological || knowledge)) {
+            setAuthenticationLevel(3);
+          } else if (biological && knowledge) {
+            setAuthenticationLevel(2);
+          } else if (ownership || biological || knowledge) {
+            setAuthenticationLevel(1);
+          } else {
+            setAuthenticationLevel(0);
+          }
+        }
         return newPlaycode;
       });
-
       return newOptions;
     });
   };
@@ -73,8 +91,9 @@ function FreePlay() {
         <a
             data-tooltip-id="ins-tooltip"
             data-tooltip-html="Scroll through the options,<br/>
-                              click the switches and<br/>
-                              make your own story mode<br />"
+                              click the switches in the order<br/>
+                              you want them to appear<br/>
+                              and make your own story mode!<br />"
             data-tooltip-place="top"
             className="tooltip-circle tooltip-circle-ins"
           > ? </a>
@@ -87,7 +106,7 @@ function FreePlay() {
                 checked={options[index]}
                 onChange={() => toggleOption(index)}
               />
-              <span className="slider"></span>
+              <span className="slider" data-number={optionOrder.indexOf(index) + 1 || ""}></span>
             </label>
             <span>{option.name}</span>
           </div>
@@ -108,8 +127,36 @@ function FreePlay() {
               <div className="box-border modal">
                 <div className="modal-header">Authentication Assurance Levels </div>
                 <div className="modal-content">
-                  {' '}
-                  Content about AALs
+                  <p>An <strong>Authenticator Assurance Level (AAL)</strong> is a measure of how secure a run of authentication methods are, not the individual methods themselves. A run with the highest level would be capable of being the "most secure" if well designed and implemented, even if the actual methods are weak and put it at around a level 2.</p>
+                  <h3>Categories of Authentication Methods:</h3>
+                  <ul>
+                    <li><strong>Something you know</strong>
+                        <ul>
+                            <li>Password</li>
+                            <li>Security Questions</li>
+                        </ul>
+                    </li>
+                    <li><strong>Something you have</strong>
+                        <ul>
+                            <li>Phone (Authentication App / Text)</li>
+                            <li>Email</li>
+                            <li>Smart card</li>
+                        </ul>
+                    </li>
+                    <li><strong>Something you are</strong>
+                        <ul>
+                            <li>Fingerprint</li>
+                            <li>Voice</li>
+                        </ul>
+                    </li>
+                  </ul>
+                    <h3>To achieve each Authentication Assurance Level:</h3>
+                  <ol className="instruction-ol">
+                      <li>You must select an authentication method.</li>
+                      <li>You must select at least 1 method from 2 separate categories.</li>
+                      <li>You must select at least 1 method from the "Something you have" category and at least 1 method from another category.</li>
+                  </ol>
+                  <p><strong>Note:</strong> Security Questions are not strong enough to qualify for any of these levels.</p>
                 </div>
                 <div className="modal-actions">
                   <button
