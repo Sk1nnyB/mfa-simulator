@@ -75,6 +75,8 @@ function FreePlay() {
   const resetOptions = () => {
     setOptions(Array((optionsMFA.length-1)).fill(false));
     setSetupLink(defaultLink);
+    setOptionOrder([]);
+    setPlaycode(0);
   };
 
   const copyToClipboard = () => {
