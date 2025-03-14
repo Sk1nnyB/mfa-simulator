@@ -6,7 +6,7 @@ import './Library.css';
 
 
 function Library() {
-  const [selectedMFA, setSelectedMFA] = useState(optionsMFA.find(option => option.name === "Authenticators"));
+  const [selectedMFA, setSelectedMFA] = useState(optionsMFA.find(option => option.name === "Authentication and Authenticators"));
 
   const handleSelectOption = (name) => {
     var selected = optionsMFA.find((option) => option.name === name);

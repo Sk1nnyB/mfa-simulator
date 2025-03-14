@@ -6,12 +6,16 @@ It was designed to not only be a space to read about the inner workings and desi
 # The MFA Assistant
 
 The MFA Assistant is an android app designed to supplement the MFA Simulator website. It replaces the "phone screen" that is present on the tasks that require a fake phone.
+It has it's own seperate repo.
 
 # To Build the Website Locally
 npm start
 
 # To Build the Website Online
 npm run deploy
+
+## Website URL:
+https://sk1nnyb.github.io/mfa-simulator/
 
 # To Run the Unit Tests
 npm test
