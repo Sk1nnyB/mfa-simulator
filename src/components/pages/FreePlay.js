@@ -80,6 +80,7 @@ function FreePlay() {
     setSetupLink(defaultLink);
     setOptionOrder([]);
     setPlaycode(0);
+    setAuthenticationLevel(0);
   };
 
   const copyToClipboard = () => {
