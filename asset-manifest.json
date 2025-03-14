@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mfa-simulator/static/css/main.4f6406f8.css",
-    "main.js": "/mfa-simulator/static/js/main.03ceb549.js",
+    "main.js": "/mfa-simulator/static/js/main.2b5d04b4.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
     "static/media/start.jpg": "/mfa-simulator/static/media/start.2b69408cdfb4de5d6ab2.jpg",
     "static/media/password.jpg": "/mfa-simulator/static/media/password.b0ea05a56c034c2a2555.jpg",
@@ -25,11 +25,11 @@
     "static/media/phone-text.png": "/mfa-simulator/static/media/phone-text.0be35b8877847e0e5d16.png",
     "index.html": "/mfa-simulator/index.html",
     "main.4f6406f8.css.map": "/mfa-simulator/static/css/main.4f6406f8.css.map",
-    "main.03ceb549.js.map": "/mfa-simulator/static/js/main.03ceb549.js.map",
+    "main.2b5d04b4.js.map": "/mfa-simulator/static/js/main.2b5d04b4.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4f6406f8.css",
-    "static/js/main.03ceb549.js"
+    "static/js/main.2b5d04b4.js"
   ]
 }
