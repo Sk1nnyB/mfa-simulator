@@ -25,7 +25,7 @@ describe("Home Component", () => {
     );
 
     // Assert
-    expect(screen.getByText(/Learn all about different authentication methods in the Library, then try them yourself in the Story Mode or make your own log in system in Freeplay!/i)).toBeInTheDocument();
+    expect(screen.getByText("Learn all about different authentication methods in the Library, then try our favourites in the Story Mode or your own in Freeplay!")).toBeInTheDocument();
   });
 
   test("story mode button", () => {

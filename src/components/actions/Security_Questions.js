@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { questions } from '../../data/security_questions';
-import './Security_Questions.css';
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
+import './Security_Questions.css';
 
 function Security_Questions() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("security_questions");
@@ -20,8 +20,8 @@ function Security_Questions() {
       }
     }, [finished]);
 
-  const handleInputChange = (e) => {
-    const value = e.target.value;
+  const handleInputChange = (input) => {
+    const value = input.target.value;
     setSavedAnswer(value);
     value.length < 3 ? setValidAnswer(false) : setValidAnswer(true);
   };
@@ -42,7 +42,6 @@ function Security_Questions() {
       return;
     }
 
-
     if (savedAnswer.toLowerCase() === inputAnswer.toLowerCase() && !hasHandledMFA) {
       setHasHandledMFA(true);
       handleNextMFA();
@@ -53,7 +52,7 @@ function Security_Questions() {
 
   return (
     <div className="boxes-action-container">
-      <div className="box-border action-box questions-box-container" style={{
+      <div className="questions-box-container action-box box-border" style={{
         backgroundColor: validAnswer ? (selectedQuestion ? "#dbdfe2" : "#b1e9fa") : "#b1e9fa",
       }}>
         <h2>Step 1: Select Your Question</h2>
@@ -61,7 +60,7 @@ function Security_Questions() {
         <select
           id="select-question"
           value={selectedQuestion}
-          onChange={(e) => setSelectedQuestion(e.target.value)}
+          onChange={(input) => setSelectedQuestion(input.target.value)}
         >
           <option value="">Select...</option>
           {questions.map((q) => (
@@ -80,7 +79,7 @@ function Security_Questions() {
         />
       </div>
 
-      <div className="box-border action-box questions-box-container questions-input-container" style={{
+      <div className="questions-input-container questions-box-container action-box box-border" style={{
         backgroundColor: validAnswer ? (selectedQuestion ? "#b1e9fa" : "#dbdfe2") : "#dbdfe2",
       }}>
         <h2>Step 2: Answer Chosen Question</h2>
@@ -92,7 +91,7 @@ function Security_Questions() {
           id="input-answer"
           placeholder="Enter Here!"
           value={inputAnswer}
-          onChange={(e) => setInputAnswer(e.target.value)}
+          onChange={(input) => setInputAnswer(input.target.value)}
         />
         <button onClick={handleInputClick} className="enter-button primary-button">
           Enter!

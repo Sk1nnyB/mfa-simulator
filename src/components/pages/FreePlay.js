@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./FreePlay.css";
-import { optionsMFA } from '../../data/options_mfa';
 import { useNavigate } from 'react-router-dom';
 import { Tooltip } from 'react-tooltip';
 import Popup from 'reactjs-popup';
+import { optionsMFA } from '../../data/options_mfa';
+import "./FreePlay.css";
 
 function FreePlay() {
   const defaultLinkStub = "https://sk1nnyb.github.io/mfa-simulator/#/";
@@ -23,9 +23,9 @@ function FreePlay() {
 
       setOptionOrder((prevOrder) => {
         if (option) {
-          return [...prevOrder, index]; // Add new index
+          return [...prevOrder, index];
         } else {
-          return prevOrder.filter((i) => i !== index); // Remove index and shift numbers
+          return prevOrder.filter((i) => i !== index);
         }
       });
 
@@ -39,12 +39,12 @@ function FreePlay() {
           setSetupLink(defaultLinkStub+"play?context="+newPlaycode);
 
           // [Password(0), Sec Ques(1), Auth App(2), Text(3), Email(4), Fingerprint(5), Smart Card(6), Voice(7)]
-          let knowledge = false;
           let ownership = false;
           let biological = false;
-          if (newOptions[0]) {
-            knowledge = true;
-          }
+          // let knowledge = false;
+          // if (newOptions[0]) {
+          //   knowledge = true;
+          // }
           if (newOptions[2] || newOptions[3] || newOptions[4] || newOptions[6]) {
             ownership = true;
           }
@@ -52,11 +52,11 @@ function FreePlay() {
             biological = true;
           }
 
-          if (ownership && (biological || knowledge)) {
+          if (ownership && (biological || newOptions[0])) {
             setAuthenticationLevel(3);
-          } else if (biological && knowledge) {
+          } else if (biological && newOptions[0]) {
             setAuthenticationLevel(2);
-          } else if (ownership || biological || knowledge) {
+          } else if (ownership|| biological || newOptions[0]) {
             setAuthenticationLevel(1);
           } else {
             setAuthenticationLevel(0);
@@ -87,7 +87,7 @@ function FreePlay() {
 
   return (
     <div className="freeplay">
-      <div className="box-border left-container">
+      <div className="left-container box-border">
         <a
             data-tooltip-id="ins-tooltip"
             data-tooltip-html="Scroll through the options,<br/>
@@ -112,8 +112,8 @@ function FreePlay() {
           </div>
         ))}
       </div>
-      <div className="box-border right-container">
-        <div className="assurance-container">
+      <div className="right-container box-border">
+        <div className="assurance-container box-border">
           <h2>Authentication Assurance Level</h2>
           <h3 className={`auth-level-${authenticationLevel}-color`} data-testid="auth-level">
             {authenticationLevel}

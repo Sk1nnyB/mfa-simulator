@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tooltip } from 'react-tooltip';
-import "./Password.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
+import "./Password.css";
 
 function Password() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("password");
@@ -38,8 +38,8 @@ function Password() {
     length && lower && upper && number && symbol ?  setValidPassword(true) : setValidPassword(false);
   };
 
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
+  const handlePasswordChange = (input) => {
+    const value = input.target.value;
     validatePassword(value);
     setSavedPassword(value)
   };
@@ -119,7 +119,7 @@ function Password() {
           </span>
         </div>
       </div>
-      <div className="box-border action-box" style={{
+      <div className="password-entry-box action-box box-border" style={{
         backgroundColor: validPassword ? "#b1e9fa" : "#dbdfe2",
       }}>
         <h2> Step 2: Log in </h2>
@@ -132,7 +132,7 @@ function Password() {
         <label>Password</label>
         <input type="Password"
         placeholder="Enter Here!"
-        onChange={(e) => setInputPassword(e.target.value)}
+        onChange={(input) => setInputPassword(input.target.value)}
         autoComplete="new-password"
         data-testid="password-entry2"/>
         <button type="submit" className="login-button primary-button" onClick={handleInputClick}>

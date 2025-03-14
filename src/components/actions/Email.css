@@ -13,11 +13,11 @@
 }
 
 .security-code input {
-  padding: 10px;
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  padding: 10px;
   font-size: 16px;
-  width: 250px;
 }
 
 .email-window {
@@ -31,12 +31,11 @@
 }
 
 .email-content {
-  text-align: center;
   align-items: center;
   text-align: left;
+  width: 260px;
   margin-top: 30px;
   padding: 20px;
-  width: 260px;
 }
 
 .email-content .code {
@@ -57,8 +56,8 @@
 
 @media (max-width: 1000px) and (min-height: 820px) {
   .email-container {
-    max-width: 80% !important;
     flex-direction: row !important;
     align-items: center !important;
+    max-width: 80% !important;
   }
 }

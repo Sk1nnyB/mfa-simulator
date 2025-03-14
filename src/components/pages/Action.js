@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import firebaseUtils  from '../../firebase.js';
-import './Action.css';
 import { optionsMFA } from '../../data/options_mfa';
 import MFAInfo from '../elements/MFAInfo';
 import FreePlayStart from '../actions/FreePlayStart';
@@ -15,8 +14,10 @@ import Smart_Card from '../actions/Smart_Card';
 import Text from '../actions/Text';
 import Voice from '../actions/Voice';
 import authenticators from '../../data/images/authenticators.jpg';
+import start from '../../data/images/start.jpg';
 import finish from '../../data/images/finish.jpg';
 import LoadingCircle from '../../data/images/LoadingCircle.gif';
+import './Action.css';
 
 function Action() {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function Action() {
       let next_mfa = null;
       let totalMFA = 0;
       let finishedMFA = 0;
-      if (context_flag !== null) {
+      if (context_flag) {
         const contextString = context_flag.toString();
         totalMFA = contextString.length;
         for (const digit of contextString) {
@@ -63,7 +64,7 @@ function Action() {
             next_mfa = optionsMFA.find(option => option.firebase_name === mfa);
           }
         }
-      } else if (story_flag !== null) {
+      } else if (story_flag) {
         totalMFA = 4;
         for (const mfa of mfas) {
           const status = await firebaseUtils.getField(runCode, mfa);
@@ -101,15 +102,14 @@ function Action() {
 
 
   useEffect(() => {
+    // Change Background
     if (result) {
         setImage(authenticators);
       if(result.image) {
         setImage(result.image);
       }
     }
-  }, [result]);
-
-  useEffect(() => {
+    // Change Scroll
     if (actionContainerRef.current) {
       actionContainerRef.current.scrollTop = 0;
     }
@@ -120,7 +120,7 @@ function Action() {
 
   if (result === 'start') {
     return (
-      <div className="action">
+      <div className="action" style={{ background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${start}) center center/cover no-repeat`}}>
         <FreePlayStart />
       </div>
     );
@@ -136,7 +136,7 @@ function Action() {
 
   return (
     <div className="action" style={{ background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image}) center center/cover no-repeat`}}>
-    <div className='box-border progress-bar'>
+    <div className='progress-bar box-border'>
       <progress id="progress" value={progress} max="1" />
       <label htmlFor="progress">Progress: {finished}/{total} | Playing Run: {runCode}</label>
     </div>

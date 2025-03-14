@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './FreePlayStart.css';
 import firebaseUtils  from '../../firebase.js';
+import './FreePlayStart.css';
 
 function FreePlayStart() {
   const location = useLocation();
@@ -98,7 +98,7 @@ function FreePlayStart() {
           Start &#8594;
         </button>
 
-        <button className="secondary-button" onClick={() => handleBeginClick(true)}>
+        <button className="start-mfa-button secondary-button" onClick={() => handleBeginClick(true)}>
           Start with MFA Assistant &#8594;
         </button>
       </div>

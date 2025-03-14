@@ -4,15 +4,15 @@
 }
 
 .sensor {
-  width: 125px;
-  height: 125px;
-  border: 2px solid gray;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.1s linear;
   position: relative;
   z-index: 0;
+  height: 125px;
+  width: 125px;
+  border: 2px solid gray;
+  transition: background-color 0.1s linear;
   background-color: white;
 }
 

@@ -1,11 +1,11 @@
 .tooltip-circle {
+  text-align: center;
   display: inline-block;
-  width: 30px;
   height: 30px;
+  width: 30px;
   border-radius: 50%;
   border-color: grey;
   border: 1px solid #ccc;
-  text-align: center;
   font-size: 16px;
   line-height: 30px;
   cursor: pointer;

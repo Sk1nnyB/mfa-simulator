@@ -17,11 +17,11 @@
 }
 
 .text-input-container input {
+  width: 250px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 250px;
 }
 
 @media (max-height: 1200px) {
@@ -30,7 +30,7 @@
   }
 }
 
-@media (max-width: 1000px) and (min-height: 1035px) {
+@media (min-width: 700px) and (max-width: 1000px) and (min-height: 1035px) {
   .text-container {
     height: fit-content !important;
     max-width: 80% !important;

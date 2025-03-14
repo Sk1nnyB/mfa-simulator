@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import "./Email.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
+import "./Email.css";
 
 function Email() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("email_task");
@@ -10,6 +10,13 @@ function Email() {
 
   const [code, setCode] = useState(null);
   const [inputCode, setInputCode] = useState("");
+
+  useEffect(() => {
+    if (finished && !hasHandledMFA) {
+      setHasHandledMFA(true);
+      handleNextMFA();
+    }
+  }, [finished]);
 
   useEffect(() => {
       const fetchCode = async () => {
@@ -28,19 +35,11 @@ function Email() {
       }
     }, [runCode]);
 
-  useEffect(() => {
-      if (finished && !hasHandledMFA) {
-        setHasHandledMFA(true);
-        handleNextMFA();
-      }
-    }, [finished]);
-
   const handleInputChange = (input) => {
     setInputCode(input.target.value);
   };
 
-  // Function to handle the button click
-  const handleClick = () => {
+  const handleEmailClick = () => {
     if (code === parseInt(inputCode) && !hasHandledMFA) {
         setHasHandledMFA(true);
         handleNextMFA();
@@ -60,7 +59,7 @@ function Email() {
           value={inputCode}
           onChange={handleInputChange}
         />
-        <button onClick={handleClick} className="primary-button">
+        <button onClick={handleEmailClick} className="primary-button">
           Input Code
         </button>
       </div>

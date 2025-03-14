@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import "./Authentication_App.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
+import "./Authentication_App.css";
 
 function Authentication_App() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("authentication_app");
@@ -26,13 +26,13 @@ function Authentication_App() {
   }
 
   return (
-    <div className="generic-action-container authentication-app-container">
+    <div className="authentication-app-container generic-action-container">
       <div className="phone phone-authenticator">
         <div className="phone-screen">
           <div className="aa-notification">
             Log in detected! Are you trying to log in?
           </div>
-          <button onClick={handleAuthAppClick} className="primary-button aa-button">
+          <button onClick={handleAuthAppClick} className="aa-button primary-button">
               Approve
           </button>
         </div>

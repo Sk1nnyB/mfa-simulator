@@ -40,8 +40,8 @@
 }
 
 .action-box {
-  width: 300px;
   height: 250px;
+  width: 300px;
   padding: 15px;
 }
 
@@ -68,10 +68,10 @@
 
 @media (max-width: 1000px) and (min-height: 800px) {
   .boxes-action-container {
-    height: 100%;
-    max-width: 90%;
     flex-direction: row;
     align-items: center;
+    height: 100%;
+    max-width: 90%;
   }
 }
 
@@ -84,8 +84,8 @@
 
 @media (max-width: 700px) {
   .boxes-action-container{
-    justify-content: start;
     flex-direction: column;
+    justify-content: start;
     overflow-x: scroll;
   }
 }

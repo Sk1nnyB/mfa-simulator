@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './Fingerprint.css';
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
+import './Fingerprint.css';
 
 function Fingerprint() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("fingerprint");
@@ -11,26 +11,11 @@ function Fingerprint() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-      if (finished && !hasHandledMFA) {
-        setHasHandledMFA(true);
-        handleNextMFA();
-      }
-    }, [finished]);
-
-  const startScan = () => {
-    setHovering(true);
-  };
-
-  const stopScan = () => {
-    setHovering(false);
-  };
-
-  const scanComplete = () => {
-    if (!hasHandledMFA) {
+    if (finished && !hasHandledMFA) {
       setHasHandledMFA(true);
       handleNextMFA();
     }
-  };
+  }, [finished]);
 
   useEffect(() => {
     let interval;
@@ -50,6 +35,21 @@ function Fingerprint() {
     }
     return () => clearInterval(interval);
   }, [hovering]);
+
+  const startScan = () => {
+    setHovering(true);
+  };
+
+  const stopScan = () => {
+    setHovering(false);
+  };
+
+  const scanComplete = () => {
+    if (!hasHandledMFA) {
+      setHasHandledMFA(true);
+      handleNextMFA();
+    }
+  };
 
   return (
     <div className="sensor-container">

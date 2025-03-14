@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// Contains code modified from tutorial by Brian Design: https://www.youtube.com/watch?v=I2UBjN5ER4s&t=1624s&ab_channel=BrianDesign
+
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
@@ -29,7 +31,7 @@ function Header() {
             </li>
             <li className='header-item'>
               <Link
-                to='/Freeplay'
+                to='/freeplay'
                 className='header-links'
                 onClick={closeMobileMenu}
               >

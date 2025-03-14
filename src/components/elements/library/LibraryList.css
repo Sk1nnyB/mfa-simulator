@@ -1,6 +1,42 @@
+.library-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-height: 50vh;
+  width: 40vw;
+  overflow-y: auto;
+  background-color: white;
+}
+
 .tooltip-circle-list {
   position: absolute;
   right: 0;
   margin-right: 5px;
   margin-top: 5px;
+}
+
+.MFA {
+  padding: 20px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.MFA:hover {
+  color: white;
+  background-color: #00aaff;
+}
+
+.MFA.selected {
+  color: white;
+  background-color: #6c7b83;
+}
+
+@media (max-width: 1000px) {
+  .library-list {
+    height: 35%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

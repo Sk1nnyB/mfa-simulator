@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate, useLocation } from 'react-router-dom';
-import "./FreePlayEnd.css";
 import ConfettiComponent from "../../hooks/confetti/confetti.jsx";
 import firebaseUtils  from '../../firebase.js';
+import "./FreePlayEnd.css";
 
 function FreePlayEnd() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function FreePlayEnd() {
 
   return (
     <div className='endscreen'>
-      <div className='box-border end-container'>
+      <div className='end-container box-border'>
         <h2 className='freeplay-end-h2'>Congratulations!!</h2>
         <ConfettiComponent />
         <p className='freeplay-end-p'>You've successfully passed all selected authentication methods. Go again or go to story!</p>

@@ -1,7 +1,6 @@
 import React from 'react';
-import '../../pages/Library.css';
-import '../library/LibraryList.css';
 import { Tooltip } from 'react-tooltip';
+import '../library/LibraryList.css';
 
 function LibraryList({ options, onSelect, selectedOption }) {
   return (

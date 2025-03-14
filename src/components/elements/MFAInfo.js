@@ -1,10 +1,21 @@
 import React, { useRef, useEffect } from 'react';
-import '../pages/Library.css';
 import './MFAInfo.css';
 
 
 function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
   const scrollRef = useRef(null);
+
+  var name, description, why, examples, how, tips, fun_fact, wiki_link = "";
+  var image;
+  name = MFA.name;
+  description = MFA.description;
+  why = MFA.why;
+  examples = MFA.examples;
+  how = MFA.how;
+  tips = MFA.tips;
+  fun_fact = MFA.fun_fact;
+  wiki_link = MFA.wiki_link;
+  image = MFA.image;
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -26,11 +37,10 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
     );
   };
 
-
   const returnInstructions = () => {
     const instructions = MFA.instructions;
     return (
-      <div className='box-border text-box mfa-instructions'>
+      <div className='mfa-instructions box-border text-box'>
         <h4>Instructions</h4>
         <ol>
           {instructions.map((step, index) => (
@@ -42,27 +52,15 @@ function MFAInfo({ MFA, instructions_flag, more_information_flag }) {
     );
   };
 
-  var name, description, why, examples, how, tips, fun_fact, wiki_link = "";
-  var image;
-  name = MFA.name;
-  description = MFA.description;
-  why = MFA.why;
-  examples = MFA.examples;
-  how = MFA.how;
-  tips = MFA.tips;
-  fun_fact = MFA.fun_fact;
-  wiki_link = MFA.wiki_link;
-  image = MFA.image;
-
   return (
-    <div className="box-border mfa-info-card" ref={scrollRef}>
+    <div className="mfa-info-card box-border" ref={scrollRef}>
       <div className='mfa-image-div'>
         {instructions_flag ? returnInstructions() : <img className="mfa-image" src={image} alt='Image of MFA' />}
       </div>
       <div className='mfa-title'>
         <h2>{name}</h2>
       </div>
-      <div className="box-border text-box mfa-info">
+      <div className="mfa-info box-border text-box">
         <h2>What are they?</h2>
         <p>{description}</p>
         <h2>Why are they used?</h2>

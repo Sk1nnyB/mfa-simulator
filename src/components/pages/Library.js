@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import LibraryList from '../elements/library/LibraryList';
 import MFAInfo from '../elements/MFAInfo';
-import './Library.css';
 import { optionsMFA } from '../../data/options_mfa';
+import './Library.css';
 
 
 function Library() {

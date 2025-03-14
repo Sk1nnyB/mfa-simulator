@@ -10,15 +10,15 @@
 }
 
 .questions-select-container input {
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 250px;
 }
 
 .questions-input-container {
+  height: 300px !important;
   gap: 10px;
-  height: 300px;
 }
 
 .questions-input-container label {
@@ -27,8 +27,8 @@
 }
 
 .questions-input-container input {
-  font-size: 16px;
   width: 250px;
+  font-size: 16px;
 }
 
 .dropdown {
@@ -37,11 +37,11 @@
 }
 
 .dropdown-menu {
-  position: absolute;
   list-style: none;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  position: absolute;
   width: 150px;
+  border: 1px solid #ccc;
+  background-color: #fff;
 }
 
 .dropdown-menu li {

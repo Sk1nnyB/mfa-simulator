@@ -1,7 +1,8 @@
+// Contains code modified from tutorial by Code Radiance: https://www.youtube.com/watch?v=xJ_V55awyIo&t=76s&ab_channel=CodeRadiance
 import React, { useState, useEffect } from 'react';
 import useSpeechToText from "../../hooks/speechToText";
-import "./Voice.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
+import "./Voice.css";
 
 function Voice() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("voice");
@@ -28,7 +29,6 @@ function Voice() {
     stopInput();
   }
 
-  // Function to handle the button click
   const handleVoiceSubmission = () => {
     if (!speechInput) {
       alert('No voice input given.');
@@ -43,7 +43,6 @@ function Voice() {
   };
 
   const skipVoice = () => {
-    // firebaseUtils.setField(runCode, "voice", "skipped");
     if (!hasHandledMFA) {
       setHasHandledMFA(true);
       handleNextMFA();
@@ -56,13 +55,13 @@ function Voice() {
       <textarea
         readOnly
         value={listening ? input : speechInput}
-        onChange={(e)=>{setSpeechInput(e.target.value)}}
+        onChange={(input)=>{setSpeechInput(input.target.value)}}
         className='voice-textarea'
       />
       <div className='button-area'>
         <button
           onClick={toggleListening}
-          className='primary-button recording-button'
+          className='recording-button primary-button'
           style={{backgroundColor: listening ? "#ac0e02" : "#0eac23",}}>
             {listening ? 'Stop Listening' : 'Start Recording'}
           </button>

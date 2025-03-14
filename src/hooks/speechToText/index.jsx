@@ -1,6 +1,7 @@
+// Contains code modified from tutorial by Code Radiance: https://www.youtube.com/watch?v=xJ_V55awyIo&t=76s&ab_channel=CodeRadiance
 import {useState, useRef, useEffect} from 'react'
 
-const useSpeechToText = (options) => {
+const useSpeechToText = () => {
     const [listening, setListening] = useState(false)
     const [input, setInput] = useState("")
     const recognitionRef = useRef(null)

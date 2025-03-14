@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import "./Text.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
 import firebaseUtils  from '../../firebase.js';
+import "./Text.css";
 
 function Text() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("text_task");
@@ -15,7 +15,6 @@ function Text() {
     const fetchCode = async () => {
       const firebaseCode = await firebaseUtils.getField(runCode, "text_code");
       const generatedCode = firebaseCode ?? Math.floor(Math.random() * 9000) + 1000;
-
       setCode(generatedCode);
 
       await Promise.all([
@@ -50,7 +49,7 @@ function Text() {
   };
 
   return (
-    <div className="generic-action-container box-border text-container">
+    <div className="text-container generic-action-container box-border">
       <div className="text-input-container">
         <label htmlFor="security-code">Security Code</label>
         <input
@@ -60,7 +59,7 @@ function Text() {
           value={inputCode}
           onChange={handleInputChange}
         />
-        <button onClick={handleClick} className="text-button">
+        <button onClick={handleClick} className="text-button primary-button">
             Input Code
         </button>
       </div>

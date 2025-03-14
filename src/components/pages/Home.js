@@ -18,7 +18,7 @@ function Home() {
         <h1>
           The MFA Simulator
         </h1>
-        <p>Learn all about different authentication methods in the Library, then try them yourself in the Story Mode or make your own log in system in Freeplay!</p>
+        <p>Learn all about different authentication methods in the Library, then try our favourites in the Story Mode or your own in Freeplay!</p>
         <div className='home-btns'>
           <button className="primary-button" onClick={handleStoryClick}>
             Try Story Mode &#8594;

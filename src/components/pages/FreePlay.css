@@ -1,34 +1,24 @@
-.instruction-ol {
-  list-style-type: none;
-  padding-left: 0;
-}
-.instruction-ol li {
-  counter-increment: level;
-}
-.instruction-ol li::before {
-  content: "Level " counter(level) ": ";
-  font-weight: bold;
-}
-
 .freeplay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
   font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   max-height: 100%;
   width: 100%;
   gap: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../data/images/freeplay.jpg") center center/cover no-repeat;
 }
 
 .left-container {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 40vw;
   max-height: 50vh;
   overflow-y: auto;
-  position: relative;
+  background-color: white;
 }
 
 .right-container {
@@ -39,17 +29,15 @@
   height: 50vh;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: white;
 }
 
 .assurance-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 20px;
+  padding: 5px;
 }
 
 .assurance-container h3{
@@ -78,19 +66,19 @@
 
 .freeplay-buttons-container {
   display: flex;
-  gap: 10px;
   flex-direction: row;
+  gap: 10px;
 }
 
 .setup-link {
   font-family: 'Inter', sans-serif;
-  font-size: 1.2rem;
   display: flex;
-  border: 1px solid #ccc;
-  resize: none;
   text-align: center;
+  font-size: 1.2rem;
   min-height: 75px;
   min-width: 400px;
+  resize: none;
+  border: 1px solid #ccc;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -106,10 +94,10 @@
 }
 
 .switch {
-  position: relative;
-  display: inline-block;
   width: 40px;
   height: 24px;
+  position: relative;
+  display: inline-block;
   margin-right: 15px;
 }
 
@@ -125,9 +113,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
   transition: 0.4s;
   border-radius: 10px;
+  background-color: #ccc;
 }
 
 .slider::before {
@@ -140,12 +128,12 @@
   width: 18px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
   color: black;
   font-size: 12px;
   font-weight: bold;
   transition: 0.4s;
   border-radius: 50%;
+  background-color: white;
 }
 
 input:checked + .slider {
@@ -177,24 +165,24 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 16px;
-  background-color: white;
+  width: 80%;
   max-width: 500px;
   max-height: 500px;
-  width: 100%;
   margin: 20px auto;
+  font-size: 16px;
   overflow: hidden;
+  background-color: white;
 }
 
 .modal-header {
+  text-align: center;
   width: 100%;
-  background-color: #f1f5fc;
   border-bottom: 1px solid #ccc;
   font-size: 20px;
   padding: 10px;
   padding-bottom: 0px;
-  text-align: center;
   font-weight: bold;
+  background-color: #f1f5fc;
 }
 
 .modal-content {
@@ -205,10 +193,23 @@ input:checked + .slider:before {
 
 .modal-actions {
   width: 100%;
-  padding: 10px 20px;
   margin-top: 20px;
+  padding: 10px 20px;
   text-align: center;
 }
+
+.instruction-ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+.instruction-ol li {
+  counter-increment: level;
+}
+.instruction-ol li::before {
+  content: "Level " counter(level) ": ";
+  font-weight: bold;
+}
+
 
 @media (min-width: 900px) and (min-height: 900px) {
   .right-container {
@@ -218,15 +219,15 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
   .freeplay {
+    box-sizing: border-box;
     flex-direction: column;
     padding: 20px;
-    box-sizing: border-box;
   }
 
   .left-container, .right-container {
     width: 100%;
-    margin-bottom: 20px;
     height: 50%;
+    margin-bottom: 20px;
   }
 }
 

@@ -1,4 +1,5 @@
 .library {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../data/images/library.jpg") center center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,43 +9,10 @@
   font-family: 'Inter', sans-serif;
 }
 
-.library-list {
-  display: flex;
-  flex-direction: column;
-  width: 40vw;
-  max-height: 50vh;
-  overflow-y: auto;
-  position: relative;
-}
-
-.MFA {
-  padding: 20px;
-  font-size: 1.2rem;
-  border-bottom: 1px solid #ccc;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.MFA:hover {
-  background-color: #00aaff;
-  color: white;
-}
-
-.MFA.selected {
-  background-color: #6c7b83;
-  color: white;
-}
-
 @media (max-width: 1000px) {
   .library {
+    box-sizing: border-box;
     flex-direction: column;
     padding: 20px;
-    box-sizing: border-box;
-  }
-
-  .library-list {
-    width: 100%;
-    margin-bottom: 20px;
-    height: 35%;
   }
 }

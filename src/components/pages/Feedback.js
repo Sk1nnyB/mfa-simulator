@@ -3,24 +3,26 @@ import emailjs from "emailjs-com";
 import './Feedback.css';
 
 function Feedback() {
-  const [formData, setFormData] = useState({
-    title: "",
-    type: "Bug or Error",
-    description: "",
-  });
-
   const GITHUB_REPO = process.env.REACT_APP_GITHUB_REPO;
   const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
   const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID
   const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
   const EMAIL_ID = process.env.REACT_APP_EMAILJS_USER_ID;
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const [formData, setFormData] = useState({
+    title: "",
+    type: "Bug or Error",
+    description: "",
+  });
+
+  const isFormValid = formData.title.trim() !== "" && formData.description.trim() !== "";
+
+  const handleInputChange = (input) => {
+    setFormData({ ...formData, [input.target.name]: input.target.value });
   };
 
-  const handleFeedbackSubmit = async (e) => {
-    e.preventDefault();
+  const handleFeedbackSubmit = async (input) => {
+    input.preventDefault();
     if (formData.type === "Bug or Error") {
       await createGitHubIssue();
     } else {
@@ -28,7 +30,7 @@ function Feedback() {
     }
     setFormData({
       title: "",
-      type: "Bug",
+      type: "Bug or Error",
       description: "",
     });
   };
@@ -51,7 +53,7 @@ function Feedback() {
         alert(`Bug sent successfully!`);
       }
     } catch (error) {
-      // console.error("GitHub Issue Error: ", error);
+      //console.error("GitHub Issue Error: ", error);
       alert("Bug was not sent! Please try again later.")
     }
   };
@@ -74,18 +76,18 @@ function Feedback() {
 
   return (
     <div className='feedback-container'>
-      <div className='box-border feedback-content'>
+      <div className='feedback-content box-border'>
         <h2>Submit an Issue</h2>
         <div className='feedback-form'>
           <input
             name="title"
             placeholder="Title of Feedback"
             value={formData.title}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required />
           <select name="type"
           value={formData.type}
-          onChange={handleChange}>
+          onChange={handleInputChange}>
             <option value="Bug or Error">Bug or Error</option>
             <option value="Feedback">Feedback</option>
             <option value="Other">Other</option>
@@ -94,9 +96,9 @@ function Feedback() {
             name="description"
             placeholder="Description of feedback, bugs etc."
             value={formData.description}
-            onChange={handleChange}
+            onChange={handleInputChange}
             required />
-          <button className='primary-button feedback-button' onClick={handleFeedbackSubmit}>
+          <button className='feedback-button primary-button' onClick={handleFeedbackSubmit} disabled={!isFormValid}>
                 Submit Feedback!
           </button>
         </div>

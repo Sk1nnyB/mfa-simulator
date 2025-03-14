@@ -1,17 +1,18 @@
 .feedback-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   gap: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../data/images/feedback.jpg") center center/cover no-repeat;
 }
 
 .feedback-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 40vw;
   height: 80%;
   max-height: 400px;
@@ -35,8 +36,8 @@
 .feedback-form textarea {
   font-family: 'Inter', sans-serif;
   width: 90%;
-  padding: 10px;
   margin: 10px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }

@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px;
   box-sizing: border-box;
   max-height: 100%;
   max-width: 100%;
+  padding: 20px;
   row-gap: 40px;
 }
 
@@ -15,23 +15,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px;
   box-sizing: border-box;
-  overflow-y: auto;
   max-height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: white;
 }
 
 .start-text-box {
-  padding: 20px;
-  margin-bottom: 20px;
   max-width: 70vw;
   min-width: 70vw;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 .start-text-box h4 {
+  margin-bottom: 10px;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .start-text-box p {
@@ -43,10 +44,18 @@
   gap: 5px;
 }
 
+.start-mfa-button {
+  color: white !important;
+}
+
+.start-mfa-button:hover {
+  color: black !important;
+}
+
 .start-buttons-container {
   display: flex;
-  gap: 10px;
   flex-direction: row;
+  gap: 10px;
   margin-left: 10px;
   margin-right: 10px;
 }

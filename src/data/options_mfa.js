@@ -32,7 +32,7 @@ export const optionsMFA = [
     tips: 'Try to use a different password for each account you create. Then, if one password is leaked, all your other accounts will still be secure!',
     fun_fact: 'The first digital password was invented in 1961, but they have been around since Roman times.',
     wiki_link: 'https://en.wikipedia.org/wiki/Password',
-    instructions: ['Create a strong password by changing all lights to green.', 'Use your created password to log in! You may need to scroll down on the step 1 task.'],
+    instructions: ['Create a strong password by changing all lights to green.', 'Use your created password to log in! You may need to scroll down.'],
     secure: 'A good password needs a wide variety of symbols, letters and numbers to prevent against brute force attacks. A brute force attack is when someone attempts to guess a \
             password by randomly generating sequences of symbols until they find the matching one. By increasing the number of symbols, you increase the amount of possible combinations.\
             This is also why passwords should be longer than 8 symbols, but no longer than 14 as this can make them harder to remember.',

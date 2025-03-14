@@ -24,7 +24,7 @@ describe("Header Component Regular Screen", () => {
     );
     const links = [
       { text: "Story Mode", href: "/play?story=true" },
-      { text: "Free Play", href: "/Freeplay" },
+      { text: "Free Play", href: "/freeplay" },
       { text: "Library", href: "/library" },
       { text: "Feedback", href: "/feedback" },
       { text: "Assistant App", href: "/mfa-assistant" },

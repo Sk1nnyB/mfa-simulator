@@ -1,35 +1,35 @@
 .phone {
-  background-size: cover;
-  background-position: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 20px;
+  background-size: cover;
+  background-position: center;
 }
 
 .phone-text {
-  min-width: 260px;
   min-height: 410px;
+  min-width: 260px;
   background-image: url('../../data/images/phone-text.png');
 }
 
 .phone-authenticator {
-  min-width: 230px;
   min-height: 410px;
+  min-width: 230px;
   background-image: url('../../data/images/phone-authenticator.png');
 }
 
 .phone-screen {
-  width: 160px;
-  height: 280px;
-  border-radius: 10px;
-  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  position: relative;
+  height: 280px;
+  width: 160px;
   gap: 20px;
+  border-radius: 10px;
 }
 
 .phone-screen-text {
@@ -39,13 +39,13 @@
 }
 
 .sms-bubble {
-  padding: 10px;
-  background-color: #d9f7be;
-  border-radius: 10px;
-  font-size: 14px;
-  color: #333;
   text-align: center;
   max-width: 130px;
+  padding: 10px;
+  border-radius: 10px;
+  color: #333;
+  font-size: 14px;
+  background-color: #d9f7be;
 }
 
 .sms-bubble .code {
@@ -54,10 +54,10 @@
 }
 
 .aa-notification {
+  text-align: center;
   max-width: 130px;
   border-radius: 10px;
   font-size: 14px;
-  text-align: center;
   background-color: #f87676;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .text-button {
-  background-color: #2196F3;
-  color: white;
   border: none;
+  color: white;
+  background-color: #2196F3;
 }

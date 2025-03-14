@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import Draggable from "react-draggable";
-import "./Smart_Card.css";
 import freePlayUtils  from '../../hooks/freeplay/FreePlayUtils.js';
+import "./Smart_Card.css";
 
 function Smart_Card() {
   const { runCode, phone, finished } = freePlayUtils.useVariables("smart_card");
   const handleNextMFA = freePlayUtils.useNextMFA("smart_card");
   const [hasHandledMFA, setHasHandledMFA] = useState(false);
 
-  const [progress, setProgress] = useState(0); // Sensor fill progress
-  const sensorRef = useRef(null); // Reference to the sensor
-  const intervalRef = useRef(null); // To manage the progress interval
+  const [progress, setProgress] = useState(0);
+  const sensorRef = useRef(null);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
       if (finished && !hasHandledMFA) {
@@ -26,14 +26,14 @@ function Smart_Card() {
     }
   };
 
-  const startProgress = () => {
-    if (intervalRef.current) return; // Prevent multiple intervals
+  const startScan = () => {
+    if (intervalRef.current) return;
     intervalRef.current = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(intervalRef.current);
           intervalRef.current = null;
-          handleSwipe(); // Trigger function when sensor fills
+          handleSwipe();
           return 100;
         }
         return prev + 5;
@@ -41,18 +41,18 @@ function Smart_Card() {
     }, 100);
   };
 
-  const resetProgress = () => {
+  const resetScan = () => {
     clearInterval(intervalRef.current);
     intervalRef.current = null;
     setProgress(0);
   };
 
-  const handleDrag = (e, data) => {
+  const handleDrag = (input) => {
     const sensor = sensorRef.current;
     if (!sensor) return;
 
     const sensorRect = sensor.getBoundingClientRect();
-    const cardRect = e.target.getBoundingClientRect();
+    const cardRect = input.target.getBoundingClientRect();
 
     const isOverlapping =
       cardRect.right > sensorRect.left &&
@@ -61,9 +61,9 @@ function Smart_Card() {
       cardRect.top < sensorRect.bottom;
 
     if (isOverlapping) {
-      startProgress();
+      startScan();
     } else {
-      resetProgress();
+      resetScan();
     }
   };
 

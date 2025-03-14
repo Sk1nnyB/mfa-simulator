@@ -5,12 +5,12 @@
 
 .scan-container {
   position: relative;
-  width: 200px;
   height: 200px;
+  width: 200px;
   border: 1px solid black;
-  overflow: hidden;
   margin: 20px auto;
   background-color: white;
+  overflow: hidden;
 }
 
 .green-fill {
@@ -23,14 +23,14 @@
 }
 
 .text-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   color: black;
-  z-index: 1;
 }
