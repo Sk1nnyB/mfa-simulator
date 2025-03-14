@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import './Feedback.css';
 
+
+// Github has been DISABLED due to lack of maintenance for API key available
 function Feedback() {
-  const GITHUB_REPO = process.env.REACT_APP_GITHUB_REPO;
-  const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
-  const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID
-  const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+  // const GITHUB_REPO = process.env.REACT_APP_GITHUB_REPO;
+  // const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+  const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const EMAIL_ID = process.env.REACT_APP_EMAILJS_USER_ID;
 
   const [formData, setFormData] = useState({
@@ -23,11 +25,11 @@ function Feedback() {
 
   const handleFeedbackSubmit = async (input) => {
     input.preventDefault();
-    if (formData.type === "Bug or Error") {
-      await createGitHubIssue();
-    } else {
+    // if (formData.type === "Bug or Error") {
+    //   await createGitHubIssue();
+    // } else {
       await sendEmail();
-    }
+    // }
     setFormData({
       title: "",
       type: "Bug or Error",
@@ -35,28 +37,30 @@ function Feedback() {
     });
   };
 
-  const createGitHubIssue = async () => {
-    try {
-      const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`, {
-        method: "POST",
-        headers: {
-          Authorization: `token ${GITHUB_TOKEN}`,
-          Accept: "application/vnd.github.v3+json",
-        },
-        body: JSON.stringify({
-          title: formData.title,
-          body: formData.description,
-        }),
-      });
+  // const createGitHubIssue = async () => {
+  //   try {
+  //     const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `token ${GITHUB_TOKEN}`,
+  //         Accept: "application/vnd.github.v3+json",
+  //       },
+  //       body: JSON.stringify({
+  //         title: formData.title,
+  //         body: formData.description,
+  //       }),
+  //     });
 
-      if (response.ok) {
-        alert(`Bug sent successfully!`);
-      }
-    } catch (error) {
-      //console.error("GitHub Issue Error: ", error);
-      alert("Bug was not sent! Please try again later.")
-    }
-  };
+  //     if (response.ok) {
+  //       alert(`Bug sent successfully!`);
+  //     } else {
+  //       alert("Bug was not sent! Please try again later.")
+  //     }
+  //   } catch (error) {
+  //     //console.error("GitHub Issue Error: ", error);
+  //     alert("Bug was not sent! Please try again later.")
+  //   }
+  // };
 
   const sendEmail = async () => {
     const templateParams = {

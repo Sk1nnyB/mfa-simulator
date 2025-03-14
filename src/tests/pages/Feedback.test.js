@@ -41,55 +41,55 @@ describe('Feedback Component', () => {
     expect(screen.getByRole('combobox').value).toBe('Feedback');
   });
 
-  test('github ticket created on bug', async () => {
-    // Arrange
-    render(<Feedback />);
-    fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
-    fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
-    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
-    global.fetch.mockResolvedValueOnce({ ok: true });
+  // test('github ticket created on bug', async () => {
+  //   // Arrange
+  //   render(<Feedback />);
+  //   fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
+  //   fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
+  //   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
+  //   global.fetch.mockResolvedValueOnce({ ok: true });
 
-    // Act
-    fireEvent.click(screen.getByText('Submit Feedback!'));
+  //   // Act
+  //   fireEvent.click(screen.getByText('Submit Feedback!'));
 
-    // Assert
-    await waitFor(() =>
-      expect(global.fetch).toHaveBeenCalledWith(
-        `https://api.github.com/repos/${process.env.REACT_APP_GITHUB_REPO}/issues`,
-        expect.objectContaining({
-          method: 'POST',
-          headers: expect.objectContaining({
-            Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
-          }),
-          body: JSON.stringify({
-            title: 'Test Title',
-            body: 'Test Description',
-          }),
-        })
-      )
-    );
+  //   // Assert
+  //   await waitFor(() =>
+  //     expect(global.fetch).toHaveBeenCalledWith(
+  //       `https://api.github.com/repos/${process.env.REACT_APP_GITHUB_REPO}/issues`,
+  //       expect.objectContaining({
+  //         method: 'POST',
+  //         headers: expect.objectContaining({
+  //           Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`,
+  //         }),
+  //         body: JSON.stringify({
+  //           title: 'Test Title',
+  //           body: 'Test Description',
+  //         }),
+  //       })
+  //     )
+  //   );
 
-    await waitFor(() => {
-      expect(global.alert).toHaveBeenCalledWith('Bug sent successfully!');
-    });
-  });
+  //   await waitFor(() => {
+  //     expect(global.alert).toHaveBeenCalledWith('Bug sent successfully!');
+  //   });
+  // });
 
-  test('handles GitHub issue error', async () => {
-    // Arrange
-    render(<Feedback />);
-    fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
-    fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
-    fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
-    global.fetch.mockRejectedValueOnce(new Error('Network Error'));
+  // test('handles GitHub issue error', async () => {
+  //   // Arrange
+  //   render(<Feedback />);
+  //   fireEvent.change(screen.getByPlaceholderText('Title of Feedback'), { target: { value: 'Test Title' } });
+  //   fireEvent.change(screen.getByPlaceholderText('Description of feedback, bugs etc.'), { target: { value: 'Test Description' } });
+  //   fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Bug or Error' } });
+  //   global.fetch.mockRejectedValueOnce(new Error('Network Error'));
 
-    // Act: Simulate form submission
-    fireEvent.click(screen.getByText('Submit Feedback!'));
+  //   // Act: Simulate form submission
+  //   fireEvent.click(screen.getByText('Submit Feedback!'));
 
-    // Assert: Check if error handling works
-    await waitFor(() => {
-      expect(global.alert).toHaveBeenCalledWith('Bug was not sent! Please try again later.');
-    });
-  });
+  //   // Assert: Check if error handling works
+  //   await waitFor(() => {
+  //     expect(global.alert).toHaveBeenCalledWith('Bug was not sent! Please try again later.');
+  //   });
+  // });
 
   test('email is sent on feedback', async () => {
     // Arrange

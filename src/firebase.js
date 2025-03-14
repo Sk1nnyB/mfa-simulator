@@ -11,7 +11,6 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -146,7 +145,6 @@ const endRun = async (runCode) => {
     console.error("Error ending run code:", error);
   }
 };
-
 
 // Listen to an authentication method for 'finished'
 const useWaitForFinished = (runCode, section) => {
