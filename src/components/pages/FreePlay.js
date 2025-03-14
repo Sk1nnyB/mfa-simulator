@@ -30,7 +30,7 @@ function FreePlay() {
       });
 
       setPlaycode((prevPlaycode) => {
-        const newPlaycode = option ? (prevPlaycode * 10) + value : parseInt(prevPlaycode.toString().replace(value.toString(), ''), 10);
+        const newPlaycode = option ? (prevPlaycode * 10) + value : parseInt(prevPlaycode.toString().replace(value.toString(), ''), 10) || 0;
 
         if (newPlaycode === 0 || isNaN(newPlaycode)) {
           setSetupLink(defaultLink);
@@ -61,6 +61,9 @@ function FreePlay() {
           } else {
             setAuthenticationLevel(0);
           }
+          console.log(ownership);
+          console.log(biological);
+          console.log(newOptions[0]);
         }
         return newPlaycode;
       });
