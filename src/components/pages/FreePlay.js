@@ -61,9 +61,6 @@ function FreePlay() {
           } else {
             setAuthenticationLevel(0);
           }
-          console.log(ownership);
-          console.log(biological);
-          console.log(newOptions[0]);
         }
         return newPlaycode;
       });
