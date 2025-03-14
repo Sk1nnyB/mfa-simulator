@@ -130,6 +130,8 @@ describe("FreePlay Component", () => {
     checkboxes.forEach((checkbox) => {
       expect(checkbox).not.toBeChecked();
     });
+    expect(screen.getByTestId("auth-level")).toHaveTextContent("0");
+    expect(screen.getByText("https://sk1nnyb.github.io/mfa-simulator/#/FreePlay")).toBeInTheDocument();
   });
 
   test("copies link button", () => {
