@@ -1,30 +1,35 @@
 {
   "files": {
-    "main.css": "/mfa-simulator/static/css/main.78256160.css",
-    "main.js": "/mfa-simulator/static/js/main.a687fb9c.js",
+    "main.css": "/mfa-simulator/static/css/main.61659670.css",
+    "main.js": "/mfa-simulator/static/js/main.c095c0a2.js",
     "static/js/453.4cce75e3.chunk.js": "/mfa-simulator/static/js/453.4cce75e3.chunk.js",
+    "static/media/start.jpg": "/mfa-simulator/static/media/start.2b69408cdfb4de5d6ab2.jpg",
     "static/media/password.jpg": "/mfa-simulator/static/media/password.b0ea05a56c034c2a2555.jpg",
     "static/media/email.jpg": "/mfa-simulator/static/media/email.82293ab28769ae3fb0f4.jpg",
     "static/media/authenticators.jpg": "/mfa-simulator/static/media/authenticators.8609332789984b2f27f7.jpg",
     "static/media/security_questions.jpg": "/mfa-simulator/static/media/security_questions.3c474896b00c2afab7f1.jpg",
+    "static/media/assistant_app.jpg": "/mfa-simulator/static/media/assistant_app.b7e6879670aba00f4ca4.jpg",
     "static/media/text.jpg": "/mfa-simulator/static/media/text.281efc055652d9cee3c9.jpg",
     "static/media/authentication_app.jpg": "/mfa-simulator/static/media/authentication_app.6fd8bc510768e38ba464.jpg",
     "static/media/fingerprint.jpg": "/mfa-simulator/static/media/fingerprint.60cd3ca182a7c0a4c5a4.jpg",
     "static/media/smart_card_photo.jpg": "/mfa-simulator/static/media/smart_card_photo.5e766d9d4989d3575b2f.jpg",
     "static/media/voice.jpg": "/mfa-simulator/static/media/voice.f504e3c87f15fcaaaed8.jpg",
     "static/media/phone-assistant-app.png": "/mfa-simulator/static/media/phone-assistant-app.8f0f8b8c1de5f1c1b698.png",
+    "static/media/library.jpg": "/mfa-simulator/static/media/library.5618f11922c693055329.jpg",
+    "static/media/freeplay.jpg": "/mfa-simulator/static/media/freeplay.8e622fec6f56def57167.jpg",
+    "static/media/LoadingCircle.gif": "/mfa-simulator/static/media/LoadingCircle.bb6463a8593b8ef7abe7.gif",
+    "static/media/phone-authenticator.png": "/mfa-simulator/static/media/phone-authenticator.8fd1f8afefaab4d95744.png",
+    "static/media/feedback.jpg": "/mfa-simulator/static/media/feedback.b214e8a486b0cbde2dcc.jpg",
     "static/media/finish.jpg": "/mfa-simulator/static/media/finish.f8f4eabbdf524dadc3b5.jpg",
-    "static/media/phone-authenticator.png": "/mfa-simulator/static/media/phone-authenticator.bc391d0359daf4fff48d.png",
     "static/media/email.png": "/mfa-simulator/static/media/email.37ac312a82c49b8cf801.png",
     "static/media/phone-text.png": "/mfa-simulator/static/media/phone-text.0be35b8877847e0e5d16.png",
-    "static/media/LoadingCircle.gif": "/mfa-simulator/static/media/LoadingCircle.2269af3deb78e6590032.gif",
     "index.html": "/mfa-simulator/index.html",
-    "main.78256160.css.map": "/mfa-simulator/static/css/main.78256160.css.map",
-    "main.a687fb9c.js.map": "/mfa-simulator/static/js/main.a687fb9c.js.map",
+    "main.61659670.css.map": "/mfa-simulator/static/css/main.61659670.css.map",
+    "main.c095c0a2.js.map": "/mfa-simulator/static/js/main.c095c0a2.js.map",
     "453.4cce75e3.chunk.js.map": "/mfa-simulator/static/js/453.4cce75e3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.78256160.css",
-    "static/js/main.a687fb9c.js"
+    "static/css/main.61659670.css",
+    "static/js/main.c095c0a2.js"
   ]
 }
